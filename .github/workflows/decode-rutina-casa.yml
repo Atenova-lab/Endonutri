@@ -3,9 +3,9 @@ on:
   push:
     paths:
       - '.github/workflows/decode-rutina-casa.yml'
+      - '_upload/trigger-rutina.txt'
   workflow_dispatch:
 
-# Trigger refresh: 2026-10-11
 jobs:
   decode:
     runs-on: ubuntu-latest
