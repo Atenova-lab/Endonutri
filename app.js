@@ -1,6 +1,6 @@
 document.write('<script src="app-core.js"><\/script>');
 
-// ENDONUTRI deployment refresh 2026-10-09 15:35
+// ENDONUTRI deployment refresh 2026-10-11 01:43
 // Ajustes de interfaz solicitados para ENDONUTRI.
 document.addEventListener("DOMContentLoaded", () => {
   // Eliminar por completo la sección "Ideas de Comidas" de la navegación,
@@ -48,31 +48,32 @@ document.addEventListener("DOMContentLoaded", () => {
         paso: "DÍA 1",
         titulo: "Base y control",
         ayuda: "Empieza aquí",
-        src: "img/rutina-casa/rutina-dia-1.webp?v=20261009-1535"
+        src: "img/rutina-casa/rutina-dia-1.webp?v=20261011-0143"
       },
       {
         paso: "DÍA 2",
         titulo: "Estabilidad y fuerza funcional",
         ayuda: "Segundo entrenamiento",
-        src: "img/rutina-casa/rutina-dia-2.webp?v=20261009-1535"
+        src: "img/rutina-casa/rutina-dia-2.webp?v=20261011-0143"
       },
       {
         paso: "DÍA 3",
         titulo: "Coordinación y progresión",
         ayuda: "Tercer entrenamiento",
-        src: "img/rutina-casa/rutina-dia-3.webp?v=20261009-1535"
+        src: "img/rutina-casa/rutina-dia-3.webp?v=20261011-0143"
       },
       {
         paso: "COMPLEMENTO DE CORE",
         titulo: "Abdominales fáciles · Nivel principiante",
         ayuda: "Añádelo cuando corresponda a tu sesión",
-        src: "img/rutina-casa/abdominales-principiante.webp?v=20261009-1535"
+        src: "img/rutina-casa/abdominales-principiante.webp?v=20261011-0143",
+        finalBase64: true
       },
       {
         paso: "PROGRESIÓN DE CORE",
         titulo: "Abdominales · Principiante a intermedio",
         ayuda: "Avanza solo cuando controles bien el nivel anterior",
-        src: "img/rutina-casa/abdominales-progresion.webp?v=20261009-1535"
+        src: "img/rutina-casa/abdominales-progresion.webp?v=20261011-0143"
       }
     ];
 
@@ -98,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
 
         <div class="rutina-casa-pages" style="display:grid;gap:34px;">
-          ${paginasRutina.map(({ paso, titulo, ayuda, src }, index) => `
+          ${paginasRutina.map(({ paso, titulo, ayuda, src, finalBase64 }, index) => `
             <article style="margin:0;">
               <div style="display:flex;align-items:flex-start;gap:13px;margin:0 0 12px;padding:0 3px;">
                 <div style="min-width:64px;padding:7px 10px;border-radius:999px;background:#0f5138;color:#fff;font-size:.78rem;font-weight:800;letter-spacing:.04em;text-align:center;">${paso}</div>
@@ -110,6 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <figure style="margin:0;">
                 <img
                   src="${src}"
+                  ${finalBase64 ? 'data-final-abdominales="true"' : ''}
                   alt="${paso}: ${titulo}"
                   loading="${index === 0 ? "eager" : "lazy"}"
                   decoding="async"
@@ -121,5 +123,23 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       </div>
     `;
+
+    // Carga la última versión aprobada de "Abdominales fáciles · Nivel principiante"
+    // desde el archivo de alta calidad subido al repositorio.
+    const abdominalesFinal = ejercicioCasa.querySelector('img[data-final-abdominales="true"]');
+    if (abdominalesFinal) {
+      fetch('_upload/abdominales-principiante-final.b64?v=20261011-0143', { cache: 'no-store' })
+        .then(response => {
+          if (!response.ok) throw new Error('No se pudo cargar la imagen final');
+          return response.text();
+        })
+        .then(base64 => {
+          const limpio = base64.trim();
+          if (limpio) abdominalesFinal.src = `data:image/webp;base64,${limpio}`;
+        })
+        .catch(() => {
+          // Si fallase la carga, se mantiene la versión binaria anterior como respaldo.
+        });
+    }
   }
 });
