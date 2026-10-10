@@ -1,0 +1,1 @@
+La guía de ejercicio en casa ya contiene las imágenes de Día 1, Día 2, Día 3 y progresión en alta calidad. La imagen final de abdominales principiante se ha preparado para reemplazar la versión anterior.
