@@ -5,6 +5,7 @@ on:
       - '.github/workflows/decode-rutina-casa.yml'
   workflow_dispatch:
 
+# Trigger refresh: 2026-10-11
 jobs:
   decode:
     runs-on: ubuntu-latest
