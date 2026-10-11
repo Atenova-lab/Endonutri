@@ -68,7 +68,7 @@
     groups.filter(g => !g.direct).forEach(g => {
       const section = document.createElement('section');
       section.className = 'section'; section.id = 'section-tema-' + g.id;
-      section.innerHTML = `<div class="vn-hub"><button type="button" class="vn-category-back" data-vn-route="home">← Volver al inicio</button><header class="vn-hub-head"><span class="vn-topic-icon" aria-hidden="true">${g.icon}</span><h2 tabindex="-1">${g.title}</h2><p>${g.intro}</p></header><div class="vn-options">${g.items.slice(0, 4).map(option).join('')}</div>${g.items.length > 4 ? `<details class="vn-more"><summary>Ver más sobre ${g.title.toLocaleLowerCase('es-ES')} (${g.items.length - 4})</summary><div class="vn-options">${g.items.slice(4).map(option).join('')}</div></details>` : ''}</div>`;
+      section.innerHTML = `<div class="vn-hub"><button type="button" class="vn-category-back" data-vn-route="home">← Volver al inicio</button><header class="vn-hub-head"><span class="vn-topic-icon" aria-hidden="true">${g.icon}</span><h2 tabindex="-1">${g.title}</h2><p>${g.intro}</p></header><div class="vn-options">${g.items.map(option).join('')}</div></div>`;
       main.appendChild(section);
     });
     const footer = document.createElement('footer');
