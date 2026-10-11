@@ -22,14 +22,11 @@ body.visual-navigation { background: #faf9f1; --fuente: 'Source Sans 3', Arial, 
 .vn-top-actions button[aria-pressed="true"] { background: #064e3b; color: #fff; }
 .vn-search { padding: 18px 24px 20px; max-width: 928px; margin: auto; }
 .vn-search label { display: block; color: #164d3b; font-size: 21px; font-weight: 700; }
-.vn-search #vn-search-help { color: #506559; font-size: 16px; margin: 3px 0 10px; }
 .vn-search-field { display: flex; gap: 10px; }
 .vn-search-field input { width: 100%; min-width: 0; min-height: 54px; border: 1px solid #8bab92; border-radius: 13px; padding: 13px 16px; font-family: inherit; font-size: 18px; background: #fff; color: #164d3b; }
 .vn-search-field input::placeholder { color: #617568; opacity: 1; }
 .vn-search-field input:focus-visible { outline: 3px solid #a76505; outline-offset: 2px; }
 .vn-search-field button { flex-shrink: 0; padding: 12px 20px; min-height: 54px; border-radius: 13px; color: #fff; background: #064e3b; font-size: 18px; font-weight: 700; }
-.vn-search-examples { display: flex; align-items: center; flex-wrap: wrap; gap: 5px 12px; margin-top: 10px; font-size: 15px; color: #506559; }
-.vn-search-examples button { color: #164d3b; font-size: 15px; text-decoration: underline; text-underline-offset: 3px; min-height: 44px; }
 .vn-search-output { margin-top: 12px; padding: 16px; background: #fff; border: 1px solid #d5e2d6; border-radius: 16px; }
 .vn-search-status { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 5px 14px; margin-bottom: 6px; }
 .vn-search-status p { color: #164d3b; font-size: 16px; }
@@ -40,8 +37,6 @@ body.visual-navigation { background: #faf9f1; --fuente: 'Source Sans 3', Arial, 
 .vn-search-result strong { display: block; font-size: 20px; margin: 3px 0; }
 .vn-search-result > span > span { font-size: 16px; color: #506559; }
 .vn-search-empty { color: #506559; font-size: 17px; line-height: 1.5; }
-.vn-search-home { font-size: 17px; color: #164d3b; min-height: 48px; text-decoration: underline; text-underline-offset: 3px; }
-.vn-search-more summary { padding: 14px 8px; min-height: 48px; font-size: 17px; color: #164d3b; cursor: pointer; }
 .visual-navigation.vn-large-text .vn-search-result strong, .visual-navigation.vn-large-text .vn-search label { font-size: 24px; }
 .visual-navigation.vn-large-text .vn-search-result > span > span { font-size: 18px; }
 .vn-intro { text-align: center; padding: 34px 12px 6px; }
@@ -64,16 +59,10 @@ body.visual-navigation { background: #faf9f1; --fuente: 'Source Sans 3', Arial, 
 .vn-topic strong { display: block; font-size: 21px; line-height: 1.2; font-weight: 700; }
 .vn-topic small { display: block; color: #506559; font-size: 16px; line-height: 1.4; margin-top: 6px; }
 .vn-topic-arrow { color: #547b62; font-size: 22px; }
-.vn-start { display: flex; justify-content: center; align-items: center; gap: 16px; flex-wrap: wrap; padding: 18px 20px; background: #eef3e6; border-radius: 16px; width: fit-content; max-width: 100%; margin: 20px auto 28px; color: #244b37; font-size: 18px; }
-.vn-start button { color: #064e3b; font-size: 18px; font-weight: 700; min-height: 44px; text-decoration: underline; text-underline-offset: 4px; }
 .vn-bottom { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 22px 8px 6px; max-width: 1100px; margin: auto; border-top: 1px solid #e2e7dc; color: #536c5e; font-size: 15px; }
 .vn-bottom a { text-decoration: underline; text-underline-offset: 3px; min-height: 44px; display: inline-flex; align-items: center; }
-.vn-bottom button { color: #164d3b; font-size: 16px; min-height: 44px; }
-.vn-crumbs { max-width: 1020px; margin: 20px auto 14px; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; color: #52665b; font-size: 16px; }
-.vn-crumbs button { font-size: 16px; color: #064e3b; text-decoration: underline; text-underline-offset: 3px; min-height: 44px; padding: 3px; }
 .vn-hub { max-width: 880px; margin: 0 auto; }
 .vn-hub-head { padding: 24px 0; }
-.vn-hub-head .vn-topic-icon { margin-bottom: 18px; width: 62px; height: 62px; font-size: 36px; }
 .vn-hub-head h2 { font-family: 'Libre Baskerville', Georgia, serif; color: #064e3b; font-size: clamp(26px, 3vw, 34px); margin-bottom: 10px; }
 .vn-hub-head p { font-size: 19px; line-height: 1.55; color: #506559; }
 .vn-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
@@ -81,10 +70,6 @@ body.visual-navigation { background: #faf9f1; --fuente: 'Source Sans 3', Arial, 
 .vn-option:hover { background: #f0f6e9; border-color: #75a186; }
 .vn-option strong { display: block; font-size: 21px; line-height: 1.3; }
 .vn-option small { display: block; font-size: 16px; color: #506559; line-height: 1.4; margin-top: 7px; }
-.vn-category-back { min-height: 48px; color: #064e3b; padding: 12px 0; font-size: 18px; font-weight: 600; }
-.vn-reading-nav { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; border-top: 1px solid #d5e2d6; margin: 26px auto 0; padding: 18px 0; max-width: 1020px; }
-.vn-reading-nav button { font-size: 18px; min-height: 48px; background: #edf3e7; padding: 12px 18px; border-radius: 12px; color: #164d3b; }
-.vn-preview-banner { text-align: center; background: #eef3e6; color: #365a43; padding: 7px 14px; font-size: 14px; }
 /* Recupera estilos incompletos de hambre/metabolismo presentes en el origen. */
 .visual-navigation .metabolism-page { --me-dark: #064e3b; --me-green: #087f5b; --me-mint: #dff5e9; --me-gold: #e2b943; --me-coral: #e86e57; }
 .visual-navigation .hunger-scale { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; margin: 20px 0; }
@@ -139,7 +124,6 @@ body.visual-navigation { background: #faf9f1; --fuente: 'Source Sans 3', Arial, 
   .vn-brand-icon { font-size: 23px; }
   .vn-top-actions { gap: 4px; }
   .vn-top-actions button { padding: 8px 10px; font-size: 15px; }
-  .vn-top-actions .vn-contact-action { display: none; }
   .vn-intro .vn-eyebrow { font-size: 11px; letter-spacing: .07em; }
   .vn-intro p { font-size: 18px; }
   .vn-map, .visual-navigation.vn-large-text .vn-map { grid-template-columns: 1fr; }
@@ -150,7 +134,68 @@ body.visual-navigation { background: #faf9f1; --fuente: 'Source Sans 3', Arial, 
   .vn-topic small { font-size: 16px; }
   .vn-options { grid-template-columns: 1fr; }
   .vn-option { min-height: 102px; padding: 20px; }
-  .vn-start { justify-content: flex-start; gap: 4px; font-size: 17px; }
-  .vn-crumbs { font-size: 15px; gap: 5px; }
 }
 @media (prefers-reduced-motion: reduce) { .visual-navigation *, .visual-navigation *::before, .visual-navigation *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
+
+/* Tarjetas ilustradas y un único acceso permanente a Inicio. */
+.vn-header-shell { position: sticky; top: 0; z-index: 40; background: #faf9f1; }
+.vn-top { padding: 10px 24px; gap: 12px; }
+.vn-brand small { display: none; }
+.vn-top-actions .vn-home-button { display: inline-flex; align-items: center; gap: 8px; color: #fff; background: #064e3b; border: 2px solid #064e3b; box-shadow: 0 3px 8px rgba(6,78,59,.16); font-size: 18px; font-weight: 700; padding: 10px 18px; }
+.vn-top-actions .vn-home-button:hover { background: #0b664d; border-color: #0b664d; }
+.vn-search { width: 100%; max-width: 1020px; padding: 12px 24px 8px; }
+.vn-search label { font-size: 18px; margin-bottom: 6px; }
+.vn-search-field input, .vn-search-field button { min-height: 46px; padding-top: 10px; padding-bottom: 10px; }
+.visual-navigation .section-header { padding: 12px 0 0; margin-bottom: 14px; flex-wrap: wrap; gap: 6px; }
+.visual-navigation .section-header h2 { flex-basis: 100%; margin: 0; }
+.visual-navigation .section-header > p { margin: 0; }
+.vn-hub-head { padding: 10px 0 16px; }
+.vn-hub-head h2 { margin: 0 0 6px; }
+.vn-hub-head p { font-size: 18px; margin: 0; }
+.vn-options { gap: 12px; }
+.vn-hub { --vn-card-bg: #edf5e8; }
+.vn-hub[data-vn-theme="peso"] { --vn-card-bg: #e9f4ed; }
+.vn-hub[data-vn-theme="mover"] { --vn-card-bg: #e8f3f4; }
+.vn-hub[data-vn-theme="planes"] { --vn-card-bg: #fbf1e0; }
+.vn-hub[data-vn-theme="consulta"] { --vn-card-bg: #f1edf8; }
+.vn-option { gap: 14px; background: var(--vn-card-bg); padding: 14px; min-height: 136px; border: 1px solid #bfd2bf; box-shadow: 0 3px 10px rgba(24,73,55,.04); }
+.vn-option:hover { background: var(--vn-card-bg); border-color: #267255; box-shadow: 0 4px 14px rgba(24,73,55,.12); }
+.vn-card-image, .vn-topic-image, .vn-panel-image { display: block; flex-shrink: 0; object-fit: contain; background: #faf8f0; border-radius: 12px; }
+.vn-card-image { width: 104px; height: 104px; }
+.vn-card-copy { flex: 1; min-width: 0; }
+.vn-card-copy strong { font-size: 20px; }
+.vn-card-copy small { font-size: 16px; }
+.vn-card-arrow { color: #064e3b; font-size: 24px; }
+.vn-topic { background: #edf5e8; padding: 14px; gap: 12px; }
+.vn-topic-image { width: 76px; height: 76px; }
+.vn-topic strong { font-size: 20px; }
+.vn-panel-image { width: 76px; height: 76px; }
+.visual-navigation .macro-panel > summary { background: #edf5e8; gap: 14px; }
+.visual-navigation .macro-panel > summary .macro-number { display: none; }
+.vn-bottom { justify-content: flex-end; padding: 12px 0 0; }
+@media (max-width: 650px) {
+  .vn-options { grid-template-columns: 1fr; }
+  .vn-card-image { width: 96px; height: 96px; }
+  .vn-option { min-height: 124px; }
+}
+@media (max-width: 480px) {
+  .vn-top { padding: 8px 16px; align-items: center; }
+  .vn-top-actions .vn-home-button { font-size: 17px; padding: 8px 12px; }
+  .vn-search { padding: 10px 16px 6px; }
+  .vn-topic { min-height: 110px; padding: 12px; }
+  .vn-topic-image { width: 72px; height: 72px; }
+  .vn-card-image { width: 88px; height: 88px; }
+  .vn-option { gap: 10px; padding: 12px; }
+  .vn-card-copy strong { font-size: 19px; }
+  .vn-card-copy small { font-size: 15px; }
+  .vn-panel-image { width: 64px; height: 64px; }
+}
+
+@media print { .visual-navigation .vn-header-shell, .visual-navigation .vn-search, .visual-navigation .vn-bottom { display: none !important; } }
+
+.visual-navigation .macro-panel { scroll-margin-top: 90px; }
+
+@media (max-width: 380px) {
+  .vn-brand-icon, .vn-top-actions #vn-font span { display: none; }
+  .vn-brand strong { font-size: 17px; }
+}

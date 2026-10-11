@@ -46,8 +46,8 @@
   ];
   window.ENDONUTRI_VISUAL_GROUPS = groups;
   const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const groupFor = route => groups.find(g => g.id === route.replace('tema-', '') || g.items.some(item => item[0] === route) || (route === 'cuestionario-form' && g.id === 'consulta'));
-  const option = ([route, title, hint]) => `<button type="button" class="vn-option" data-vn-route="${esc(route)}"><span><strong>${esc(title)}</strong><small>${esc(hint)}</small></span><span aria-hidden="true">→</span></button>`;
+  const cardImage = route => `img/tarjetas/${route}.webp`;
+  const option = ([route, title, hint]) => `<button type="button" class="vn-option" data-vn-route="${esc(route)}"><img class="vn-card-image" src="${cardImage(route)}" alt="" width="768" height="768" loading="lazy" decoding="async"><span class="vn-card-copy"><strong>${esc(title)}</strong><small>${esc(hint)}</small></span><span class="vn-card-arrow" aria-hidden="true">→</span></button>`;
   document.addEventListener('DOMContentLoaded', () => {
     const home = document.getElementById('section-home');
     const main = document.getElementById('contentArea');
@@ -58,26 +58,32 @@
       if ((box.textContent || '').includes('Para actualizar el PDF')) box.remove();
     });
     const top = document.createElement('div');
-    top.className = 'vn-shell';
-    top.innerHTML = `<header class="vn-top"><button type="button" class="vn-brand" data-vn-route="home" aria-label="Endonutri: volver al inicio"><span class="vn-brand-icon" aria-hidden="true">🌿</span><span><strong>Endonutri</strong><small>Aprende · Cuídate · Avanza</small></span></button><nav class="vn-top-actions" aria-label="Accesos principales"><button type="button" data-vn-route="home">Inicio</button><button type="button" id="vn-font" aria-pressed="false" aria-label="Activar letra más grande">A+ <span>Letra</span></button><button type="button" class="vn-contact-action" data-vn-route="contacto">Contacto</button></nav></header></div>`;
+    top.className = 'vn-shell vn-header-shell';
+    top.innerHTML = `<header class="vn-top"><div class="vn-brand"><span class="vn-brand-icon" aria-hidden="true">🌿</span><span><strong>Endonutri</strong><small>Aprende · Cuídate · Avanza</small></span></div><nav class="vn-top-actions" aria-label="Accesos principales"><button type="button" class="vn-home-button" data-vn-route="home"><svg aria-hidden="true" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 10 9-7 9 7v10H3z"/><path d="M9 20v-7h6v7"/></svg> Inicio</button><button type="button" id="vn-font" aria-pressed="false" aria-label="Activar letra más grande">A+ <span>Letra</span></button></nav></header>`;
     document.getElementById('mainWrapper').prepend(top);
-    const crumbs = document.createElement('nav');
-    crumbs.className = 'vn-crumbs'; crumbs.setAttribute('aria-label', 'Dónde estás'); crumbs.hidden = true;
-    main.before(crumbs);
-    home.innerHTML = `<div class="vn-shell"><div class="vn-intro"><span class="vn-eyebrow">NUTRICIÓN · EJERCICIO · SALUD</span><h1>Un paso para cuidarte mejor</h1><p>Toca el tema que te interesa.</p></div><nav class="vn-map" aria-label="Elige un tema"><figure class="vn-center"><img src="img/hero-endonutri.webp" alt="Personas de distintas edades rodeadas de alimentos y elementos de ejercicio" width="1254" height="1254"></figure>${groups.map(g => `<button type="button" class="vn-topic" data-vn-route="${g.direct || 'tema-' + g.id}"><span class="vn-topic-icon" aria-hidden="true">${g.icon}</span><span class="vn-topic-copy"><strong>${g.title}</strong><small>${g.hint}</small></span><span class="vn-topic-arrow" aria-hidden="true">→</span></button>`).join('')}</nav><div class="vn-start"><span>¿No sabes por dónde empezar?</span><button type="button" data-vn-route="herramientas-plato">Descubre cómo preparar tu plato →</button></div></div>`;
+    home.innerHTML = `<div class="vn-shell"><div class="vn-intro"><span class="vn-eyebrow">NUTRICIÓN · EJERCICIO · SALUD</span><h1>Un paso para cuidarte mejor</h1><p>Toca el tema que te interesa.</p></div><nav class="vn-map" aria-label="Elige un tema"><figure class="vn-center"><img src="img/hero-endonutri.webp" alt="Personas de distintas edades rodeadas de alimentos y elementos de ejercicio" width="1254" height="1254"></figure>${groups.map(g => `<button type="button" class="vn-topic" data-vn-route="${g.direct || 'tema-' + g.id}"><img class="vn-topic-image" src="${cardImage(g.items[0][0])}" alt="" width="768" height="768" decoding="async"><span class="vn-topic-copy"><strong>${g.title}</strong><small>${g.hint}</small></span><span class="vn-topic-arrow" aria-hidden="true">→</span></button>`).join('')}</nav></div>`;
     groups.filter(g => !g.direct).forEach(g => {
       const section = document.createElement('section');
       section.className = 'section'; section.id = 'section-tema-' + g.id;
-      section.innerHTML = `<div class="vn-hub"><button type="button" class="vn-category-back" data-vn-route="home">← Volver al inicio</button><header class="vn-hub-head"><span class="vn-topic-icon" aria-hidden="true">${g.icon}</span><h2 tabindex="-1">${g.title}</h2><p>${g.intro}</p></header><div class="vn-options">${g.items.map(option).join('')}</div></div>`;
+      section.innerHTML = `<div class="vn-hub" data-vn-theme="${g.id}"><header class="vn-hub-head"><h2 tabindex="-1">${g.title}</h2><p>${g.intro}</p></header><div class="vn-options">${g.items.map(option).join('')}</div></div>`;
       main.appendChild(section);
     });
     const footer = document.createElement('footer');
     footer.className = 'vn-bottom';
-    footer.innerHTML = `<span>Información clara, a tu ritmo y sin juicios.</span><button type="button" data-vn-route="contacto">Contacto</button><a href="profesionales.html">Área profesional →</a>`;
+    footer.innerHTML = `<a href="profesionales.html">Área profesional →</a>`;
     main.after(footer);
-    const readingNav = document.createElement('nav');
-    readingNav.className = 'vn-reading-nav'; readingNav.setAttribute('aria-label', 'Continuar explorando'); readingNav.hidden = true;
-    main.after(readingNav);
+    main.querySelectorAll('button[onclick], a[onclick]').forEach(button => {
+      if ((button.getAttribute('onclick') || '').includes("'home'")) button.remove();
+    });
+    document.querySelectorAll('.macro-panel').forEach(panel => {
+      const summary = panel.querySelector('summary');
+      if (!summary) return;
+      const image = document.createElement('img');
+      image.className = 'vn-panel-image'; image.src = cardImage(panel.id);
+      image.alt = ''; image.width = 768; image.height = 768;
+      image.loading = 'lazy'; image.decoding = 'async';
+      summary.prepend(image);
+    });
     const legacyShow = window.showSection;
     let currentRoute = 'home';
     function navigate(route, historyMode = 'push', focus = true) {
@@ -91,20 +97,9 @@
         const panel = document.getElementById(route);
         if (panel) { panel.open = true; requestAnimationFrame(() => panel.scrollIntoView({behavior: 'smooth', block: 'start'})); }
       }
-      const group = groupFor(route);
-      const isHub = route.startsWith('tema-');
-      const returnRoute = group && !group.direct ? 'tema-' + group.id : 'home';
-      const title = section.querySelector('h2')?.textContent.trim() || group?.title || 'Endonutri';
-      crumbs.hidden = route === 'home';
-      crumbs.innerHTML = `<button type="button" data-vn-route="home">Inicio</button>${group && !isHub ? `<span aria-hidden="true">›</span><button type="button" data-vn-route="${returnRoute}">${esc(group.title)}</button>` : ''}<span aria-hidden="true">›</span><span aria-current="page">${esc(isHub ? group?.title : title)}</span>`;
-      readingNav.hidden = route === 'home' || isHub;
-      readingNav.innerHTML = `<button type="button" data-vn-route="${returnRoute}">← ${returnRoute === 'home' ? 'Volver al inicio' : 'Volver a ' + esc(group.title.toLocaleLowerCase('es-ES'))}</button><button type="button" data-vn-route="home">Elegir otro tema →</button>`;
-      // El regreso de cada lectura devuelve al tema del que procede.
-      section.querySelectorAll('.back-btn').forEach(btn => {
-        if ((btn.getAttribute('onclick') || '').includes("'home'")) {
-          btn.removeAttribute('onclick'); btn.dataset.vnRoute = returnRoute;
-          btn.textContent = returnRoute === 'home' ? '← Inicio' : '← ' + group.title;
-        }
+      // Un único acceso a Inicio; conserva los controles propios del cuestionario.
+      section.querySelectorAll('button[onclick], a[onclick]').forEach(button => {
+        if ((button.getAttribute('onclick') || '').includes("'home'")) button.remove();
       });
       if (historyMode) {
         const hash = route === 'home' ? '#inicio' : '#' + route;

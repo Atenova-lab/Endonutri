@@ -86,8 +86,8 @@
     }
     const panel=document.createElement('section'); panel.className='vn-search';
     panel.setAttribute('aria-label','Buscar una sección');
-    panel.innerHTML=`<form id="vn-search-form" role="search"><label for="vn-search">¿Qué quieres encontrar?</label><p id="vn-search-help">Escribe una palabra o cuéntanos qué buscas.</p><div class="vn-search-field"><input type="search" id="vn-search" maxlength="120" placeholder="Por ejemplo: tengo hambre" autocomplete="off" aria-describedby="vn-search-help" aria-controls="vn-search-results"><button type="submit">Buscar <span aria-hidden="true">→</span></button></div><div class="vn-search-examples"><span>Prueba con:</span>${['Tengo hambre','Ejercicio en casa','Cambiar un alimento'].map(text=>`<button type="button" data-vn-search="${text}">${text}</button>`).join('')}</div></form><div class="vn-search-output" id="vn-search-output" hidden><div class="vn-search-status"><p id="vn-search-count" role="status" aria-live="polite" aria-atomic="true"></p><button type="button" id="vn-search-clear">Cerrar resultados ✕</button></div><div id="vn-search-results"></div></div>`;
-    shell.appendChild(panel);
+    panel.innerHTML=`<form id="vn-search-form" role="search"><label for="vn-search">¿Qué quieres encontrar?</label><div class="vn-search-field"><input type="search" id="vn-search" maxlength="120" placeholder="Por ejemplo: tengo hambre" autocomplete="off" aria-controls="vn-search-results"><button type="submit">Buscar <span aria-hidden="true">→</span></button></div></form><div class="vn-search-output" id="vn-search-output" hidden><div class="vn-search-status"><p id="vn-search-count" role="status" aria-live="polite" aria-atomic="true"></p><button type="button" id="vn-search-clear">Cerrar resultados ✕</button></div><div id="vn-search-results"></div></div>`;
+    shell.after(panel);
     const input=document.getElementById('vn-search');
     const output=document.getElementById('vn-search-output');
     const results=document.getElementById('vn-search-results');
@@ -104,10 +104,10 @@
       output.hidden=false;
       if(!found.length) {
         count.textContent='No hemos encontrado ese tema.';
-        results.innerHTML='<p class="vn-search-empty">Prueba con una palabra más sencilla, como «hambre», «caminar» o «medicamentos». También puedes elegir uno de los seis temas del inicio.</p><button type="button" class="vn-search-home" data-vn-route="home">Ver los temas del inicio →</button>';
+        results.innerHTML='<p class="vn-search-empty">Prueba con una palabra más sencilla, como «hambre», «caminar» o «medicamentos». También puedes elegir uno de los seis temas del inicio.</p>';
       } else {
         count.textContent=found.length===1?'Hemos encontrado una sección. Tócala para abrirla.':`Hemos encontrado ${found.length} secciones. Toca la que te interesa.`;
-        results.innerHTML=found.slice(0,6).map(result).join('')+(found.length>6?`<details class="vn-search-more"><summary>Ver las otras ${found.length-6} secciones</summary>${found.slice(6).map(result).join('')}</details>`:'');
+        results.innerHTML=found.map(result).join('');
       }
       if(focus)results.querySelector('button')?.focus({preventScroll:true});
     }
@@ -115,8 +115,6 @@
     input.addEventListener('input',()=>{clearTimeout(timer);if(!input.value.trim()){clear();return;}timer=setTimeout(()=>render(),180);});
     input.addEventListener('keydown',event=>{if(event.key==='Escape'){clear();input.focus();}});
     panel.addEventListener('click',event=>{
-      const suggestion=event.target.closest('[data-vn-search]');
-      if(suggestion){input.value=suggestion.dataset.vnSearch;render(true);}
       if(event.target.closest('[data-vn-route]'))clear();
     });
     document.getElementById('vn-search-clear').addEventListener('click',()=>{clear();input.focus();});
