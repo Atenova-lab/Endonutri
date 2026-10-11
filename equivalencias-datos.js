@@ -661,5 +661,939 @@ window.ENDONUTRI_EQ_FOODS = [
     "fiber": 9.3,
     "sourceCode": "12166",
     "sourceName": "Seeds, sesame butter, tahini, from roasted and toasted kernels (most common type)"
+  },
+  {
+    "id": "manzana",
+    "name": "Manzana",
+    "state": "Cruda, con piel, sin corazón",
+    "groups": [
+      "hidratos"
+    ],
+    "kcal": 52.0,
+    "carbs": 11.41,
+    "protein": 0.26,
+    "fat": 0.17,
+    "fiber": 2.4,
+    "sourceCode": "09003",
+    "sourceName": "Apples, raw, with skin (Includes foods for USDA's Food Distribution Program)"
+  },
+  {
+    "id": "albaricoque",
+    "name": "Albaricoque",
+    "state": "Crudo, sin hueso",
+    "groups": [
+      "hidratos"
+    ],
+    "kcal": 48.0,
+    "carbs": 9.12,
+    "protein": 1.4,
+    "fat": 0.39,
+    "fiber": 2.0,
+    "sourceCode": "09021",
+    "sourceName": "Apricots, raw"
+  },
+  {
+    "id": "arandanos",
+    "name": "Arándanos",
+    "state": "Crudos",
+    "groups": [
+      "hidratos"
+    ],
+    "kcal": 57.0,
+    "carbs": 12.09,
+    "protein": 0.74,
+    "fat": 0.33,
+    "fiber": 2.4,
+    "sourceCode": "09050",
+    "sourceName": "Blueberries, raw"
+  },
+  {
+    "id": "cerezas",
+    "name": "Cerezas",
+    "state": "Crudas, sin hueso",
+    "groups": [
+      "hidratos"
+    ],
+    "kcal": 63.0,
+    "carbs": 13.91,
+    "protein": 1.06,
+    "fat": 0.2,
+    "fiber": 2.1,
+    "sourceCode": "09070",
+    "sourceName": "Cherries, sweet, raw"
+  },
+  {
+    "id": "higos",
+    "name": "Higos",
+    "state": "Crudos, parte comestible",
+    "groups": [
+      "hidratos"
+    ],
+    "kcal": 74.0,
+    "carbs": 16.28,
+    "protein": 0.75,
+    "fat": 0.3,
+    "fiber": 2.9,
+    "sourceCode": "09089",
+    "sourceName": "Figs, raw"
+  },
+  {
+    "id": "uvas",
+    "name": "Uvas",
+    "state": "Crudas, sin tallos",
+    "groups": [
+      "hidratos"
+    ],
+    "kcal": 69.0,
+    "carbs": 17.2,
+    "protein": 0.72,
+    "fat": 0.16,
+    "fiber": 0.9,
+    "sourceCode": "09132",
+    "sourceName": "Grapes, red or green (European type, such as Thompson seedless), raw"
+  },
+  {
+    "id": "kiwi",
+    "name": "Kiwi",
+    "state": "Crudo, sin piel",
+    "groups": [
+      "hidratos"
+    ],
+    "kcal": 61.0,
+    "carbs": 11.66,
+    "protein": 1.14,
+    "fat": 0.52,
+    "fiber": 3.0,
+    "sourceCode": "09148",
+    "sourceName": "Kiwifruit, green, raw"
+  },
+  {
+    "id": "mango",
+    "name": "Mango",
+    "state": "Crudo, sin piel ni hueso",
+    "groups": [
+      "hidratos"
+    ],
+    "kcal": 60.0,
+    "carbs": 13.38,
+    "protein": 0.82,
+    "fat": 0.38,
+    "fiber": 1.6,
+    "sourceCode": "09176",
+    "sourceName": "Mangos, raw"
+  },
+  {
+    "id": "melon",
+    "name": "Melón",
+    "state": "Crudo, sin piel ni semillas; referencia tipo honeydew",
+    "groups": [
+      "hidratos"
+    ],
+    "kcal": 36.0,
+    "carbs": 8.29,
+    "protein": 0.54,
+    "fat": 0.14,
+    "fiber": 0.8,
+    "sourceCode": "09184",
+    "sourceName": "Melons, honeydew, raw"
+  },
+  {
+    "id": "nectarina",
+    "name": "Nectarina",
+    "state": "Cruda, sin hueso",
+    "groups": [
+      "hidratos"
+    ],
+    "kcal": 44.0,
+    "carbs": 8.85,
+    "protein": 1.06,
+    "fat": 0.32,
+    "fiber": 1.7,
+    "sourceCode": "09191",
+    "sourceName": "Nectarines, raw"
+  },
+  {
+    "id": "naranja",
+    "name": "Naranja",
+    "state": "Cruda, sin piel",
+    "groups": [
+      "hidratos"
+    ],
+    "kcal": 47.0,
+    "carbs": 9.35,
+    "protein": 0.94,
+    "fat": 0.12,
+    "fiber": 2.4,
+    "sourceCode": "09200",
+    "sourceName": "Oranges, raw, all commercial varieties"
+  },
+  {
+    "id": "melocoton",
+    "name": "Melocotón",
+    "state": "Crudo, sin hueso",
+    "groups": [
+      "hidratos"
+    ],
+    "kcal": 39.0,
+    "carbs": 8.04,
+    "protein": 0.91,
+    "fat": 0.25,
+    "fiber": 1.5,
+    "sourceCode": "09236",
+    "sourceName": "Peaches, yellow, raw"
+  },
+  {
+    "id": "pera",
+    "name": "Pera",
+    "state": "Cruda, con piel, sin corazón",
+    "groups": [
+      "hidratos"
+    ],
+    "kcal": 57.0,
+    "carbs": 12.13,
+    "protein": 0.36,
+    "fat": 0.14,
+    "fiber": 3.1,
+    "sourceCode": "09252",
+    "sourceName": "Pears, raw"
+  },
+  {
+    "id": "pina",
+    "name": "Piña",
+    "state": "Cruda, sin piel ni corona",
+    "groups": [
+      "hidratos"
+    ],
+    "kcal": 50.0,
+    "carbs": 11.72,
+    "protein": 0.54,
+    "fat": 0.12,
+    "fiber": 1.4,
+    "sourceCode": "09266",
+    "sourceName": "Pineapple, raw, all varieties"
+  },
+  {
+    "id": "ciruela",
+    "name": "Ciruela",
+    "state": "Cruda, sin hueso",
+    "groups": [
+      "hidratos"
+    ],
+    "kcal": 46.0,
+    "carbs": 10.02,
+    "protein": 0.7,
+    "fat": 0.28,
+    "fiber": 1.4,
+    "sourceCode": "09279",
+    "sourceName": "Plums, raw"
+  },
+  {
+    "id": "frambuesas",
+    "name": "Frambuesas",
+    "state": "Crudas",
+    "groups": [
+      "hidratos"
+    ],
+    "kcal": 52.0,
+    "carbs": 5.44,
+    "protein": 1.2,
+    "fat": 0.65,
+    "fiber": 6.5,
+    "sourceCode": "09302",
+    "sourceName": "Raspberries, raw"
+  },
+  {
+    "id": "fresas",
+    "name": "Fresas",
+    "state": "Crudas, sin hojas",
+    "groups": [
+      "hidratos"
+    ],
+    "kcal": 32.0,
+    "carbs": 5.68,
+    "protein": 0.67,
+    "fat": 0.3,
+    "fiber": 2.0,
+    "sourceCode": "09316",
+    "sourceName": "Strawberries, raw"
+  },
+  {
+    "id": "mandarina",
+    "name": "Mandarina",
+    "state": "Cruda, sin piel",
+    "groups": [
+      "hidratos"
+    ],
+    "kcal": 53.0,
+    "carbs": 11.54,
+    "protein": 0.81,
+    "fat": 0.31,
+    "fiber": 1.8,
+    "sourceCode": "09218",
+    "sourceName": "Tangerines, (mandarin oranges), raw"
+  },
+  {
+    "id": "sandia",
+    "name": "Sandía",
+    "state": "Cruda, sin piel",
+    "groups": [
+      "hidratos"
+    ],
+    "kcal": 30.0,
+    "carbs": 7.15,
+    "protein": 0.61,
+    "fat": 0.15,
+    "fiber": 0.4,
+    "sourceCode": "09326",
+    "sourceName": "Watermelon, raw"
+  },
+  {
+    "id": "pan-centeno",
+    "name": "Pan de centeno",
+    "state": "Tal como se come; revisar etiqueta",
+    "groups": [
+      "hidratos"
+    ],
+    "kcal": 259.0,
+    "carbs": 42.5,
+    "protein": 8.5,
+    "fat": 3.3,
+    "fiber": 5.8,
+    "sourceCode": "18060",
+    "sourceName": "Bread, rye"
+  },
+  {
+    "id": "pan-pita",
+    "name": "Pan de pita",
+    "state": "Sin relleno",
+    "groups": [
+      "hidratos"
+    ],
+    "kcal": 275.0,
+    "carbs": 53.5,
+    "protein": 9.1,
+    "fat": 1.2,
+    "fiber": 2.2,
+    "sourceCode": "18041",
+    "sourceName": "Bread, pita, white, enriched"
+  },
+  {
+    "id": "bulgur",
+    "name": "Bulgur cocido",
+    "state": "Cocido con agua, sin aceite",
+    "groups": [
+      "hidratos"
+    ],
+    "kcal": 83.0,
+    "carbs": 14.08,
+    "protein": 3.08,
+    "fat": 0.24,
+    "fiber": 4.5,
+    "sourceCode": "20013",
+    "sourceName": "Bulgur, cooked"
+  },
+  {
+    "id": "maiz",
+    "name": "Maíz dulce cocido",
+    "state": "Granos cocidos y escurridos, sin aceite",
+    "groups": [
+      "hidratos"
+    ],
+    "kcal": 96.0,
+    "carbs": 18.58,
+    "protein": 3.41,
+    "fat": 1.5,
+    "fiber": 2.4,
+    "sourceCode": "11168",
+    "sourceName": "Corn, sweet, yellow, cooked, boiled, drained, without salt"
+  },
+  {
+    "id": "alubias-blancas",
+    "name": "Alubias blancas cocidas",
+    "state": "Cocidas y escurridas, sin guarnición",
+    "groups": [
+      "hidratos",
+      "proteinas"
+    ],
+    "kcal": 139.0,
+    "carbs": 18.79,
+    "protein": 9.73,
+    "fat": 0.35,
+    "fiber": 6.3,
+    "sourceCode": "16050",
+    "sourceName": "Beans, white, mature seeds, cooked, boiled, without salt"
+  },
+  {
+    "id": "alubias-negras",
+    "name": "Alubias negras cocidas",
+    "state": "Cocidas y escurridas, sin guarnición",
+    "groups": [
+      "hidratos",
+      "proteinas"
+    ],
+    "kcal": 132.0,
+    "carbs": 15.01,
+    "protein": 8.86,
+    "fat": 0.54,
+    "fiber": 8.7,
+    "sourceCode": "16015",
+    "sourceName": "Beans, black, mature seeds, cooked, boiled, without salt"
+  },
+  {
+    "id": "alubias-rojas",
+    "name": "Alubias rojas cocidas",
+    "state": "Cocidas y escurridas, sin guarnición",
+    "groups": [
+      "hidratos",
+      "proteinas"
+    ],
+    "kcal": 127.0,
+    "carbs": 15.4,
+    "protein": 8.67,
+    "fat": 0.5,
+    "fiber": 7.4,
+    "sourceCode": "16033",
+    "sourceName": "Beans, kidney, red, mature seeds, cooked, boiled, without salt"
+  },
+  {
+    "id": "guisantes",
+    "name": "Guisantes cocidos",
+    "state": "Cocidos y escurridos, sin aceite",
+    "groups": [
+      "hidratos",
+      "proteinas"
+    ],
+    "kcal": 84.0,
+    "carbs": 10.13,
+    "protein": 5.36,
+    "fat": 0.22,
+    "fiber": 5.5,
+    "sourceCode": "11305",
+    "sourceName": "Peas, green, cooked, boiled, drained, without salt"
+  },
+  {
+    "id": "edamame",
+    "name": "Edamame cocido",
+    "state": "Solo granos de soja verde cocidos y escurridos, sin vaina",
+    "groups": [
+      "proteinas"
+    ],
+    "kcal": 141.0,
+    "carbs": 6.85,
+    "protein": 12.35,
+    "fat": 6.4,
+    "fiber": 4.2,
+    "sourceCode": "11451",
+    "sourceName": "Soybeans, green, cooked, boiled, drained, without salt"
+  },
+  {
+    "id": "cerdo-crudo",
+    "name": "Solomillo de cerdo crudo",
+    "state": "Crudo, carne magra sin grasa visible",
+    "groups": [
+      "proteinas"
+    ],
+    "kcal": 109.0,
+    "carbs": 0,
+    "protein": 20.95,
+    "fat": 2.17,
+    "fiber": 0.0,
+    "sourceCode": "10060",
+    "sourceName": "Pork, fresh, loin, tenderloin, separable lean only, raw"
+  },
+  {
+    "id": "cerdo",
+    "name": "Solomillo de cerdo cocinado",
+    "state": "Asado, carne magra sin grasa visible, sin aceite añadido",
+    "groups": [
+      "proteinas"
+    ],
+    "kcal": 143.0,
+    "carbs": 0,
+    "protein": 26.17,
+    "fat": 3.51,
+    "fiber": 0.0,
+    "sourceCode": "10061",
+    "sourceName": "Pork, fresh, loin, tenderloin, separable lean only, cooked, roasted"
+  },
+  {
+    "id": "vacuno",
+    "name": "Filete de vacuno magro cocinado",
+    "state": "A la plancha, corte top sirloin, sin grasa visible ni aceite añadido",
+    "groups": [
+      "proteinas"
+    ],
+    "kcal": 171.0,
+    "carbs": 0,
+    "protein": 30.58,
+    "fat": 5.37,
+    "fiber": 0.0,
+    "sourceCode": "23256",
+    "sourceName": "Beef, loin, top sirloin filet, boneless, separable lean only, trimmed to 0\" fat, all grades, cooked, grilled"
+  },
+  {
+    "id": "conejo-crudo",
+    "name": "Conejo crudo",
+    "state": "Crudo, sin huesos; mezcla de cortes",
+    "groups": [
+      "proteinas"
+    ],
+    "kcal": 136.0,
+    "carbs": 0,
+    "protein": 20.05,
+    "fat": 5.55,
+    "fiber": 0.0,
+    "sourceCode": "17177",
+    "sourceName": "Game meat, rabbit, domesticated, composite of cuts, raw"
+  },
+  {
+    "id": "conejo",
+    "name": "Conejo cocinado",
+    "state": "Asado, sin huesos ni aceite añadido; mezcla de cortes",
+    "groups": [
+      "proteinas"
+    ],
+    "kcal": 197.0,
+    "carbs": 0,
+    "protein": 29.06,
+    "fat": 8.05,
+    "fiber": 0.0,
+    "sourceCode": "17178",
+    "sourceName": "Game meat, rabbit, domesticated, composite of cuts, cooked, roasted"
+  },
+  {
+    "id": "caballa-cruda",
+    "name": "Caballa cruda",
+    "state": "Cruda, sin espinas; caballa atlántica",
+    "groups": [
+      "proteinas"
+    ],
+    "kcal": 205.0,
+    "carbs": 0,
+    "protein": 18.6,
+    "fat": 13.89,
+    "fiber": 0.0,
+    "sourceCode": "15046",
+    "sourceName": "Fish, mackerel, Atlantic, raw"
+  },
+  {
+    "id": "caballa",
+    "name": "Caballa cocinada",
+    "state": "Cocinada, sin espinas ni aceite añadido; caballa atlántica",
+    "groups": [
+      "proteinas"
+    ],
+    "kcal": 262.0,
+    "carbs": 0,
+    "protein": 23.85,
+    "fat": 17.81,
+    "fiber": 0.0,
+    "sourceCode": "15047",
+    "sourceName": "Fish, mackerel, Atlantic, cooked, dry heat"
+  },
+  {
+    "id": "sardinas",
+    "name": "Sardinas en aceite",
+    "state": "Conserva escurrida, con espinas comestibles",
+    "groups": [
+      "proteinas"
+    ],
+    "kcal": 208.0,
+    "carbs": 0,
+    "protein": 24.62,
+    "fat": 11.45,
+    "fiber": 0.0,
+    "sourceCode": "15088",
+    "sourceName": "Fish, sardine, Atlantic, canned in oil, drained solids with bone"
+  },
+  {
+    "id": "trucha",
+    "name": "Trucha cocinada",
+    "state": "Trucha arcoíris de cultivo, sin espinas ni aceite añadido",
+    "groups": [
+      "proteinas"
+    ],
+    "kcal": 168.0,
+    "carbs": 0,
+    "protein": 23.8,
+    "fat": 7.38,
+    "fiber": 0.0,
+    "sourceCode": "15241",
+    "sourceName": "Fish, trout, rainbow, farmed, cooked, dry heat"
+  },
+  {
+    "id": "atun-fresco",
+    "name": "Atún fresco crudo",
+    "state": "Crudo, sin espinas; referencia atún de aleta amarilla",
+    "groups": [
+      "proteinas"
+    ],
+    "kcal": 109.0,
+    "carbs": 0,
+    "protein": 24.4,
+    "fat": 0.49,
+    "fiber": 0.0,
+    "sourceCode": "15127",
+    "sourceName": "Fish, tuna, fresh, yellowfin, raw"
+  },
+  {
+    "id": "eglefino",
+    "name": "Eglefino cocinado",
+    "state": "Pescado blanco cocinado, sin espinas ni aceite añadido",
+    "groups": [
+      "proteinas"
+    ],
+    "kcal": 90.0,
+    "carbs": 0,
+    "protein": 19.99,
+    "fat": 0.55,
+    "fiber": 0.0,
+    "sourceCode": "15034",
+    "sourceName": "Fish, haddock, cooked, dry heat"
+  },
+  {
+    "id": "gambas",
+    "name": "Gambas cocidas",
+    "state": "Solo parte comestible, sin cabeza ni cáscara; referencia cocida que puede llevar aditivos para retener agua",
+    "groups": [
+      "proteinas"
+    ],
+    "kcal": 119.0,
+    "carbs": 1.52,
+    "protein": 22.78,
+    "fat": 1.7,
+    "fiber": 0.0,
+    "sourceCode": "15151",
+    "sourceName": "Crustaceans, shrimp, mixed species, cooked, moist heat (may contain additives to retain moisture)"
+  },
+  {
+    "id": "mejillones",
+    "name": "Mejillones cocidos",
+    "state": "Solo carne, sin concha",
+    "groups": [
+      "proteinas"
+    ],
+    "kcal": 172.0,
+    "carbs": 7.39,
+    "protein": 23.8,
+    "fat": 4.48,
+    "fiber": 0.0,
+    "sourceCode": "15165",
+    "sourceName": "Mollusks, mussel, blue, cooked, moist heat"
+  },
+  {
+    "id": "almejas",
+    "name": "Almejas cocidas",
+    "state": "Solo carne, sin concha",
+    "groups": [
+      "proteinas"
+    ],
+    "kcal": 148.0,
+    "carbs": 5.13,
+    "protein": 25.55,
+    "fat": 1.95,
+    "fiber": 0.0,
+    "sourceCode": "15159",
+    "sourceName": "Mollusks, clam, mixed species, cooked, moist heat"
+  },
+  {
+    "id": "clara",
+    "name": "Clara de huevo cruda",
+    "state": "Peso sin cáscara; cocinar antes de consumir",
+    "groups": [
+      "proteinas"
+    ],
+    "kcal": 52.0,
+    "carbs": 0.73,
+    "protein": 10.9,
+    "fat": 0.17,
+    "fiber": 0.0,
+    "sourceCode": "01124",
+    "sourceName": "Egg, white, raw, fresh"
+  },
+  {
+    "id": "leche-entera",
+    "name": "Leche entera",
+    "state": "Referencia 3,25% grasa; pesar en gramos",
+    "groups": [
+      "proteinas"
+    ],
+    "kcal": 61.0,
+    "carbs": 4.78,
+    "protein": 3.15,
+    "fat": 3.27,
+    "fiber": 0.0,
+    "sourceCode": "01211",
+    "sourceName": "Milk, whole, 3.25% milkfat, without added vitamin A and vitamin D"
+  },
+  {
+    "id": "leche-2",
+    "name": "Leche con 2% de grasa",
+    "state": "Referencia 2% grasa, puede diferir de la semidesnatada española; pesar en gramos",
+    "groups": [
+      "proteinas"
+    ],
+    "kcal": 50.0,
+    "carbs": 4.8,
+    "protein": 3.3,
+    "fat": 1.98,
+    "fiber": 0.0,
+    "sourceCode": "01174",
+    "sourceName": "Milk, reduced fat, fluid, 2% milkfat, without added vitamin A and vitamin D"
+  },
+  {
+    "id": "leche-desnatada",
+    "name": "Leche desnatada",
+    "state": "Pesar en gramos; revisar etiqueta",
+    "groups": [
+      "proteinas"
+    ],
+    "kcal": 35.0,
+    "carbs": 4.86,
+    "protein": 3.37,
+    "fat": 0.18,
+    "fiber": 0.0,
+    "sourceCode": "01151",
+    "sourceName": "Milk, nonfat, fluid, without added vitamin A and vitamin D (fat free or skim)"
+  },
+  {
+    "id": "soja-bebida",
+    "name": "Bebida de soja sin azúcar",
+    "state": "Pesar en gramos; composición variable, revisar etiqueta",
+    "groups": [
+      "proteinas"
+    ],
+    "kcal": 33.0,
+    "carbs": 1.24,
+    "protein": 2.86,
+    "fat": 1.61,
+    "fiber": 0.5,
+    "sourceCode": "16222",
+    "sourceName": "Soymilk (all flavors), unsweetened, with added calcium, vitamins A and D"
+  },
+  {
+    "id": "yogur-entero",
+    "name": "Yogur natural entero",
+    "state": "Sin azúcar añadido",
+    "groups": [
+      "proteinas"
+    ],
+    "kcal": 61.0,
+    "carbs": 4.66,
+    "protein": 3.47,
+    "fat": 3.25,
+    "fiber": 0.0,
+    "sourceCode": "01116",
+    "sourceName": "Yogurt, plain, whole milk"
+  },
+  {
+    "id": "yogur-desnatado",
+    "name": "Yogur natural desnatado",
+    "state": "Sin azúcar añadido",
+    "groups": [
+      "proteinas"
+    ],
+    "kcal": 56.0,
+    "carbs": 7.68,
+    "protein": 5.73,
+    "fat": 0.18,
+    "fiber": 0.0,
+    "sourceCode": "01118",
+    "sourceName": "Yogurt, plain, skim milk"
+  },
+  {
+    "id": "mozzarella",
+    "name": "Queso mozzarella",
+    "state": "Leche entera, escurrido; revisar etiqueta",
+    "groups": [
+      "proteinas"
+    ],
+    "kcal": 299.0,
+    "carbs": 2.4,
+    "protein": 22.17,
+    "fat": 22.14,
+    "fiber": 0.0,
+    "sourceCode": "01026",
+    "sourceName": "Cheese, mozzarella, whole milk"
+  },
+  {
+    "id": "ricotta",
+    "name": "Queso ricotta",
+    "state": "Leche entera; revisar etiqueta",
+    "groups": [
+      "proteinas"
+    ],
+    "kcal": 150.0,
+    "carbs": 7.27,
+    "protein": 7.54,
+    "fat": 10.18,
+    "fiber": 0.0,
+    "sourceCode": "01036",
+    "sourceName": "Cheese, ricotta, whole milk"
+  },
+  {
+    "id": "feta",
+    "name": "Queso feta",
+    "state": "Tal como se come; revisar etiqueta",
+    "groups": [
+      "proteinas"
+    ],
+    "kcal": 265.0,
+    "carbs": 3.88,
+    "protein": 14.21,
+    "fat": 21.49,
+    "fiber": 0.0,
+    "sourceCode": "01019",
+    "sourceName": "Cheese, feta"
+  },
+  {
+    "id": "parmesano",
+    "name": "Queso parmesano",
+    "state": "Tal como se come, pieza; revisar etiqueta",
+    "groups": [
+      "proteinas"
+    ],
+    "kcal": 392.0,
+    "carbs": 3.22,
+    "protein": 35.75,
+    "fat": 25.0,
+    "fiber": 0.0,
+    "sourceCode": "01033",
+    "sourceName": "Cheese, parmesan, hard"
+  },
+  {
+    "id": "avellanas",
+    "name": "Avellanas",
+    "state": "Sin cáscara ni aceite añadido",
+    "groups": [
+      "grasas"
+    ],
+    "kcal": 628.0,
+    "carbs": 7.0,
+    "protein": 14.95,
+    "fat": 60.75,
+    "fiber": 9.7,
+    "sourceCode": "12120",
+    "sourceName": "Nuts, hazelnuts or filberts"
+  },
+  {
+    "id": "macadamia",
+    "name": "Nueces de macadamia",
+    "state": "Crudas, sin cáscara",
+    "groups": [
+      "grasas"
+    ],
+    "kcal": 718.0,
+    "carbs": 5.22,
+    "protein": 7.91,
+    "fat": 75.77,
+    "fiber": 8.6,
+    "sourceCode": "12131",
+    "sourceName": "Nuts, macadamia nuts, raw"
+  },
+  {
+    "id": "pecanas",
+    "name": "Nueces pecanas",
+    "state": "Sin cáscara ni aceite añadido",
+    "groups": [
+      "grasas"
+    ],
+    "kcal": 691.0,
+    "carbs": 4.26,
+    "protein": 9.17,
+    "fat": 71.97,
+    "fiber": 9.6,
+    "sourceCode": "12142",
+    "sourceName": "Nuts, pecans"
+  },
+  {
+    "id": "brasil",
+    "name": "Nueces de Brasil",
+    "state": "Sin cáscara; las equivalencias no son una recomendación de cantidad",
+    "groups": [
+      "grasas"
+    ],
+    "kcal": 659.0,
+    "carbs": 4.24,
+    "protein": 14.32,
+    "fat": 67.1,
+    "fiber": 7.5,
+    "sourceCode": "12078",
+    "sourceName": "Nuts, brazilnuts, dried, unblanched"
+  },
+  {
+    "id": "cacahuetes",
+    "name": "Cacahuetes",
+    "state": "Crudos, sin cáscara ni aceite añadido",
+    "groups": [
+      "grasas"
+    ],
+    "kcal": 567.0,
+    "carbs": 7.63,
+    "protein": 25.8,
+    "fat": 49.24,
+    "fiber": 8.5,
+    "sourceCode": "16087",
+    "sourceName": "Peanuts, all types, raw"
+  },
+  {
+    "id": "pipas-calabaza",
+    "name": "Pipas de calabaza",
+    "state": "Semillas peladas, secas, sin aceite añadido",
+    "groups": [
+      "grasas"
+    ],
+    "kcal": 559.0,
+    "carbs": 4.71,
+    "protein": 30.23,
+    "fat": 49.05,
+    "fiber": 6.0,
+    "sourceCode": "12014",
+    "sourceName": "Seeds, pumpkin and squash seed kernels, dried"
+  },
+  {
+    "id": "sesamo",
+    "name": "Semillas de sésamo",
+    "state": "Secas, sin aceite añadido",
+    "groups": [
+      "grasas"
+    ],
+    "kcal": 573.0,
+    "carbs": 11.65,
+    "protein": 17.73,
+    "fat": 49.67,
+    "fiber": 11.8,
+    "sourceCode": "12023",
+    "sourceName": "Seeds, sesame seeds, whole, dried"
+  },
+  {
+    "id": "chia",
+    "name": "Semillas de chía",
+    "state": "Secas, antes de hidratar",
+    "groups": [
+      "grasas"
+    ],
+    "kcal": 486.0,
+    "carbs": 7.72,
+    "protein": 16.54,
+    "fat": 30.74,
+    "fiber": 34.4,
+    "sourceCode": "12006",
+    "sourceName": "Seeds, chia seeds, dried"
+  },
+  {
+    "id": "lino",
+    "name": "Semillas de lino",
+    "state": "Secas",
+    "groups": [
+      "grasas"
+    ],
+    "kcal": 534.0,
+    "carbs": 1.58,
+    "protein": 18.29,
+    "fat": 42.16,
+    "fiber": 27.3,
+    "sourceCode": "12220",
+    "sourceName": "Seeds, flaxseed"
   }
 ];
