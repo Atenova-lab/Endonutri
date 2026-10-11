@@ -199,3 +199,13 @@ body.visual-navigation { background: #faf9f1; --fuente: 'Source Sans 3', Arial, 
   .vn-brand-icon, .vn-top-actions #vn-font span { display: none; }
   .vn-brand strong { font-size: 17px; }
 }
+
+/* Lectura online y descarga: dos acciones claras para cada guía. */
+.special-guide-actions { display:flex; flex-direction:column; gap:8px; width:100%; margin-top:auto; padding-top:6px; }
+.special-guide-actions a { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; min-height:46px; padding:10px 8px; border:1.5px solid #176448; border-radius:10px; font-size:16px; font-weight:700; line-height:1.25; text-decoration:none; box-sizing:border-box; }
+.special-guide-actions svg { flex:0 0 19px; width:19px; height:19px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+.special-guide-actions .guide-online { background:#176448; color:#fff; }
+.special-guide-actions .guide-download { background:#fff; color:#176448; }
+.special-guide-actions a:hover { border-color:#124c38; box-shadow:0 3px 10px rgba(24,73,55,.12); }
+.special-guide-actions .guide-online:hover { background:#124c38; }
+.special-guide-actions a:focus-visible { outline:3px solid #ba8d42; outline-offset:3px; }
