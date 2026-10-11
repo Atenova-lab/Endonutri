@@ -1,6 +1,6 @@
 document.write('<script src="app-core.js"><\/script>');
 
-// ENDONUTRI deployment refresh 2026-10-11 01:58
+// ENDONUTRI deployment refresh 2026-10-11 02:10
 // Ajustes de interfaz solicitados para ENDONUTRI.
 document.addEventListener("DOMContentLoaded", () => {
   const comidasNavLink = document.querySelector('a[onclick*="comidas-desayunos"]');
@@ -24,13 +24,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (ejercicioCasa) {
-    const IMG_BASE = "https://raw.githubusercontent.com/BeaMD-endonutri/Endonutri/ba563e7394c88be644120e5c14bd7365321d4bf8/img/rutina-casa/";
+    const VERSION_HQ = "20261011-0210";
     const paginasRutina = [
-      { paso: "DÍA 1", titulo: "Base y control", ayuda: "Empieza aquí", src: `${IMG_BASE}rutina-dia-1.webp` },
-      { paso: "DÍA 2", titulo: "Estabilidad y fuerza funcional", ayuda: "Segundo entrenamiento", src: `${IMG_BASE}rutina-dia-2.webp` },
-      { paso: "DÍA 3", titulo: "Coordinación y progresión", ayuda: "Tercer entrenamiento", src: `${IMG_BASE}rutina-dia-3.webp` },
-      { paso: "COMPLEMENTO DE CORE", titulo: "Abdominales fáciles · Nivel principiante", ayuda: "Añádelo cuando corresponda a tu sesión", src: `${IMG_BASE}abdominales-principiante.webp` },
-      { paso: "PROGRESIÓN DE CORE", titulo: "Abdominales · Principiante a intermedio", ayuda: "Avanza solo cuando controles bien el nivel anterior", src: `${IMG_BASE}abdominales-progresion.webp` }
+      { paso: "DÍA 1", titulo: "Base y control", ayuda: "Empieza aquí", src: `img/rutina-casa/rutina-dia-1.webp?v=${VERSION_HQ}` },
+      { paso: "DÍA 2", titulo: "Estabilidad y fuerza funcional", ayuda: "Segundo entrenamiento", src: `img/rutina-casa/rutina-dia-2.webp?v=${VERSION_HQ}` },
+      { paso: "DÍA 3", titulo: "Coordinación y progresión", ayuda: "Tercer entrenamiento", src: `img/rutina-casa/rutina-dia-3.webp?v=${VERSION_HQ}` },
+      { paso: "COMPLEMENTO DE CORE", titulo: "Abdominales fáciles · Nivel principiante", ayuda: "Añádelo cuando corresponda a tu sesión", src: `img/rutina-casa/abdominales-principiante.webp?v=${VERSION_HQ}` },
+      { paso: "PROGRESIÓN DE CORE", titulo: "Abdominales · Principiante a intermedio", ayuda: "Avanza solo cuando controles bien el nivel anterior", src: `img/rutina-casa/abdominales-progresion.webp?v=${VERSION_HQ}` }
     ];
 
     ejercicioCasa.innerHTML = `
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div style="padding:26px;margin-bottom:22px;border-radius:20px;background:linear-gradient(135deg,#eef7f1,#fbfdfb);border:1px solid #dce9e0;box-shadow:0 8px 26px rgba(16,68,58,.06);">
           <span class="eyebrow">PLAN DE EJERCICIO EN CASA</span>
           <h3 style="margin:.45rem 0 .75rem;color:#0f5138;font-size:clamp(1.45rem,3vw,2rem);">¿Qué hago cada día?</h3>
-          <p style="margin:0 0 18px;line-height:1.65;color:#41554a;">Realiza las sesiones en este orden: <strong>Día 1 → Día 2 → Día 3</strong>. Después encontrarás un bloque de abdominales y su progresión.</p>
+          <p style="margin:0 0 18px;line-height:1.65;color:#41554a;">Realiza las sesiones en este orden: <strong>Día 1 → Día 2 → Día 3</strong>. No significa necesariamente lunes, martes y miércoles: son tus tres entrenamientos de la rutina. Después encontrarás un bloque de abdominales y su progresión.</p>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;">
             <div style="padding:14px;border-radius:14px;background:#fff;border:1px solid #dbe9df;"><strong style="display:block;color:#0f5138;">1 · DÍA 1</strong><span style="font-size:.92rem;color:#53665b;">Base y control</span></div>
             <div style="padding:14px;border-radius:14px;background:#fff;border:1px solid #dbe9df;"><strong style="display:block;color:#0f5138;">2 · DÍA 2</strong><span style="font-size:.92rem;color:#53665b;">Estabilidad y fuerza</span></div>
@@ -57,7 +57,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div style="min-width:64px;padding:7px 10px;border-radius:999px;background:#0f5138;color:#fff;font-size:.78rem;font-weight:800;letter-spacing:.04em;text-align:center;">${paso}</div>
                 <div><h3 style="margin:0;color:#173e31;font-size:clamp(1.15rem,2.5vw,1.45rem);line-height:1.2;">${titulo}</h3><p style="margin:.25rem 0 0;color:#66786d;font-size:.94rem;">${ayuda}</p></div>
               </div>
-              <figure style="margin:0;"><img src="${src}" alt="${paso}: ${titulo}" loading="${index === 0 ? "eager" : "lazy"}" referrerpolicy="no-referrer" style="display:block;width:100%;height:auto;margin:0;border-radius:18px;box-shadow:0 12px 36px rgba(16,68,58,.13);background:#f7f3ea;"></figure>
+              <figure style="margin:0;">
+                <img
+                  src="${src}"
+                  alt="${paso}: ${titulo}"
+                  loading="${index === 0 ? "eager" : "lazy"}"
+                  decoding="async"
+                  style="display:block;width:100%;height:auto;margin:0;border-radius:18px;box-shadow:0 12px 36px rgba(16,68,58,.13);background:#f7f3ea;image-rendering:auto;"
+                >
+              </figure>
             </article>`).join("")}
         </div>
       </div>`;
