@@ -1,0 +1,159 @@
+/* ENDONUTRI · Navegación visual centrada en los temas de los pacientes. */
+body.visual-navigation { background: #faf9f1; --fuente: 'Source Sans 3', Arial, sans-serif; }
+.visual-navigation .sidebar, .visual-navigation #overlay { display: none !important; }
+.visual-navigation .main-wrapper { margin-left: 0 !important; padding-top: 0; }
+.visual-navigation .topbar { display: none; }
+.visual-navigation .content-area { padding: 0 24px 44px; }
+.visual-navigation [hidden] { display: none !important; }
+.visual-navigation button, .visual-navigation a { touch-action: manipulation; }
+.visual-navigation button:focus-visible, .visual-navigation a:focus-visible { outline: 3px solid #a76505; outline-offset: 4px; }
+.visual-navigation .section { animation: none; }
+.visual-navigation .content-card { font-size: 1.1rem; }
+.visual-navigation .content-card p { line-height: 1.7; }
+.visual-navigation .section-header { padding-top: 12px; }
+.vn-shell { width: 100%; max-width: 1240px; margin: auto; }
+.vn-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 17px 24px; border-bottom: 1px solid #e2e7dc; background: #faf9f1; }
+.vn-brand { display: flex; align-items: center; gap: 10px; text-align: left; color: #064e3b; }
+.vn-brand-icon { font-size: 27px; }
+.vn-brand strong { display: block; font-family: 'Libre Baskerville', Georgia, serif; font-size: 22px; }
+.vn-brand small { font-size: 14px; color: #52695d; }
+.vn-top-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.vn-top-actions button { padding: 10px 15px; min-height: 44px; border-radius: 10px; color: #164d3c; font-size: 16px; background: #edf2e8; }
+.vn-top-actions button[aria-pressed="true"] { background: #064e3b; color: #fff; }
+.vn-search { padding: 18px 24px 20px; max-width: 928px; margin: auto; }
+.vn-search label { display: block; color: #164d3b; font-size: 21px; font-weight: 700; }
+.vn-search #vn-search-help { color: #506559; font-size: 16px; margin: 3px 0 10px; }
+.vn-search-field { display: flex; gap: 10px; }
+.vn-search-field input { width: 100%; min-width: 0; min-height: 54px; border: 1px solid #8bab92; border-radius: 13px; padding: 13px 16px; font-family: inherit; font-size: 18px; background: #fff; color: #164d3b; }
+.vn-search-field input::placeholder { color: #617568; opacity: 1; }
+.vn-search-field input:focus-visible { outline: 3px solid #a76505; outline-offset: 2px; }
+.vn-search-field button { flex-shrink: 0; padding: 12px 20px; min-height: 54px; border-radius: 13px; color: #fff; background: #064e3b; font-size: 18px; font-weight: 700; }
+.vn-search-examples { display: flex; align-items: center; flex-wrap: wrap; gap: 5px 12px; margin-top: 10px; font-size: 15px; color: #506559; }
+.vn-search-examples button { color: #164d3b; font-size: 15px; text-decoration: underline; text-underline-offset: 3px; min-height: 44px; }
+.vn-search-output { margin-top: 12px; padding: 16px; background: #fff; border: 1px solid #d5e2d6; border-radius: 16px; }
+.vn-search-status { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 5px 14px; margin-bottom: 6px; }
+.vn-search-status p { color: #164d3b; font-size: 16px; }
+.vn-search-status button { font-size: 15px; color: #164d3b; min-height: 44px; text-decoration: underline; text-underline-offset: 3px; }
+.vn-search-result { display: flex; justify-content: space-between; align-items: center; gap: 16px; width: 100%; min-height: 80px; padding: 14px 8px; color: #164d3b; border-top: 1px solid #e2e7dc; text-align: left; border-radius: 5px; }
+.vn-search-result:hover { background: #f1f7ed; }
+.vn-search-result small { display: block; color: #506559; font-size: 14px; }
+.vn-search-result strong { display: block; font-size: 20px; margin: 3px 0; }
+.vn-search-result > span > span { font-size: 16px; color: #506559; }
+.vn-search-empty { color: #506559; font-size: 17px; line-height: 1.5; }
+.vn-search-home { font-size: 17px; color: #164d3b; min-height: 48px; text-decoration: underline; text-underline-offset: 3px; }
+.vn-search-more summary { padding: 14px 8px; min-height: 48px; font-size: 17px; color: #164d3b; cursor: pointer; }
+.visual-navigation.vn-large-text .vn-search-result strong, .visual-navigation.vn-large-text .vn-search label { font-size: 24px; }
+.visual-navigation.vn-large-text .vn-search-result > span > span { font-size: 18px; }
+.vn-intro { text-align: center; padding: 34px 12px 6px; }
+.vn-intro .vn-eyebrow { display: block; color: #50735e; font-size: 13px; letter-spacing: .11em; font-weight: 700; margin-bottom: 10px; }
+.vn-intro h1 { font-family: 'Libre Baskerville', Georgia, serif; color: #124e3b; font-size: clamp(27px, 3vw, 39px); line-height: 1.3; font-weight: 400; margin: 0 0 10px; }
+.vn-intro p { font-size: 19px; color: #52665b; line-height: 1.55; margin: 0; }
+.vn-map { display: grid; grid-template-columns: minmax(210px, 1fr) minmax(280px, 1.55fr) minmax(210px, 1fr); grid-template-rows: repeat(3, minmax(110px, auto)); gap: 18px 24px; align-items: center; position: relative; max-width: 1100px; margin: 28px auto 24px; }
+.vn-center { grid-column: 2; grid-row: 1 / 4; align-self: center; margin: 0; min-width: 0; }
+.vn-center img { display: block; width: 100%; height: auto; border-radius: 50%; mix-blend-mode: multiply; }
+.vn-topic { text-align: left; padding: 19px 19px; width: 100%; min-height: 119px; border-radius: 20px; background: #fff; color: #184937; border: 1px solid #d5e2d6; box-shadow: 0 5px 20px rgba(24,73,55,.045); display: flex; gap: 13px; align-items: center; position: relative; transition: background .16s ease, border-color .16s ease; }
+.vn-topic:hover { background: #f1f7ed; border-color: #75a186; }
+.vn-topic:nth-of-type(1) { grid-column: 1; grid-row: 1; }
+.vn-topic:nth-of-type(2) { grid-column: 1; grid-row: 2; }
+.vn-topic:nth-of-type(3) { grid-column: 1; grid-row: 3; }
+.vn-topic:nth-of-type(4) { grid-column: 3; grid-row: 1; }
+.vn-topic:nth-of-type(5) { grid-column: 3; grid-row: 2; }
+.vn-topic:nth-of-type(6) { grid-column: 3; grid-row: 3; }
+.vn-topic-icon { width: 47px; height: 47px; flex: 0 0 47px; display: grid; place-items: center; border-radius: 14px; font-size: 28px; background: #eff5e9; }
+.vn-topic-copy { flex: 1; min-width: 0; }
+.vn-topic strong { display: block; font-size: 21px; line-height: 1.2; font-weight: 700; }
+.vn-topic small { display: block; color: #506559; font-size: 16px; line-height: 1.4; margin-top: 6px; }
+.vn-topic-arrow { color: #547b62; font-size: 22px; }
+.vn-start { display: flex; justify-content: center; align-items: center; gap: 16px; flex-wrap: wrap; padding: 18px 20px; background: #eef3e6; border-radius: 16px; width: fit-content; max-width: 100%; margin: 20px auto 28px; color: #244b37; font-size: 18px; }
+.vn-start button { color: #064e3b; font-size: 18px; font-weight: 700; min-height: 44px; text-decoration: underline; text-underline-offset: 4px; }
+.vn-bottom { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 22px 8px 6px; max-width: 1100px; margin: auto; border-top: 1px solid #e2e7dc; color: #536c5e; font-size: 15px; }
+.vn-bottom a { text-decoration: underline; text-underline-offset: 3px; min-height: 44px; display: inline-flex; align-items: center; }
+.vn-bottom button { color: #164d3b; font-size: 16px; min-height: 44px; }
+.vn-crumbs { max-width: 1020px; margin: 20px auto 14px; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; color: #52665b; font-size: 16px; }
+.vn-crumbs button { font-size: 16px; color: #064e3b; text-decoration: underline; text-underline-offset: 3px; min-height: 44px; padding: 3px; }
+.vn-hub { max-width: 880px; margin: 0 auto; }
+.vn-hub-head { padding: 24px 0; }
+.vn-hub-head .vn-topic-icon { margin-bottom: 18px; width: 62px; height: 62px; font-size: 36px; }
+.vn-hub-head h2 { font-family: 'Libre Baskerville', Georgia, serif; color: #064e3b; font-size: clamp(26px, 3vw, 34px); margin-bottom: 10px; }
+.vn-hub-head p { font-size: 19px; line-height: 1.55; color: #506559; }
+.vn-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.vn-option { display: flex; align-items: center; justify-content: space-between; text-align: left; gap: 16px; background: #fff; border: 1px solid #d5e2d6; padding: 22px; border-radius: 17px; min-height: 112px; color: #164d3b; }
+.vn-option:hover { background: #f0f6e9; border-color: #75a186; }
+.vn-option strong { display: block; font-size: 21px; line-height: 1.3; }
+.vn-option small { display: block; font-size: 16px; color: #506559; line-height: 1.4; margin-top: 7px; }
+.vn-more { margin-top: 24px; }
+.vn-more summary { cursor: pointer; color: #164d3b; font-size: 19px; padding: 18px 6px; min-height: 52px; }
+.vn-more .vn-options { margin-top: 10px; }
+.vn-category-back { min-height: 48px; color: #064e3b; padding: 12px 0; font-size: 18px; font-weight: 600; }
+.vn-reading-nav { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; border-top: 1px solid #d5e2d6; margin: 26px auto 0; padding: 18px 0; max-width: 1020px; }
+.vn-reading-nav button { font-size: 18px; min-height: 48px; background: #edf3e7; padding: 12px 18px; border-radius: 12px; color: #164d3b; }
+.vn-preview-banner { text-align: center; background: #eef3e6; color: #365a43; padding: 7px 14px; font-size: 14px; }
+/* Recupera estilos incompletos de hambre/metabolismo presentes en el origen. */
+.visual-navigation .metabolism-page { --me-dark: #064e3b; --me-green: #087f5b; --me-mint: #dff5e9; --me-gold: #e2b943; --me-coral: #e86e57; }
+.visual-navigation .hunger-scale { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; margin: 20px 0; }
+.visual-navigation .hunger-scale button { border-radius: 12px; background: #fff; color: #164d3b; min-height: 82px; padding: 10px 4px; }
+.visual-navigation .hunger-scale b, .visual-navigation .hunger-scale small { display: block; }
+.visual-navigation .hunger-scale b { font-size: 24px; }
+.visual-navigation .hunger-scale small { font-size: 14px; }
+.visual-navigation .hunger-scale button.active { background: #f1d373; color: #3b331a; }
+.visual-navigation .hunger-scale-result, .visual-navigation .energy-result { display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 16px; padding: 20px; border-radius: 15px; background: #edf7f0; color: #164d3b; }
+.visual-navigation .hunger-scale-result > span { font-size: 28px; font-weight: 700; }
+.visual-navigation .hormone-world, .visual-navigation .metabolism-hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 38%); gap: 24px; align-items: center; margin: 32px 0; }
+.visual-navigation .hormone-world img, .visual-navigation .metabolism-hero img { display: block; width: 100%; height: auto; }
+.visual-navigation .hormone-cards, .visual-navigation .pause-route, .visual-navigation .appetite-weather > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 20px 0 30px; }
+.visual-navigation .pause-route article, .visual-navigation .appetite-weather article { padding: 20px; border-radius: 15px; background: #edf7f0; }
+.visual-navigation .pause-route strong, .visual-navigation .appetite-weather strong { display: block; }
+.visual-navigation .pause-route span { display: block; font-weight: 700; color: #087f5b; margin-bottom: 8px; }
+.visual-navigation .hunger-care, .visual-navigation .metabolism-key { padding: 24px; border-radius: 18px; background: #fff2dc; margin: 24px 0; }
+.visual-navigation .hunger-sources summary { min-height: 48px; padding: 12px 0; font-weight: 700; }
+.visual-navigation .energy-lab { margin: 30px 0; }
+.visual-navigation .energy-parts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 20px 0; }
+.visual-navigation .energy-parts button { display: flex; flex-direction: column; justify-content: center; min-height: 108px; padding: 16px; border-radius: 14px; background: #edf7f0; color: #164d3b; text-align: left; font-size: 17px; }
+.visual-navigation .energy-parts button.active { background: #064e3b; color: #fff; }
+.visual-navigation .energy-parts small { font-size: 14px; margin-top: 5px; }
+.visual-navigation.vn-large-text .content-card, .visual-navigation.vn-large-text .macro-page, .visual-navigation.vn-large-text .papef-page { font-size: 1.22rem; }
+.visual-navigation.vn-large-text .vn-topic strong, .visual-navigation.vn-large-text .vn-option strong { font-size: 24px; }
+.visual-navigation.vn-large-text .vn-topic small, .visual-navigation.vn-large-text .vn-option small { font-size: 18px; }
+.visual-navigation.vn-large-text .vn-map { grid-template-columns: minmax(240px, 1fr) minmax(240px, 1.1fr) minmax(240px, 1fr); }
+@media (max-width: 850px) {
+  .visual-navigation .hunger-hero, .visual-navigation .hormone-world, .visual-navigation .metabolism-hero { grid-template-columns: 1fr; }
+  .visual-navigation .hunger-scale { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .visual-navigation .energy-parts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .vn-map, .visual-navigation.vn-large-text .vn-map { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto; gap: 12px; margin-top: 16px; }
+  .vn-center { grid-column: 1 / 3; grid-row: 1; width: min(270px, 70%); justify-self: center; }
+  .vn-topic:nth-of-type(n) { grid-column: auto; grid-row: auto; }
+  .vn-topic { min-height: 128px; padding: 18px 15px; }
+  .vn-top { padding: 12px 18px; }
+  .vn-brand small { display: none; }
+  .vn-intro { padding-top: 26px; }
+  .vn-topic strong { font-size: 20px; }
+}
+@media (max-width: 480px) {
+  .vn-search { padding: 16px; }
+  .vn-search-field { gap: 8px; }
+  .vn-search-field input { padding: 12px; font-size: 17px; }
+  .vn-search-field button { padding: 12px; font-size: 17px; }
+  .vn-search-output { padding: 12px; }
+  .visual-navigation .hormone-cards, .visual-navigation .hunger-types, .visual-navigation .pause-route, .visual-navigation .appetite-weather > div { grid-template-columns: 1fr; }
+  .visual-navigation .hunger-key, .visual-navigation .energy-result { grid-template-columns: 1fr; }
+  .visual-navigation .content-area { padding: 0 16px 28px; }
+  .vn-top { padding: 12px 16px; gap: 8px; align-items: flex-start; }
+  .vn-brand strong { font-size: 19px; }
+  .vn-brand-icon { font-size: 23px; }
+  .vn-top-actions { gap: 4px; }
+  .vn-top-actions button { padding: 8px 10px; font-size: 15px; }
+  .vn-top-actions .vn-contact-action { display: none; }
+  .vn-intro .vn-eyebrow { font-size: 11px; letter-spacing: .07em; }
+  .vn-intro p { font-size: 18px; }
+  .vn-map, .visual-navigation.vn-large-text .vn-map { grid-template-columns: 1fr; }
+  .vn-center { grid-column: 1; width: min(250px, 75%); margin-bottom: 5px; }
+  .vn-topic { min-height: 94px; gap: 14px; }
+  .vn-topic-icon { width: 44px; height: 44px; flex-basis: 44px; }
+  .vn-topic strong { font-size: 21px; }
+  .vn-topic small { font-size: 16px; }
+  .vn-options { grid-template-columns: 1fr; }
+  .vn-option { min-height: 102px; padding: 20px; }
+  .vn-start { justify-content: flex-start; gap: 4px; font-size: 17px; }
+  .vn-crumbs { font-size: 15px; gap: 5px; }
+}
+@media (prefers-reduced-motion: reduce) { .visual-navigation *, .visual-navigation *::before, .visual-navigation *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
