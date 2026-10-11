@@ -1,0 +1,73 @@
+/* Endonutri · Fondo integrado con la ilustración central. */
+body.visual-navigation.vn-home {
+  --vn-home-cream: #faf8ed;
+  background-color: var(--vn-home-cream);
+  background-image:
+    radial-gradient(ellipse 60% 55% at 0% 36%, rgba(129,183,141,.30), transparent 76%),
+    radial-gradient(ellipse 58% 58% at 100% 63%, rgba(232,182,130,.24), transparent 78%),
+    radial-gradient(ellipse 45% 35% at 68% 95%, rgba(101,171,155,.19), transparent 76%);
+  background-repeat: no-repeat;
+}
+.vn-home .vn-header-shell {
+  background: linear-gradient(110deg, #eef3e6, #faf8ed 54%, #f7f0e1);
+  border-bottom: 1px solid rgba(42,94,63,.10);
+}
+.vn-home .vn-top { background: transparent; border-bottom: 0; }
+.vn-home .vn-search { padding-bottom: 10px; }
+.vn-home .vn-search-field input {
+  background: #fffdf7;
+  border-color: #91b396;
+  box-shadow: 0 4px 16px rgba(45,93,63,.04);
+}
+.vn-home .vn-intro { padding-top: 27px; }
+.vn-home .vn-intro .vn-eyebrow { color: #466b52; }
+.vn-home .vn-intro h1 { color: #164f39; }
+.vn-home .vn-map { gap: 18px 22px; margin-top: 25px; isolation: isolate; }
+.vn-home .vn-center { position: relative; }
+.vn-home .vn-center::before {
+  content: '';
+  position: absolute;
+  inset: -9%;
+  z-index: -1;
+  background: radial-gradient(ellipse, rgba(250,248,237,.93) 30%, rgba(250,248,237,.35) 56%, transparent 73%);
+  pointer-events: none;
+}
+.vn-home .vn-center img {
+  border-radius: 0;
+  mix-blend-mode: multiply;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 2%, #000 98%, transparent), linear-gradient(to bottom, transparent, #000 2%, #000 98%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 2%, #000 98%, transparent), linear-gradient(to bottom, transparent, #000 2%, #000 98%, transparent);
+  mask-composite: intersect;
+}
+.vn-home .vn-topic {
+  --vn-topic-start: #e9f2dc;
+  --vn-topic-end: #f4f7eb;
+  --vn-topic-line: #8daf7c;
+  background: linear-gradient(125deg, var(--vn-topic-start), var(--vn-topic-end));
+  border-color: var(--vn-topic-line);
+  box-shadow: 0 6px 18px rgba(28,80,53,.065);
+}
+.vn-home .vn-topic[data-vn-route='tema-peso'] { --vn-topic-start: #d9eee0; --vn-topic-end: #f0f7ef; --vn-topic-line: #8ab49d; }
+.vn-home .vn-topic[data-vn-route='tema-mover'] { --vn-topic-start: #d9ece9; --vn-topic-end: #edf5ef; --vn-topic-line: #88b5aa; }
+.vn-home .vn-topic[data-vn-route='tema-planes'] { --vn-topic-start: #f4e7c9; --vn-topic-end: #fcf5e6; --vn-topic-line: #d0b579; }
+.vn-home .vn-topic[data-vn-route='medicacion-glp1'] { --vn-topic-start: #e4ebd5; --vn-topic-end: #f1f5e8; --vn-topic-line: #a0b47e; }
+.vn-home .vn-topic[data-vn-route='tema-consulta'] { --vn-topic-start: #eee3e8; --vn-topic-end: #f7eff2; --vn-topic-line: #c1a2b0; }
+.vn-home .vn-topic:hover { border-color: #386e50; box-shadow: 0 8px 22px rgba(28,80,53,.13); }
+.vn-home .vn-topic-image { background: #faf8ed; mix-blend-mode: multiply; }
+.vn-home .vn-bottom { border-top-color: rgba(57,101,70,.18); }
+@media (max-width: 850px) {
+  .vn-home .vn-map { gap: 13px; }
+  .vn-home .vn-center { width: min(350px, 80%); }
+  .vn-home .vn-center::before { inset: -5%; }
+}
+@media (max-width: 480px) {
+  body.visual-navigation.vn-home {
+    background-image:
+      radial-gradient(ellipse 90% 45% at 0% 23%, rgba(129,183,141,.24), transparent 78%),
+      radial-gradient(ellipse 90% 50% at 100% 65%, rgba(232,182,130,.20), transparent 78%);
+  }
+  .vn-home .vn-center { width: min(315px, 95%); }
+  .vn-home .vn-map { margin-top: 20px; }
+}
+@media print { body.visual-navigation.vn-home { background: #fff; } }

@@ -93,6 +93,7 @@
       if (!section) return false;
       currentRoute = route;
       legacyShow(sectionRoute);
+      document.body.classList.toggle('vn-home', sectionRoute === 'home');
       if (isMacro) {
         const panel = document.getElementById(route);
         if (panel) { panel.open = true; requestAnimationFrame(() => panel.scrollIntoView({behavior: 'smooth', block: 'start'})); }
