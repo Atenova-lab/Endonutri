@@ -1,0 +1,556 @@
+[
+  {
+    "id": "rotacion-insulina",
+    "title": "Insulina: zonas y rotación",
+    "hint": "Mapa corporal · basal y basal-bolo",
+    "icon": "💉",
+    "blocks": [
+      [
+        "p",
+        "Rotar significa cambiar el punto de cada pinchazo de forma ordenada. El objetivo es proteger la piel y mantener una absorción de insulina más predecible."
+      ],
+      [
+        "image",
+        "img/diabetes/rotacion-insulina.png"
+      ],
+      [
+        "h",
+        "Un recorrido fácil de recordar"
+      ],
+      [
+        "list",
+        [
+          "Abdomen: divide la zona en cuatro sectores. Usa uno cada semana y avanza siempre en el mismo sentido; separa cada punto al menos 1 cm del anterior. Evita el ombligo y la piel lesionada.",
+          "Muslos: parte anterior y externa del tercio superior. Glúteos: zona superior y externa. Brazos: cara posterior del tercio medio de la parte superior; puede requerir ayuda para una técnica correcta.",
+          "Inspecciona y palpa las zonas. No pinches en bultos, endurecimientos, cicatrices o inflamación. Una zona que duele menos puede tener lipohipertrofia."
+        ]
+      ],
+      [
+        "table",
+        [
+          [
+            "Pauta",
+            "Cómo organizarla"
+          ],
+          [
+            "Solo basal",
+            "Elige una zona accesible y sana; rota dentro de ella. Con glargina o degludec no es obligatorio reservar el muslo o el glúteo: manda la ficha técnica y una técnica consistente."
+          ],
+          [
+            "Basal-bolo",
+            "Puedes reservar sectores distintos para basal y rápida para facilitar el registro. Es una ayuda organizativa, no una obligación. Con análogos, las zonas autorizadas no se asignan por una regla universal de lenta/rápida."
+          ],
+          [
+            "NPH o insulina regular humana",
+            "La zona puede modificar más la velocidad de absorción. Mantén la misma región para la misma dosis/horario y rota los puntos; individualiza con el equipo."
+          ]
+        ]
+      ],
+      [
+        "h",
+        "Técnica que conviene comprobar en consulta"
+      ],
+      [
+        "list",
+        [
+          "Aguja de pluma de 4 mm como opción habitual; entrada a 90°. Valora pliegue si hay poco tejido subcutáneo, especialmente en niños o personas muy delgadas.",
+          "Aguja nueva en cada inyección. Comprueba insulina, concentración, dosis y cebado de la pluma según su manual. Mantén el pulsador y espera el tiempo que indique el fabricante.",
+          "No compartas plumas. Desecha las agujas en un contenedor autorizado. Evita masajear la zona."
+        ]
+      ],
+      [
+        "note",
+        "Al pasar de una zona con lipohipertrofia a piel sana puede aumentar la absorción y aparecer hipoglucemia. Planifica vigilancia y revisión de dosis con el equipo; no apliques una reducción fija a todos los pacientes."
+      ]
+    ],
+    "sources": [
+      [
+        "FITTER Forward, recomendaciones 2025",
+        "https://doi.org/10.1016/j.mayocp.2025.01.004"
+      ],
+      [
+        "FIT, selección y rotación de zonas",
+        "https://fit4diabetes.com/wp-content/uploads/2025/08/Site-Selection-Site-Rotation_HCP-Update_E01.pdf"
+      ],
+      [
+        "FITTER 2016, farmacocinética por zonas",
+        "https://doi.org/10.1016/j.mayocp.2016.06.010"
+      ]
+    ]
+  },
+  {
+    "id": "diabetes-m",
+    "title": "Diabetes:M, paso a paso",
+    "hint": "Configuración · registro · informes",
+    "icon": "📱",
+    "blocks": [
+      [
+        "p",
+        "Guía de acompañamiento para enseñar a registrar datos y llevarlos a consulta. Los nombres y la disponibilidad de funciones pueden variar según la versión, el país y el plan contratado."
+      ],
+      [
+        "h",
+        "1. Preparar la aplicación"
+      ],
+      [
+        "list",
+        [
+          "Instala Diabetes:M desde la tienda oficial del teléfono. Configura idioma y cuenta siguiendo el asistente. Utiliza una cuenta personal.",
+          "Comprueba unidades: glucosa en mg/dL si son las del glucómetro, peso en kg e hidratos en gramos. Si se usan raciones, revisa su equivalencia: la app contempla 10, 12 o 15 g; no son intercambiables.",
+          "Selecciona el tratamiento real y los medicamentos. Si vas a usar el asesor de bolos, el equipo debe validar objetivo, factor de sensibilidad, ratio de hidratos y duración de acción de la insulina."
+        ]
+      ],
+      [
+        "h",
+        "2. Hacer un registro de prueba"
+      ],
+      [
+        "list",
+        [
+          "Abre Registro / Log entry. Introduce fecha y hora, glucosa, hidratos de la comida y la insulina realmente administrada.",
+          "Añade ejercicio, síntomas, lugar del pinchazo o una nota breve si ayudan a interpretar el día. Guarda y comprueba la entrada en el diario.",
+          "Corrige los errores de hora, unidades o duplicados. Una dosis omitida o mal anotada puede distorsionar la estimación de insulina activa."
+        ]
+      ],
+      [
+        "h",
+        "3. Llevar datos útiles a consulta"
+      ],
+      [
+        "list",
+        [
+          "Revisa Diario, Gráficos y Estadísticas: identifica cuándo se repiten bajadas o subidas. Anota qué pasaba en esos momentos.",
+          "En Informes / Reports elige el período y genera el formato disponible. Comparte el informe por el canal acordado con el centro; algunas exportaciones requieren suscripción.",
+          "Las conexiones con glucómetros, sensores o el portal profesional dependen de compatibilidad y permisos. No presupongas que los datos de Libre se importan automáticamente."
+        ]
+      ],
+      [
+        "note",
+        "El asesor de bolos necesita formación y parámetros individualizados. El registro puede ser útil aunque no se utilice ese asesor. No cambies el tratamiento por una sugerencia de la app sin seguir la pauta acordada con tu equipo."
+      ],
+      [
+        "p",
+        "Comprobación final: pide al paciente que registre una comida de ejemplo y localice el informe sin ayuda. Si no puede hacerlo con seguridad, simplifica a un diario básico o apoyo del cuidador."
+      ]
+    ],
+    "sources": [
+      [
+        "Manual oficial de Diabetes:M",
+        "https://www.manula.com/manuals/sirma-medical-systems/diabetes-m-user-guide/mobile/en/topic/introduction"
+      ],
+      [
+        "Fabricante: configuración inicial",
+        "https://diabetes-m.com/blog/tips-tricks/how-to-configure-diabetesm-for-the-first-time/"
+      ],
+      [
+        "Fabricante: funciones e informes",
+        "https://diabetes-m.com/features/"
+      ]
+    ]
+  },
+  {
+    "id": "freestyle-libre-2",
+    "title": "Colocar FreeStyle Libre 2",
+    "hint": "Dos piezas · preparación y seguridad",
+    "icon": "◎",
+    "blocks": [
+      [
+        "p",
+        "Esta ficha describe Libre 2. El sensor estándar dura hasta 14 días; Libre 2 Plus, hasta 15. La app disponible puede cambiar: verifica siempre el modelo y la compatibilidad actual en el catálogo español de Abbott."
+      ],
+      [
+        "h",
+        "Antes de colocarlo"
+      ],
+      [
+        "list",
+        [
+          "Comprueba el modelo exacto, caducidad, precinto y aplicación o lector compatible en España. Decide con qué dispositivo lo iniciarás antes de activarlo.",
+          "Usa exclusivamente la cara posterior de la parte superior del brazo. Cambia el lugar respecto al sensor anterior; evita lunares, cicatrices, bultos, pliegues y roce. Mantén al menos 2,5 cm respecto a los puntos de inyección de insulina.",
+          "Lava con jabón neutro, seca y limpia con una toallita de alcohol. Deja secar por completo. No apliques crema en la zona. Prepara el móvil, NFC y los permisos necesarios."
+        ]
+      ],
+      [
+        "h",
+        "Aplicador en dos piezas"
+      ],
+      [
+        "list",
+        [
+          "Retira la tapa del envase y desenrosca la tapa del aplicador. Comprueba que los códigos del envase y del aplicador coinciden.",
+          "Sobre una superficie firme, alinea las marcas oscuras y presiona el aplicador dentro del envase hasta el tope. Levántalo: ya lleva el sensor cargado.",
+          "Colócalo sobre el brazo preparado y presiona con firmeza. No lo dispares antes de apoyarlo en la piel. Retira el aplicador suavemente y comprueba que el sensor queda adherido."
+        ]
+      ],
+      [
+        "h",
+        "Después de colocarlo"
+      ],
+      [
+        "list",
+        [
+          "Inícialo con la app o lector compatible siguiendo las indicaciones en pantalla. El calentamiento es de 60 minutos.",
+          "Configura y prueba las alarmas individualizadas. Mantén Bluetooth y permisos de notificación activos; permite el funcionamiento en segundo plano y comprueba las restricciones de batería.",
+          "Ten siempre un glucómetro disponible: confirma si los síntomas no concuerdan con el sensor, sospechas un error o no hay lectura. El líquido intersticial puede ir por detrás de la glucemia cuando cambia rápido.",
+          "Si se despega, hay irritación importante o sangrado que no cede, retíralo y consulta. No reinsertes un sensor. El agua se limita a 1 m durante 30 minutos según los manuales de estos modelos."
+        ]
+      ],
+      [
+        "note",
+        "Antes de RM, TAC o radiografías, avisa de que llevas un sensor y revisa las instrucciones del modelo exacto: los manuales españoles enlazados indican retirada para estos procedimientos. Revisa también las interferencias de medicamentos/suplementos en su prospecto; no extrapoles de un modelo o país a otro."
+      ],
+      [
+        "p",
+        "Lecturas: con aplicaciones compatibles actuales puede recibirlas automáticamente. El lector y otras combinaciones pueden requerir escaneo. Libre 2 conserva hasta 8 horas de historial en el sensor; si faltan datos, escanea siguiendo el manual. No prometas la misma función en todas las versiones."
+      ]
+    ],
+    "sources": [
+      [
+        "Abbott, catálogo oficial de manuales de España",
+        "https://www.diabetescare.abbott/support/manuals/es.html"
+      ],
+      [
+        "Abbott, app Libre para Libre 2 / Plus, 2026",
+        "https://freestyleserver.com/Payloads/IFU/2026/q3/ART54854-005_rev-A-pub/languages/es/x_CE_libre_app/Libre_2/DOC54854/users_manual.html"
+      ]
+    ]
+  },
+  {
+    "id": "freestyle-libre-3",
+    "title": "Colocar FreeStyle Libre 3",
+    "hint": "Una pieza · lecturas y alarmas",
+    "icon": "◎",
+    "blocks": [
+      [
+        "p",
+        "Esta ficha describe Libre 3 y Libre 3 Plus. El estándar dura hasta 14 días y el Plus hasta 15. Son modelos distintos; comprueba el nombre del envase y su manual español."
+      ],
+      [
+        "h",
+        "Antes de colocarlo"
+      ],
+      [
+        "list",
+        [
+          "Comprueba el modelo exacto, caducidad, precinto y aplicación o lector compatible en España. Decide con qué dispositivo lo iniciarás antes de activarlo.",
+          "Usa exclusivamente la cara posterior de la parte superior del brazo. Cambia el lugar respecto al sensor anterior; evita lunares, cicatrices, bultos, pliegues y roce. Mantén al menos 2,5 cm respecto a los puntos de inyección de insulina.",
+          "Lava con jabón neutro, seca y limpia con una toallita de alcohol. Deja secar por completo. No apliques crema en la zona. Prepara el móvil, NFC y los permisos necesarios."
+        ]
+      ],
+      [
+        "h",
+        "Aplicador en una pieza"
+      ],
+      [
+        "list",
+        [
+          "Desenrosca la tapa del aplicador. El sensor ya viene dentro: no hay que cargarlo desde otro envase. No toques el interior ni vuelvas a poner la tapa antes de usarlo.",
+          "Apoya el aplicador sobre el brazo preparado y presiona con firmeza. Retíralo suavemente y verifica la adhesión. Desecha el aplicador usado según las normas locales.",
+          "Inicia el sensor con el dispositivo compatible. Si lo activas con el lector Libre 3, ese sensor no podrá usarse con la app Libre 3; confirma la elección antes de empezar."
+        ]
+      ],
+      [
+        "h",
+        "Después de colocarlo"
+      ],
+      [
+        "list",
+        [
+          "Inícialo con la app o lector compatible siguiendo las indicaciones en pantalla. El calentamiento es de 60 minutos.",
+          "Configura y prueba las alarmas individualizadas. Mantén Bluetooth y permisos de notificación activos; permite el funcionamiento en segundo plano y comprueba las restricciones de batería.",
+          "Ten siempre un glucómetro disponible: confirma si los síntomas no concuerdan con el sensor, sospechas un error o no hay lectura. El líquido intersticial puede ir por detrás de la glucemia cuando cambia rápido.",
+          "Si se despega, hay irritación importante o sangrado que no cede, retíralo y consulta. No reinsertes un sensor. El agua se limita a 1 m durante 30 minutos según los manuales de estos modelos."
+        ]
+      ],
+      [
+        "note",
+        "Antes de RM, TAC o radiografías, avisa de que llevas un sensor y revisa las instrucciones del modelo exacto: los manuales españoles enlazados indican retirada para estos procedimientos. Revisa también las interferencias de medicamentos/suplementos en su prospecto; no extrapoles de un modelo o país a otro."
+      ],
+      [
+        "p",
+        "Lecturas y alarmas: Libre 3 transmite automáticamente por Bluetooth; no necesita escaneos repetidos para las lecturas habituales. Con la app Libre 3, el alcance indicado es de 10 m sin obstáculos. Mantén el teléfono cerca y abierto en segundo plano; perder señal también implica perder alarmas."
+      ]
+    ],
+    "sources": [
+      [
+        "Abbott, catálogo oficial de manuales de España",
+        "https://www.diabetescare.abbott/support/manuals/es.html"
+      ],
+      [
+        "Abbott, manual app Libre 3, mayo de 2026",
+        "https://freestyleserver.com/distribution/fxaa20.aspx?language=xx_yy&os=all&product=ifu_art53897_004&region=ous&version=latest"
+      ]
+    ]
+  },
+  {
+    "id": "factor-sensibilidad",
+    "title": "Factor de sensibilidad, explicado fácil",
+    "hint": "Qué significa · ejemplo · insulina activa",
+    "icon": "↘",
+    "blocks": [
+      [
+        "p",
+        "El factor de sensibilidad (FS) estima cuántos mg/dL baja la glucosa con 1 unidad de insulina rápida. Si el FS es 50 mg/dL por unidad, una unidad puede bajar aproximadamente 50 puntos: es una estimación, no una garantía."
+      ],
+      [
+        "h",
+        "Un ejemplo solo para aprender"
+      ],
+      [
+        "formula",
+        "Glucosa 240 - objetivo 140 = 100 mg/dL\n100 ÷ FS 50 = 2 unidades teóricas"
+      ],
+      [
+        "p",
+        "El ejemplo es ficticio y supone que no queda insulina rápida activa. No establece el objetivo ni la dosis de una persona real. La cifra debe interpretarse con el plan prescrito, la tendencia, la comida y la actividad."
+      ],
+      [
+        "h",
+        "Dos conceptos distintos"
+      ],
+      [
+        "table",
+        [
+          [
+            "Concepto",
+            "Qué responde"
+          ],
+          [
+            "Factor de sensibilidad",
+            "¿Cuánto puede bajar la glucosa una unidad de rápida? Se expresa en mg/dL por unidad."
+          ],
+          [
+            "Ratio insulina/hidratos",
+            "¿Cuántos gramos de hidratos cubre una unidad? Se expresa en g por unidad."
+          ],
+          [
+            "Insulina activa",
+            "¿Qué parte de una dosis previa todavía está haciendo efecto? Puede durar varias horas."
+          ]
+        ]
+      ],
+      [
+        "h",
+        "Para el profesional"
+      ],
+      [
+        "list",
+        [
+          "La regla 1800 / dosis total diaria de insulina (basal + bolos) orienta una estimación inicial con análogos rápidos en mg/dL. No es una prescripción ni sirve como regla universal para cualquier insulina o situación.",
+          "Valida el factor con patrones reales. Puede cambiar por horario, ejercicio, enfermedad, función renal, embarazo o fase de remisión.",
+          "Antes de una corrección revisa insulina activa, hora de la última dosis, tendencia, comida, ejercicio y capacidad de seguimiento. La repetición de bolos puede causar hipoglucemia."
+        ]
+      ],
+      [
+        "note",
+        "Una hipoglucemia se trata primero. La insulina basal no se utiliza como bolo corrector. Vómitos, cetonas, mal estado general o una hiperglucemia persistente requieren el plan de enfermedad y valoración clínica; la fórmula aislada no resuelve esas situaciones."
+      ]
+    ],
+    "sources": [
+      [
+        "UCSF, Diabetes Teaching Center: factor y cálculo",
+        "https://diabetesteachingcenter.ucsf.edu/about-diabetes/type-2-diabetes/use-insulin-type-2-diabetes/calculating-insulin-dose"
+      ],
+      [
+        "SAEDYN, ajuste de insulina",
+        "https://guiapacientes.saedyn.es/pdfs/Conocer_mas_sobre_ajuste_de_dosis_de_insulina.pdf"
+      ],
+      [
+        "ADA, Standards of Care 2026",
+        "https://doi.org/10.2337/dc26-S006"
+      ]
+    ]
+  },
+  {
+    "id": "hipoglucemia",
+    "title": "Hipoglucemia: actuar y prevenir",
+    "hint": "Regla 15-15 · glucagón · seguimiento",
+    "icon": "🛟",
+    "blocks": [
+      [
+        "p",
+        "En adultos, una glucosa inferior a 70 mg/dL es una alerta; por debajo de 54 mg/dL es una hipoglucemia clínicamente significativa. Si necesita ayuda por alteración física o mental, es grave con independencia de la cifra."
+      ],
+      [
+        "h",
+        "Si está consciente y puede tragar con seguridad"
+      ],
+      [
+        "list",
+        [
+          "Ante 70 mg/dL o menos, toma 15 g de glucosa o hidratos de absorción rápida. Comprueba la cantidad en la etiqueta; por ejemplo, comprimidos de glucosa que sumen 15 g.",
+          "Espera 15 minutos y repite la medición. Si sigue baja, repite el tratamiento y busca ayuda si no remonta.",
+          "El chocolate, la bollería y alimentos con mucha grasa no son la primera opción: retrasan la absorción. Tras recuperarse, valora comida o tentempié según insulina activa y tiempo hasta la próxima comida."
+        ]
+      ],
+      [
+        "h",
+        "Si no puede tragar, pierde conciencia o convulsiona"
+      ],
+      [
+        "note",
+        "No dar comida ni bebida por boca. Llama al 112. Administra el glucagón prescrito si está disponible y sabes usarlo; sigue las instrucciones del producto. Coloca de lado si está inconsciente y respira. Si no respira normalmente, sigue las instrucciones de reanimación del 112."
+      ],
+      [
+        "h",
+        "Después del episodio"
+      ],
+      [
+        "list",
+        [
+          "Revisa dosis, horarios, ingesta, ejercicio, alcohol y función renal; pregunta por bajadas nocturnas y pérdida de síntomas de aviso.",
+          "Comprueba disponibilidad de glucosa, glucómetro y glucagón, su caducidad y que el cuidador sepa utilizarlos. Una hipoglucemia grave o repetida obliga a revisar el tratamiento."
+        ]
+      ],
+      [
+        "p",
+        "Niños y usuarios de sistemas automatizados pueden necesitar cantidades distintas de hidratos. Deja una pauta individual escrita. Tras tratar una bajada, el sensor puede tardar en reflejar la recuperación; usa capilar cuando sea necesario para evitar sobretratar."
+      ]
+    ],
+    "sources": [
+      [
+        "ADA 2026, objetivos y prevención",
+        "https://doi.org/10.2337/dc26-S006"
+      ],
+      [
+        "ADA, síntomas y regla 15-15",
+        "https://diabetes.org/living-with-diabetes/hypoglycemia-low-blood-glucose/symptoms-treatment"
+      ],
+      [
+        "ADA, hipoglucemia grave",
+        "https://diabetes.org/living-with-diabetes/hypoglycemia-low-blood-glucose/severe"
+      ]
+    ]
+  },
+  {
+    "id": "informe-agp",
+    "title": "Leer el informe del sensor (AGP)",
+    "hint": "Cinco pasos · tiempo en rango",
+    "icon": "📊",
+    "blocks": [
+      [
+        "p",
+        "El AGP resume cuándo y con qué frecuencia aparecen bajadas o subidas. Empieza por la seguridad y después busca patrones que se repitan; evita ajustar todo a partir de un día aislado."
+      ],
+      [
+        "list",
+        [
+          "1. Calidad: revisa un período representativo, habitualmente 14 días, con al menos 70 % de datos. Anota enfermedad, corticoides, cambios de rutina y huecos de registro.",
+          "2. Bajadas primero: localiza tiempo bajo 70 y bajo 54 mg/dL, horarios y posibles desencadenantes.",
+          "3. Tiempo en rango (TIR): pregunta cuánto tiempo pasa entre 70 y 180 mg/dL. Un 70 % equivale a unas 16 h 48 min al día; es un objetivo habitual, no un requisito para todos.",
+          "4. Variabilidad: un coeficiente de variación (CV) de 36 % o menos es una referencia frecuente. El GMI es una estimación del control a partir del sensor y puede diferir de la HbA1c de laboratorio.",
+          "5. Plan compartido: cruza los patrones con comidas, insulina, ejercicio y sueño. Acuerda un cambio concreto y un momento de revisión."
+        ]
+      ],
+      [
+        "table",
+        [
+          [
+            "Referencia",
+            "Mayoría de adultos no embarazados"
+          ],
+          [
+            "TIR 70-180 mg/dL",
+            ">70 %"
+          ],
+          [
+            "Tiempo <70 mg/dL",
+            "<4 %"
+          ],
+          [
+            "Tiempo <54 mg/dL",
+            "<1 %"
+          ],
+          [
+            "Tiempo >180 mg/dL",
+            "<25 %"
+          ],
+          [
+            "Tiempo >250 mg/dL",
+            "<5 %"
+          ]
+        ]
+      ],
+      [
+        "note",
+        "Objetivos individualizados. En mayores con salud compleja/intermedia suele priorizarse tiempo <70 mg/dL inferior al 1 % y TIR de al menos 50 %. Embarazo y otras situaciones necesitan rangos propios."
+      ],
+      [
+        "p",
+        "En LibreView, comprueba que el sensor esté vinculado a la cuenta correcta y comparte datos con el centro con consentimiento. La nube no garantiza vigilancia permanente ni sustituye la atención ante síntomas urgentes."
+      ]
+    ],
+    "sources": [
+      [
+        "ADA, métricas de monitorización, 2026",
+        "https://doi.org/10.2337/dc26-S006"
+      ],
+      [
+        "Consenso internacional sobre tiempo en rango, 2019",
+        "https://doi.org/10.2337/dci19-0028"
+      ],
+      [
+        "Abbott, guías LibreView para pacientes y profesionales",
+        "https://www.diabetescare.abbott/support/manuals/es.html"
+      ]
+    ]
+  },
+  {
+    "id": "checklist-consulta",
+    "title": "Consulta de diabetes: lista práctica",
+    "hint": "Educación · días de enfermedad · pies",
+    "icon": "✓",
+    "blocks": [
+      [
+        "p",
+        "Lista para preparar una sesión educativa o revisar el aprendizaje. Utiliza demostración práctica y la técnica de “explícamelo con tus palabras”, adaptadas a visión, destreza, comprensión y apoyo familiar."
+      ],
+      [
+        "list",
+        [
+          "Tratamiento: el paciente reconoce sus medicamentos, tipo de insulina, dosis, horario y objetivo individual.",
+          "Pluma: demuestra aguja nueva, cebado y dosis; localiza zonas sanas y explica la rotación. Comprueba conservación y duración tras apertura en el prospecto de cada producto.",
+          "Monitorización: distingue capilar y sensor; sabe cuándo confirmar y cómo actuar si falla. Revisa alarmas, teléfono y material de repuesto.",
+          "Hipoglucemia: reconoce síntomas, dispone de hidratos rápidos y tiene un plan de rescate. Ensaya con el cuidador el uso del glucagón.",
+          "Alimentación y ejercicio: identifica qué alimentos aportan hidratos y cómo contabilizarlos si la pauta lo requiere. Acuerda precauciones para el ejercicio cuando usa insulina o secretagogos.",
+          "Pies: pregunta por lesiones, sensibilidad y calzado. Enseña revisión diaria y acuerda valoración profesional ante una herida.",
+          "Seguimiento: deja instrucciones comprensibles, contacto del equipo y criterios de urgencia. Registra qué sabe hacer y qué falta por reforzar."
+        ]
+      ],
+      [
+        "h",
+        "Días de enfermedad: dejar un plan por escrito"
+      ],
+      [
+        "list",
+        [
+          "En diabetes tipo 1 no suspendas la insulina basal por dejar de comer; cualquier ajuste debe seguir el plan del equipo. Intensifica la vigilancia de glucosa y valora cetonas.",
+          "Fiebre, vómitos, omisión de insulina o síntomas de cetosis requieren comprobar cetonas según el plan. Con iSGLT2 puede haber cetoacidosis sin glucosa muy elevada; revisa su suspensión temporal con el profesional.",
+          "Vómitos persistentes, incapacidad para beber, dolor abdominal, respiración profunda, somnolencia o cetonas elevadas requieren atención urgente. No esperes a que suba más la glucosa."
+        ]
+      ],
+      [
+        "note",
+        "Documento de educación y apoyo profesional para adultos. La pauta de corrección, la frecuencia de controles y los umbrales de cetonas deben quedar individualizados por el equipo. Para embarazo, pediatría o bombas utiliza sus protocolos específicos."
+      ]
+    ],
+    "sources": [
+      [
+        "SAEDYN, guía de supervivencia",
+        "https://guiapacientes.saedyn.es/guia.html"
+      ],
+      [
+        "ADA, plan para días de enfermedad",
+        "https://diabetes.org/living-with-diabetes/sick-days"
+      ],
+      [
+        "ADA, manejo de cetonas",
+        "https://diabetes.org/living-with-diabetes/managing-ketones"
+      ],
+      [
+        "ADA, ejercicio y glucosa",
+        "https://diabetes.org/health-wellness/fitness/blood-glucose-and-exercise"
+      ]
+    ]
+  }
+]

@@ -20,6 +20,9 @@ body.visual-navigation { background: #faf9f1; --fuente: 'Source Sans 3', Arial, 
 .vn-top-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .vn-top-actions button { padding: 10px 15px; min-height: 44px; border-radius: 10px; color: #164d3c; font-size: 16px; background: #edf2e8; }
 .vn-top-actions button[aria-pressed="true"] { background: #064e3b; color: #fff; }
+.vn-top-actions .vn-professional-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px; padding: 11px 17px; border: 1px solid #08754f; border-radius: 11px; background: linear-gradient(125deg,#064e3b,#12835b); color: #fff; font-size: 16px; font-weight: 700; text-decoration: none; box-shadow: 0 4px 12px #064e3b20; }
+.vn-top-actions .vn-professional-button:hover { background: #064e3b; box-shadow: 0 6px 15px #064e3b30; }
+@media(max-width:680px) { .vn-top { flex-wrap: wrap; gap: 13px; padding: 16px; } .vn-top-actions { width: 100%; flex-wrap: nowrap; gap: 6px; } .vn-top-actions button { font-size: 14px; padding: 9px 10px; } .vn-top-actions .vn-professional-button { flex: 1; font-size: 14px; padding: 10px 11px; } }
 .vn-search { padding: 18px 24px 20px; max-width: 928px; margin: auto; }
 .vn-search label { display: block; color: #164d3b; font-size: 21px; font-weight: 700; }
 .vn-search-field { display: flex; gap: 10px; }
