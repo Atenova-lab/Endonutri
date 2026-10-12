@@ -1,0 +1,86 @@
+.vn-map .vn-topic[data-vn-route="juegos"] { grid-column: 1 / -1; grid-row: 4; background: #fff3df; border-color: #e0c492; min-height: 105px; }
+.vn-map .vn-topic[data-vn-route="juegos"]:hover { background: #f9eacc; }
+.vn-map .vn-topic[data-vn-route="juegos"] .vn-topic-image { background: #fff0d8; }
+.games-shell { max-width: 1030px; margin: 0 auto; padding: 24px 0; color: #164d3b; }
+.games-head { margin-bottom: 26px; }
+.games-head h2 { font: 400 clamp(28px,4vw,38px)/1.3 'Libre Baskerville',Georgia,serif; color: #064e3b; margin: 12px 0; }
+.games-head p, .games-lead { font-size: 19px; line-height: 1.55; color: #4b6253; margin: 10px 0 0; }
+.games-back { min-height: 44px; padding: 8px 0; font-size: 17px; color: #164d3b; text-decoration: underline; text-underline-offset: 4px; }
+.games-kicker { display: block; color: #6a6d45; font-size: 13px; letter-spacing: .09em; font-weight: 700; }
+.games-menu { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; }
+.games-menu-card { display: flex; flex-direction: column; gap: 12px; padding: 25px; border-radius: 22px; background: #fff; border: 1px solid #cddcca; text-align: left; color: #164d3b; min-height: 258px; cursor: pointer; }
+.games-menu-card:nth-child(2) { background: #eef5e9; }
+.games-menu-card:nth-child(3) { background: #fff3df; }
+.games-menu-card:hover { border-color: #427653; box-shadow: 0 6px 18px #064e3b12; }
+.games-menu-card > span:first-child { font-size: 42px; }
+.games-menu-card strong { font-size: 23px; line-height: 1.25; }
+.games-menu-card small { font-size: 17px; line-height: 1.45; color: #4d6254; }
+.games-menu-card b { font-size: 16px; margin-top: auto; }
+.games-rules { margin-top: 22px; padding: 18px 22px; border-radius: 15px; background: #edf4e7; font-size: 17px; line-height: 1.5; }
+.games-rules p { margin: 4px 0; }
+.games-progress { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-size: 17px; margin-bottom: 10px; }
+.games-progressbar { height: 8px; border-radius: 5px; background: #dde8d8; overflow: hidden; margin-bottom: 24px; }
+.games-progressbar > span { display: block; height: 100%; background: #548459; }
+.games-question { padding: clamp(18px,3vw,30px); background: #fff; border: 1px solid #d2dfce; border-radius: 23px; }
+.games-question h3 { font-size: clamp(23px,3vw,28px); line-height: 1.4; color: #164d3b; margin: 0 0 14px; }
+.games-food-hero { text-align: center; padding: 5px 0 18px; }
+.games-food-hero .games-food-symbol { display: block; font-size: 86px; line-height: 1.3; }
+.games-food-hero h3 { margin: 6px 0; }
+.games-answers { display: grid; gap: 12px; }
+.games-answer { display: flex; align-items: center; gap: 14px; padding: 17px 20px; border: 2px solid #c8d8c2; border-radius: 15px; background: #f8faf5; text-align: left; color: #164d3b; font-size: 20px; line-height: 1.35; min-height: 66px; cursor: pointer; }
+.games-answer .games-answer-marker { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: #e3eddb; display: grid; place-items: center; font-size: 17px; font-weight: 700; }
+.games-answer:hover:not(:disabled) { background: #eaf3e2; border-color: #5c875a; }
+.games-answer.is-right { border-color: #3b8753; background: #ecf7ea; }
+.games-answer.is-chosen:not(.is-right) { border-color: #b48232; background: #fff3df; }
+.games-answer:disabled { opacity: 1; cursor: default; }
+.games-feedback { margin-top: 20px; padding: 20px; background: #fff3dc; border: 1px solid #d5b97e; border-radius: 17px; font-size: 19px; line-height: 1.55; }
+.games-feedback.is-right { background: #eaf5e4; border-color: #96bd8b; }
+.games-feedback strong { display: block; margin-bottom: 6px; font-size: 21px; }
+.games-feedback p { margin: 6px 0 14px; }
+.games-button { padding: 12px 21px; border-radius: 12px; border: 1px solid #064e3b; background: #064e3b; color: #fff; min-height: 48px; font-size: 18px; font-weight: 700; cursor: pointer; }
+.games-button:hover { background: #087653; }
+.games-button.secondary { background: #fff; color: #164d3b; }
+.games-button:disabled { opacity: .65; cursor: default; }
+.games-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+.games-tip { font-size: 16px; line-height: 1.5; color: #536657; margin-top: 14px; }
+.games-topics { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
+.games-topic { display: flex; gap: 15px; align-items: center; padding: 20px; background: #fff; border: 1px solid #cddcca; border-radius: 18px; color: #164d3b; text-align: left; min-height: 115px; cursor: pointer; }
+.games-topic > span:first-child { font-size: 32px; }
+.games-topic strong { font-size: 22px; display: block; }
+.games-topic small { font-size: 17px; display: block; margin-top: 6px; }
+.games-plate-layout { display: grid; grid-template-columns: minmax(270px,340px) minmax(0,1fr); gap: 24px; align-items: start; margin-top: 25px; }
+.games-plate { width: 100%; aspect-ratio: 1; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 4px; border: 11px solid #fff; border-radius: 50%; overflow: hidden; background: #fff; box-shadow: 0 0 0 2px #bdceae,0 10px 28px #164d3b0b; }
+.games-slot { border: 0; border-radius: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 0; padding: 10px 18px; color: #164d3b; background: #d7eacc; cursor: pointer; }
+.games-slot:nth-child(2) { grid-column: 1; grid-row: 2; }
+.games-slot:nth-child(3) { grid-column: 2; grid-row: 1; background: #f5ded5; }
+.games-slot:nth-child(4) { grid-column: 2; grid-row: 2; background: #f6e9c5; }
+.games-slot small { display: none; }
+.games-slot strong { font-size: 15px; line-height: 1.2; max-width: 108px; overflow-wrap: break-word; }
+.games-slot > span { font-size: 36px; line-height: 1.1; }
+.games-slot[aria-pressed="true"] { box-shadow: inset 0 0 0 4px #48753d; }
+.games-slot:disabled { opacity: 1; cursor: default; }
+.games-active-slot { font-size: 18px; line-height: 1.4; margin: 18px 0 12px; padding: 12px 15px; background: #eef4e8; border-radius: 12px; }
+.games-foods { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 9px; }
+.games-food { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; border: 1px solid #cbdcc2; border-radius: 15px; background: #fff; color: #164d3b; padding: 13px 7px; min-height: 106px; font-size: 17px; line-height: 1.25; cursor: pointer; }
+.games-food span { font-size: 35px; }
+.games-food:hover:not(:disabled) { background: #eff5e7; border-color: #598253; }
+.games-food:disabled { opacity: .8; cursor: default; }
+.games-result { background: #edf5e7; border-radius: 23px; border: 1px solid #bbd2ae; padding: clamp(22px,4vw,35px); }
+.games-result h3 { font-size: 27px; color: #164d3b; margin: 8px 0 16px; }
+.games-score { display: block; font: 700 clamp(48px,8vw,70px)/1.1 'Source Sans 3',Arial,sans-serif; color: #064e3b; }
+.games-result p { font-size: 19px; line-height: 1.5; margin: 14px 0; }
+.games-review { margin-top: 22px; }
+.games-review h3 { font-size: 22px; margin-bottom: 10px; color: #164d3b; }
+.games-review ul { padding-left: 22px; }
+.games-review li { margin: 12px 0; font-size: 18px; line-height: 1.45; }
+.games-review button { color: #164d3b; text-decoration: underline; text-underline-offset: 3px; min-height: 44px; padding: 6px 0; font-size: 17px; }
+.games-sources { margin-top: 28px; color: #536657; font-size: 16px; line-height: 1.5; }
+.games-sources summary { cursor: pointer; min-height: 44px; padding: 10px 0; }
+.games-sources a { color: #164d3b; display: inline-block; padding: 6px 0; }
+.games-shell button:focus-visible { outline: 3px solid #a76505; outline-offset: 3px; }
+.games-shell [tabindex="-1"]:focus { outline: none; }
+.visual-navigation.vn-large-text .games-answer, .visual-navigation.vn-large-text .games-lead, .visual-navigation.vn-large-text .games-feedback { font-size: 22px; }
+.visual-navigation.vn-large-text .games-food { font-size: 19px; }
+@media (max-width:850px) { .vn-map .vn-topic[data-vn-route="juegos"] { grid-row: auto; } .games-menu { grid-template-columns: 1fr; } .games-menu-card { min-height: 170px; } }
+@media (max-width:680px) { .games-plate-layout { grid-template-columns: 1fr; } .games-plate { max-width: 320px; margin: auto; } .games-topics { grid-template-columns: 1fr; } .games-foods { grid-template-columns: repeat(3,minmax(0,1fr)); } .games-shell { padding-top: 20px; } }
+@media (max-width:380px) { .games-foods { grid-template-columns: repeat(2,minmax(0,1fr)); } .games-answer { padding: 15px 13px; font-size: 18px; } .games-slot { padding: 8px 12px; } }

@@ -1,6 +1,6 @@
 /* Caché de recursos educativos públicos. No intercepta Supabase ni datos de pacientes. */
 'use strict';
-const VERSION = '20261012-pwa-1';
+const VERSION = '20261012-juegos-1';
 const PREFIX = 'endonutri-public-';
 const CACHE = PREFIX + VERSION;
 const ROOT = new URL('./', self.registration.scope);
@@ -9,6 +9,7 @@ const CORE = [
   'config.js', 'app.js', 'app-core.js', 'contenidos.js', 'cuestionario.js',
   'papef.js', 'macronutrientes.js', 'equivalencias-datos.js', 'equivalencias.js',
   'navegacion-visual.js', 'buscador.js', 'pwa.js', 'qr.js',
+  'juegos-data.js', 'juegos-core.js', 'juegos.js', 'juegos.css', 'img/juegos.svg',
   'style.css', 'papef.css', 'macronutrientes.css', 'equivalencias.css',
   'navegacion-visual.css', 'fondo-inicio.css', 'pwa.css',
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png',

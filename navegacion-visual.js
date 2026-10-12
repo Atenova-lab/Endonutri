@@ -42,11 +42,14 @@
       ['cuestionario-main', 'Rellenar el cuestionario', 'Contesta desde el móvil o el ordenador.'],
       ['cuestionario-pdf', 'Prefiero hacerlo en papel', 'Descarga el cuestionario para imprimir.'],
       ['contacto', 'Contactar con el equipo', 'Consulta los datos de contacto.']
+    ]},
+    { id: 'juegos', icon: '🎮', title: 'Juega y aprende', hint: 'Monta tu plato · Nutrientes · Minitest', intro: 'Practica lo aprendido a tu ritmo.', direct: 'juegos', items: [
+      ['juegos', 'Juega y aprende', 'Juegos, platos saludables y test para reforzar las ideas clave.']
     ]}
   ];
   window.ENDONUTRI_VISUAL_GROUPS = groups;
   const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const cardImage = route => `img/tarjetas/${route}.webp`;
+  const cardImage = route => route === 'juegos' ? 'img/juegos.svg' : `img/tarjetas/${route}.webp`;
   const option = ([route, title, hint]) => `<button type="button" class="vn-option" data-vn-route="${esc(route)}"><img class="vn-card-image" src="${cardImage(route)}" alt="" width="768" height="768" loading="lazy" decoding="async"><span class="vn-card-copy"><strong>${esc(title)}</strong><small>${esc(hint)}</small></span><span class="vn-card-arrow" aria-hidden="true">→</span></button>`;
   document.addEventListener('DOMContentLoaded', () => {
     const home = document.getElementById('section-home');
