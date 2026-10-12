@@ -1,0 +1,24 @@
+{
+  "id": "./",
+  "name": "Endonutri",
+  "short_name": "Endonutri",
+  "description": "Tu salud, explicada fácil. Nutrición, ejercicio y herramientas para cuidarte.",
+  "lang": "es-ES",
+  "start_url": "./#inicio",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#faf9f1",
+  "theme_color": "#064e3b",
+  "categories": ["health", "education", "lifestyle"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Comer mejor", "url": "./#tema-comer" },
+    { "name": "Moverme más", "url": "./#tema-mover" },
+    { "name": "Mis planes de alimentación", "url": "./#planes-calorias" }
+  ],
+  "prefer_related_applications": false
+}
