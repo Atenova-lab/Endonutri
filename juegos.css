@@ -84,3 +84,25 @@
 @media (max-width:850px) { .vn-map .vn-topic[data-vn-route="juegos"] { grid-row: auto; } .games-menu { grid-template-columns: 1fr; } .games-menu-card { min-height: 170px; } }
 @media (max-width:680px) { .games-plate-layout { grid-template-columns: 1fr; } .games-plate { max-width: 320px; margin: auto; } .games-topics { grid-template-columns: 1fr; } .games-foods { grid-template-columns: repeat(3,minmax(0,1fr)); } .games-shell { padding-top: 20px; } }
 @media (max-width:380px) { .games-foods { grid-template-columns: repeat(2,minmax(0,1fr)); } .games-answer { padding: 15px 13px; font-size: 18px; } .games-slot { padding: 8px 12px; } }
+/* Fotografías en atlas: cada preparación conserva su celda y se reutiliza en el plato final. */
+.games-photo { display: block; width: 100%; aspect-ratio: 1; background-color: #fff; background-size: 400% 400%; background-repeat: no-repeat; border-radius: 10px; flex-shrink: 0; }
+.games-food { justify-content: flex-start; padding: 8px; }
+.games-food > .games-photo { max-width: 128px; font-size: 0; }
+.games-food > .games-food-name { font-size: 16px; line-height: 1.3; }
+.games-food > small { font-size: 12px; line-height: 1.4; color: #536657; }
+.games-slot:has(.games-photo) { padding: 16px; background: #fff; }
+.games-slot:has(.games-photo) > span { width: 100%; }
+.games-slot .games-photo { max-width: 126px; margin: auto; border-radius: 0; }
+.games-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.games-composition { margin: 24px 0 0; padding: 20px; border-radius: 20px; background: #eef4e8; border: 1px solid #c7d8bd; }
+.games-composition h3 { font-size: 22px; margin: 0 0 14px; }
+.games-complete-image { display: block; width: 100%; max-width: 500px; height: auto; border-radius: 18px; margin: 0 auto; }
+.games-composition [hidden] { display: none !important; }
+.games-composition figcaption { font-size: 17px; line-height: 1.5; margin-top: 14px; color: #164d3b; }
+.games-finished-plate { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; width: 100%; max-width: 440px; aspect-ratio: 1; margin: 0 auto; padding: 9%; background: #fff; border-radius: 50%; box-shadow: 0 3px 15px #164d3b20; }
+.games-finished-plate > :nth-child(2) { grid-column: 1; grid-row: 2; }
+.games-finished-plate > :nth-child(3) { grid-column: 2; grid-row: 1; }
+.games-finished-plate .games-photo { border-radius: 0; }
+.games-meal-gallery { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; margin-top: 24px; }
+.games-meal-gallery .games-composition { margin: 0; }
+@media (max-width:680px) { .games-meal-gallery { grid-template-columns: 1fr; } .games-slot:has(.games-photo) { padding: 13px; } }

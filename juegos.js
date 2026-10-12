@@ -8,11 +8,30 @@
   const categories = [
     { id:'carbs', name:'Hidratos de carbono', icon:'🍞', route:'macro-hidratos' },
     { id:'protein', name:'Proteínas', icon:'🥚', route:'macro-proteinas' },
-    { id:'fats', name:'Grasas', icon:'🫒', route:'macro-grasas' }
+    { id:'fats', name:'Grasas', icon:'🫒', route:'macro-grasas' },
+    { id:'protein-carbs', name:'Proteínas e hidratos', icon:'🫘', route:'macro-proteinas' },
+    { id:'protein-fats', name:'Proteínas y grasas', icon:'🐟', route:'macro-grasas' }
   ];
   const slotLabels = ['Verdura 1','Verdura 2','Proteína','Cereal o tubérculo'];
   let root, mode = 'menu', session = null, selected = null, feedback = null, picks = [], activeSlot = 0, quiz = null;
-  let retryMode = 'plate', retryQuiz = null;
+  let retryMode = 'plate', retryQuiz = null, meals = [];
+  const photo = item => '<span class="games-photo" aria-hidden="true" style="background-image:url(' + item.atlas + ');background-position:' + (item.tile % 4) * 100 / 3 + '% ' + Math.floor(item.tile / 4) * 100 / 3 + '%"></span>';
+  function completedPlate(ids, title) {
+    const names = ids.map(id => food(id).name).join(', ');
+    return '<figure class="games-composition" data-game-foods="' + esc(JSON.stringify(ids)) + '"><h3>' + esc(title) + '</h3><img class="games-complete-image" hidden alt="Plato completo con ' + esc(names) + '" width="720" height="720"><div class="games-finished-plate" role="img" aria-label="Plato completo con ' + esc(names) + '">' + ids.map(id => photo(food(id))).join('') + '</div><figcaption>' + esc(names) + '</figcaption></figure>';
+  }
+  function hydratePlates() {
+    if (!window.EndonutriGamesImages) return;
+    root.querySelectorAll('.games-composition').forEach(figure => {
+      const ids = JSON.parse(figure.dataset.gameFoods);
+      window.EndonutriGamesImages.compose(ids, D.foods).then(src => {
+        if (!root.contains(figure)) return;
+        const image = figure.querySelector('img');
+        image.src = src; image.hidden = false;
+        figure.querySelector('.games-finished-plate').hidden = true;
+      }).catch(() => { /* La composición CSS permanece visible si falla canvas o una fotografía. */ });
+    });
+  }
   const header = (title, lead) => '<header class="games-head"><button type="button" class="games-back" data-game-action="menu">← Elegir otro juego</button><span class="games-kicker">APRENDE A TU RITMO</span><h2 tabindex="-1">' + esc(title) + '</h2><p>' + esc(lead) + '</p></header>';
   const progress = () => '<div class="games-progress"><span>Reto ' + (session.index + 1) + ' de ' + session.items.length + '</span><strong>Puntos: ' + C.score(session) + ' / ' + session.items.length + '</strong></div><div class="games-progressbar" role="progressbar" aria-label="Retos completados" aria-valuemin="0" aria-valuemax="' + session.items.length + '" aria-valuenow="' + session.index + '"><span style="width:' + session.index / session.items.length * 100 + '%"></span></div>';
   const sources = '<details class="games-sources"><summary>De dónde salen estas ideas</summary><p>Estos juegos repasan el método del plato, los macronutrientes, las etiquetas, el movimiento y los hábitos explicados en Endonutri.</p><a href="https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html" target="_blank" rel="noopener">Método del plato · CDC ↗</a><br><a href="https://www.who.int/news-room/fact-sheets/detail/healthy-diet" target="_blank" rel="noopener">Alimentación saludable · OMS ↗</a><br><a href="https://www.who.int/news-room/fact-sheets/detail/physical-activity" target="_blank" rel="noopener">Actividad física · OMS ↗</a><br><a href="https://europa.eu/youreurope/business/product-rules-compliance/food/labelling-rules/index_en.htm" target="_blank" rel="noopener">Etiquetado de alimentos · Unión Europea ↗</a></details>';
@@ -20,9 +39,9 @@
   function menu() {
     mode = 'menu';
     root.innerHTML = '<header class="games-head"><span class="games-kicker">PRACTICA LO QUE YA SABES</span><h2 tabindex="-1">Juega y aprende</h2><p>Elige un juego. Puedes probar, equivocarte y volver a intentarlo.</p></header>' +
-      '<div class="games-menu"><button type="button" class="games-menu-card" data-game-action="plate"><span aria-hidden="true">🥗</span><strong>Monta tu plato</strong><small>Elige alimentos y colócalos tocando las partes del plato.</small><b>3 retos · Empezar →</b></button>' +
-      '<button type="button" class="games-menu-card" data-game-action="macros"><span aria-hidden="true">🍞</span><strong>¿Qué me aporta?</strong><small>Reconoce fuentes de hidratos, proteínas y grasas.</small><b>10 alimentos · Empezar →</b></button>' +
-      '<button type="button" class="games-menu-card" data-game-action="quizzes"><span aria-hidden="true">💡</span><strong>Pon a prueba lo aprendido</strong><small>Preguntas cortas sobre las ideas clave de Endonutri.</small><b>5 temas · Elegir →</b></button></div>' +
+      '<div class="games-menu"><button type="button" class="games-menu-card" data-game-action="plate"><span aria-hidden="true">🥗</span><strong>Monta tu plato</strong><small>Elige alimentos y colócalos tocando las partes del plato.</small><b>' + D.plates.length + ' retos · ' + D.foods.length + ' preparaciones →</b></button>' +
+      '<button type="button" class="games-menu-card" data-game-action="macros"><span aria-hidden="true">🍞</span><strong>¿Qué me aporta?</strong><small>Reconoce fuentes de hidratos, proteínas y grasas.</small><b>' + D.macros.length + ' alimentos · 10 por partida →</b></button>' +
+      '<button type="button" class="games-menu-card" data-game-action="quizzes"><span aria-hidden="true">💡</span><strong>Pon a prueba lo aprendido</strong><small>Preguntas cortas sobre las ideas clave de Endonutri.</small><b>' + D.quizzes.length + ' temas · 5 preguntas cada uno →</b></button></div>' +
       '<div class="games-rules"><p><strong>Un punto si aciertas en el primer intento.</strong> Los errores no restan. Después podrás repetir para aprender.</p><p>Sin límite de tiempo. No necesitas registrarte.</p></div>' + sources;
     focusHeading();
   }
@@ -33,10 +52,10 @@
     focusHeading();
   }
   function start(type, quizId) {
-    mode = type; selected = null; feedback = null; picks = Array(4).fill(null); activeSlot = 0;
+    meals = []; mode = type; selected = null; feedback = null; picks = Array(4).fill(null); activeSlot = 0;
     quiz = type === 'quiz' ? D.quizzes.find(item => item.id === quizId) : null;
     if (type === 'quiz' && !quiz) { topics(); return; }
-    const items = type === 'plate' ? D.plates : type === 'macros' ? C.shuffle(D.macros) : quiz.questions.map(item => ({ ...item, order: C.shuffle(item.options.map((_, index) => index)) }));
+    const items = type === 'plate' ? D.plates : type === 'macros' ? C.shuffle(D.macros).slice(0, 10) : quiz.questions.map(item => ({ ...item, order: C.shuffle(item.options.map((_, index) => index)) }));
     session = C.createSession(items); retryMode = type; retryQuiz = quiz?.id || null;
     render(); focusHeading();
   }
@@ -51,17 +70,17 @@
     const locked = session.rounds[session.index].solved;
     root.innerHTML = header('Monta tu plato', '1. Toca una parte del plato. 2. Toca el alimento que quieres añadir.') + progress() +
       '<article class="games-question"><h3>' + esc(item.title) + '</h3><p class="games-lead">' + esc(item.intro) + '</p><div class="games-plate-layout"><div><div class="games-plate" aria-label="Mitad de verduras, un cuarto de proteína y un cuarto de cereales o tubérculos">' +
-      picks.map((id, index) => '<button type="button" class="games-slot" data-game-action="slot" data-game-slot="' + index + '" aria-pressed="' + (activeSlot === index) + '" aria-label="' + esc(slotLabels[index] + ': ' + (food(id)?.name || 'sin elegir')) + '"' + (locked ? ' disabled' : '') + '><small>' + slotLabels[index] + '</small><span aria-hidden="true">' + (food(id)?.icon || '＋') + '</span><strong>' + esc(food(id)?.name.split(' ')[0] || (index < 2 ? 'Verdura' : index === 2 ? 'Proteína' : 'Arroz / patata')) + '</strong></button>').join('') +
+      picks.map((id, index) => '<button type="button" class="games-slot" data-game-action="slot" data-game-slot="' + index + '" aria-pressed="' + (activeSlot === index) + '" aria-label="' + esc(slotLabels[index] + ': ' + (food(id)?.name || 'sin elegir')) + '"' + (locked ? ' disabled' : '') + '><small>' + slotLabels[index] + '</small><span aria-hidden="true">' + (food(id) ? photo(food(id)) : '＋') + '</span><strong' + (food(id) ? ' class="games-sr-only"' : '') + '>' + esc(food(id)?.name || (index < 2 ? 'Verdura' : index === 2 ? 'Proteína' : 'Hidratos')) + '</strong></button>').join('') +
       '</div><p class="games-tip">Orientación visual: ½ verduras, ¼ proteína y ¼ cereales o tubérculos. Las legumbres pueden aportar proteína e hidratos.</p></div><div><p class="games-active-slot" role="status">Ahora eliges: <strong>' + slotLabels[activeSlot] + '</strong></p><div class="games-foods">' +
-      item.foodIds.map(id => '<button type="button" class="games-food" data-game-action="food" data-game-food="' + id + '"' + (locked ? ' disabled' : '') + '><span aria-hidden="true">' + food(id).icon + '</span>' + esc(food(id).name) + '</button>').join('') + '</div></div></div>' +
+      item.foodIds.map(id => '<button type="button" class="games-food" data-game-action="food" data-game-food="' + id + '"' + (locked ? ' disabled' : '') + '>' + photo(food(id)) + '<span class="games-food-name">' + esc(food(id).name) + '</span>' + (food(id).note ? '<small>' + esc(food(id).note) + '</small>' : '') + '</button>').join('') + '</div></div></div>' +
       '<div class="games-actions"><button type="button" class="games-button" data-game-action="check-plate"' + (locked ? ' disabled' : '') + '>Comprobar mi plato</button><button type="button" class="games-button secondary" data-game-action="clear-plate"' + (locked ? ' disabled' : '') + '>Vaciar plato</button></div>' +
-      feedbackHTML(feedback?.text || '', locked) + '<p class="games-tip">El dibujo ayuda a practicar proporciones. Las cantidades reales se adaptan a tu pauta, hambre y necesidades. Puedes cocinar los ingredientes juntos y acompañar la comida de agua.</p></article>';
+      feedbackHTML(feedback?.text || '', locked) + (locked ? completedPlate(picks, 'Así ha quedado tu plato') : '') + '<p class="games-tip">El dibujo ayuda a practicar proporciones. Las fotos generadas son ilustrativas, no raciones pesadas. Las cantidades reales se adaptan a tu pauta, hambre y necesidades. Puedes cocinar los ingredientes juntos y acompañar la comida de agua.</p></article>';
   }
   function renderQuestion() {
     const item = session.items[session.index], macro = mode === 'macros', locked = !!feedback;
-    root.innerHTML = header(macro ? '¿Qué me aporta este alimento?' : quiz.title, macro ? 'Elige el grupo en el que lo usamos como fuente destacada. Puede aportar otros nutrientes también.' : 'Toca una respuesta. Después te explicamos la idea clave.') + progress() +
+    root.innerHTML = header(macro ? '¿Qué me aporta este alimento?' : quiz.title, macro ? (item.answer.includes('-') ? 'En este ejemplo buscamos una combinación de dos nutrientes. ¿Cuál destaca?' : 'Elige el grupo en el que lo usamos como fuente destacada. También puede aportar otros nutrientes.') : 'Toca una respuesta. Después te explicamos la idea clave.') + progress() +
       '<article class="games-question">' + (macro ? '<div class="games-food-hero"><span class="games-food-symbol" aria-hidden="true">' + item.icon + '</span><h3>' + esc(item.name) + '</h3></div>' : '<h3>' + esc(item.text) + '</h3>') +
-      '<div class="games-answers">' + (macro ? categories.map((cat, index) => {
+      '<div class="games-answers">' + (macro ? categories.filter(cat => !cat.id.includes('-') || item.answer.includes('-')).map((cat, index) => {
         const right = locked && cat.id === item.answer, chosen = selected === cat.id;
         return answerButton(cat.id, cat.icon + ' ' + cat.name, index, right, chosen, locked);
       }).join('') : item.order.map((index, displayIndex) => answerButton(index, item.options[index], displayIndex, locked && index === item.answer, selected === index, locked)).join('')) + '</div>' +
@@ -77,13 +96,14 @@
   function result() {
     const points = C.score(session), total = session.items.length;
     const review = session.items.filter((item, index) => !session.rounds[index].point);
-    const title = mode === 'plate' ? 'Tus tres platos' : mode === 'macros' ? 'Reconocer los nutrientes' : quiz.title;
+    const title = mode === 'plate' ? 'Tus ' + session.items.length + ' platos' : mode === 'macros' ? 'Reconocer los nutrientes' : quiz.title;
     root.innerHTML = header('Reto terminado', title) + '<div class="games-result"><span aria-hidden="true" style="font-size:40px">🌿</span><h3>Tu puntuación final</h3><strong class="games-score">' + points + ' / ' + total + '</strong><p>Has acertado ' + points + ' de ' + total + ' en el primer intento. Has completado todos los retos, también los que has practicado con ayuda.</p><p>' + (points === total ? '¡Todas las ideas de este reto están bien reconocidas!' : 'Cada intento sirve para aprender. Puedes repasar estas ideas y volver a jugar.') + '</p><div class="games-actions"><button type="button" class="games-button" data-game-action="again">Volver a jugar</button><button type="button" class="games-button secondary" data-game-action="menu">Elegir otro juego</button></div></div>' +
+      (mode === 'plate' ? '<section class="games-meal-gallery" aria-label="Tus platos completos">' + meals.map((ids, index) => completedPlate(ids, session.items[index].title)).join('') + '</section>' : '') +
       (review.length ? '<section class="games-review"><h3>Ideas para reforzar</h3><ul>' + review.map(item => {
         const route = mode === 'plate' ? 'herramientas-plato' : mode === 'macros' ? categories.find(cat => cat.id === item.answer).route : item.route;
         return '<li><strong>' + esc(item.title || item.name || item.text) + '</strong><br><button type="button" data-vn-route="' + route + '">Ver la explicación en Endonutri →</button></li>';
       }).join('') + '</ul></section>' : '') + sources;
-    focusHeading();
+    hydratePlates(); focusHeading();
   }
   document.addEventListener('DOMContentLoaded', () => {
     root = document.getElementById('games-root');
@@ -101,7 +121,9 @@
       if (!session || session.index >= session.items.length) return;
       const item = session.items[session.index];
       if (action === 'slot') {
-        activeSlot = Number(button.dataset.gameSlot); renderPlate();
+        if (session.rounds[session.index].solved) return;
+        const slot = Number(button.dataset.gameSlot); if (!Number.isInteger(slot) || slot < 0 || slot > 3) return;
+        activeSlot = slot; renderPlate();
         root.querySelector('[data-game-slot="' + activeSlot + '"]')?.focus({ preventScroll: true }); return;
       }
       if (action === 'food') {
@@ -112,16 +134,18 @@
         const next = picks.findIndex(value => !value); if (next !== -1) activeSlot = next;
         renderPlate(); root.querySelector('[data-game-food="' + id + '"]')?.focus({ preventScroll: true }); return;
       }
-      if (action === 'clear-plate') { picks = Array(4).fill(null); activeSlot = 0; feedback = null; renderPlate(); return; }
+      if (action === 'clear-plate') { if (session.rounds[session.index].solved) return; picks = Array(4).fill(null); activeSlot = 0; feedback = null; renderPlate(); return; }
       if (action === 'check-plate') {
+        if (session.rounds[session.index].solved) return;
         const evaluation = C.evaluatePlate(picks, D.foods);
         if (!evaluation.complete) feedback = { incomplete:true, text:'Toca las partes que aún están vacías y elige un alimento para cada una.' };
         else {
           session = C.attempt(session, evaluation.correct);
+          if (evaluation.correct) meals[session.index] = picks.slice();
           const missing = slotLabels.filter((label, index) => !evaluation.valid[index]);
           feedback = { text: evaluation.correct ? 'Has combinado verduras, una fuente de proteína y un alimento con hidratos. Hay muchas formas válidas de montar el plato; las legumbres también pueden encajar como proteína o hidratos.' : 'Revisa: <strong>' + missing.map(esc).join(', ') + '</strong>. Para la mitad de verduras, elige hortalizas; para la proteína, pescado, huevo, pollo, tofu o legumbres; para los hidratos, cereal, tubérculo o legumbres.' };
         }
-        renderPlate(); root.querySelector('.games-feedback')?.focus(); return;
+        renderPlate(); hydratePlates(); root.querySelector('.games-feedback')?.focus(); return;
       }
       if (action === 'answer') {
         if (feedback) return;
