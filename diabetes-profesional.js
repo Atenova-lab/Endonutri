@@ -4,8 +4,9 @@ document.querySelectorAll('[data-db-open]').forEach(link => {
     const resource = document.getElementById('db-' + link.dataset.dbOpen);
     if (!resource) return;
     event.preventDefault();
-    resource.open = true;
+    if (resource.tagName === 'DETAILS') resource.open = true;
     resource.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
-    resource.querySelector('summary').focus({ preventScroll: true });
+    const heading = resource.querySelector('summary, h3');
+    if (heading) { if (heading.tagName !== 'SUMMARY') heading.tabIndex = -1; heading.focus({ preventScroll: true }); }
   });
 });
