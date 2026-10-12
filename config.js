@@ -5,7 +5,7 @@
  * =============================================
  */
 const CONFIG = {
-  URL_WEB: "https://beamd-endonutri.github.io/Endonutri/#",
+  URL_WEB: "https://atenova-lab.github.io/Endonutri/",
   URL_CUESTIONARIO: "",
   EMAIL_DESTINO: "",
   CONTACTO: { telefono:"", telefono_ext:"", email:"nutri.bea.md@gmail.com", horario:"", direccion:"", whatsapp:"", google_maps_url:"" }
