@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://atenova-lab.github.io/Endonutri/sitemap.xml
