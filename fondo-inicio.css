@@ -76,7 +76,8 @@ body.visual-navigation.vn-home {
   grid-template-columns: minmax(0, 1fr) 176px;
   gap: 18px;
   align-items: center;
-  margin: 20px 0;
+  max-width: 1100px;
+  margin: 20px auto;
   padding: 20px;
   background: #fffdf7;
   border-color: #91b396;
