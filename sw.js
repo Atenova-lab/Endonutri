@@ -1,6 +1,6 @@
 /* Caché de recursos educativos públicos. No intercepta Supabase ni datos de pacientes. */
 'use strict';
-const VERSION = '20261012-juegos-2';
+const VERSION = '20261027-compartir';
 const PREFIX = 'endonutri-public-';
 const CACHE = PREFIX + VERSION;
 const ROOT = new URL('./', self.registration.scope);
@@ -13,7 +13,7 @@ const CORE = [
   'style.css', 'papef.css', 'macronutrientes.css', 'equivalencias.css',
   'navegacion-visual.css', 'fondo-inicio.css', 'pwa.css',
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png',
-  'img/hero-endonutri.webp', 'img/tarjetas/herramientas-plato.webp',
+  'img/hero-endonutri.webp', 'img/qr-endonutri.svg', 'img/tarjetas/herramientas-plato.webp',
   'img/tarjetas/obesidad-que-es.webp', 'img/tarjetas/ejercicio-empezar.webp',
   'img/tarjetas/equivalencias.webp', 'img/tarjetas/medicacion-glp1.webp',
   'img/tarjetas/cuestionario-main.webp'

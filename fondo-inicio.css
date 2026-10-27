@@ -70,4 +70,52 @@ body.visual-navigation.vn-home {
   .vn-home .vn-center { width: min(315px, 95%); }
   .vn-home .vn-map { margin-top: 20px; }
 }
-@media print { body.visual-navigation.vn-home { background: #fff; } }
+/* Acceso y copia del enlace en la portada, también en móviles y con letra grande. */
+#mainQrCard {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 176px;
+  gap: 18px;
+  align-items: center;
+  margin: 20px 0;
+  padding: 20px;
+  background: #fffdf7;
+  border-color: #91b396;
+}
+#mainQrCard .qr-info { min-width: 0; }
+#mainQrCard h3 { font-size: 1.15rem; line-height: 1.35; }
+#mainQrCard .qr-info > p { font-size: 1rem; color: #466052; }
+#mainQrCard .qr-url-label {
+  display: block;
+  margin-top: 8px;
+  color: #064e3b;
+  font-size: .9rem;
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+#mainQrCard .qr-image img { display: block; width: 100%; height: auto; border-radius: 0; }
+.qr-share-button {
+  min-height: 48px;
+  max-width: 100%;
+  margin-top: 12px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: #064e3b;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+.qr-share-button:hover { background: #087f5b; }
+.qr-share-button:focus-visible, #mainQrCard a:focus-visible { outline: 3px solid #087f5b; outline-offset: 4px; }
+.qr-share-button:disabled { cursor: wait; opacity: .7; }
+#mainQrCard .qr-share-status { min-height: 1.5em; margin-top: 6px; font-weight: 700; }
+@media (max-width: 600px) {
+  #mainQrCard { grid-template-columns: minmax(0, 1fr) 112px; gap: 12px; padding: 16px; }
+  .qr-share-button { padding-inline: 12px; }
+}
+@media (max-width: 360px) {
+  #mainQrCard { grid-template-columns: 1fr; }
+  #mainQrCard .qr-image { width: 144px; justify-self: center; }
+}
+@media print { body.visual-navigation.vn-home { background: #fff; } .qr-share-button, .qr-share-status { display: none; } }

@@ -54,8 +54,49 @@ document.addEventListener("DOMContentLoaded", () => {
   // QR de la web principal
   if (CONFIG.URL_WEB) {
     const urlLabel = document.getElementById("qrUrlLabel");
-    if (urlLabel) urlLabel.textContent = CONFIG.URL_WEB;
-    generarQR("mainQrCanvas", CONFIG.URL_WEB, 110);
+    if (urlLabel) {
+      urlLabel.textContent = CONFIG.URL_WEB;
+      urlLabel.href = CONFIG.URL_WEB;
+    }
+    const qrLink = document.getElementById('mainQrLink');
+    if (qrLink) qrLink.href = CONFIG.URL_WEB;
+    const share = document.getElementById('shareEndonutri');
+    const status = document.getElementById('shareEndonutriStatus');
+    if (share && status) share.addEventListener('click', async () => {
+      share.disabled = true;
+      status.textContent = '';
+      const copyFallback = () => {
+        const field = document.createElement('textarea');
+        field.value = CONFIG.URL_WEB;
+        field.setAttribute('readonly', '');
+        field.style.cssText = 'position:fixed;top:0;left:0;opacity:0;font-size:16px;pointer-events:none';
+        document.body.append(field);
+        try {
+          field.focus({ preventScroll: true });
+          field.select();
+          field.setSelectionRange(0, field.value.length);
+          return document.execCommand('copy');
+        } finally {
+          field.remove();
+          share.focus({ preventScroll: true });
+        }
+      };
+      try {
+        let copied = false;
+        if (navigator.clipboard && window.isSecureContext) {
+          try {
+            await navigator.clipboard.writeText(CONFIG.URL_WEB);
+            copied = true;
+          } catch (_) { /* Intenta la copia compatible con navegadores antiguos. */ }
+        }
+        if (!copied) copied = copyFallback();
+        status.textContent = copied ? 'Enlace copiado' : 'No se ha podido copiar. Mantén pulsado el enlace para copiarlo.';
+      } catch (_) {
+        status.textContent = 'No se ha podido copiar. Mantén pulsado el enlace para copiarlo.';
+      } finally {
+        share.disabled = false;
+      }
+    });
   }
 
   // QR del cuestionario

@@ -23,7 +23,7 @@
   <link rel="stylesheet" href="macronutrientes.css?v=20261011">
   <link rel="stylesheet" href="equivalencias.css?v=20261011-simple-2">
   <link rel="stylesheet" href="navegacion-visual.css?v=20261012-profesional">
-  <link rel="stylesheet" href="fondo-inicio.css?v=20261012-fondo-integrado">
+  <link rel="stylesheet" href="fondo-inicio.css?v=20261027-compartir">
   <link rel="stylesheet" href="juegos.css?v=20261012-2">
 </head>
 <body>
@@ -279,11 +279,15 @@
       <div class="qr-card" id="mainQrCard">
         <div class="qr-info">
           <h3>Acceso rápido a esta web</h3>
-          <p>Escanea el código QR o compártelo con otros pacientes</p>
-          <small class="qr-url-label" id="qrUrlLabel">https://atenova-lab.github.io/Endonutri/</small>
+          <p>Escanea el QR para abrir Endonutri en otro móvil o copia el enlace para compartirlo.</p>
+          <a class="qr-url-label" id="qrUrlLabel" href="https://atenova-lab.github.io/Endonutri/">https://atenova-lab.github.io/Endonutri/</a>
+          <button type="button" class="qr-share-button" id="shareEndonutri" aria-describedby="shareEndonutriStatus">Comparte con otros pacientes</button>
+          <p class="qr-share-status" id="shareEndonutriStatus" role="status" aria-live="polite" aria-atomic="true"></p>
         </div>
         <div class="qr-image" id="mainQrContainer">
-          <canvas id="mainQrCanvas"></canvas>
+          <a id="mainQrLink" href="https://atenova-lab.github.io/Endonutri/" aria-label="Abrir la web de Endonutri">
+            <img src="img/qr-endonutri.svg" width="176" height="176" alt="Código QR para acceder a https://atenova-lab.github.io/Endonutri/">
+          </a>
         </div>
       </div>
     </section>
@@ -794,11 +798,11 @@
 <script src="papef.js?v=aprobadas-20261011"></script>
 <!-- QR Generator (CDN) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script src="qr.js"></script>
+<script src="qr.js?v=20261027-compartir"></script>
 <script src="macronutrientes.js?v=20261011-3"></script>
 <script src="equivalencias-datos.js?v=20261011-3"></script>
 <script src="equivalencias.js?v=20261011-simple-2"></script>
-<script src="navegacion-visual.js?v=20261012-juegos"></script>
+<script src="navegacion-visual.js?v=20261027-compartir"></script>
 <script src="buscador.js?v=20261011-compacto"></script>
 <script src="pwa.js?v=20261012-1" defer></script>
 <script src="juegos-data.js?v=20261012-2"></script>
