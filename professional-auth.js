@@ -3,6 +3,7 @@
   const SUPABASE_URL = 'https://bkcmntvgddrkqqiwagni.supabase.co';
   const SUPABASE_KEY = 'sb_publishable_NfLX0nQ80He_TLa5xnM0vA__Eo2lB9N';
   const ADMIN_EMAIL = 'nutri.bea.md@gmail.com';
+  const DENIAL_REASON = 'No es considerado profesional sanitario';
   const el = id => document.getElementById(id);
   const loginPanel = el('loginPanel');
   const privateArea = el('privateArea');
@@ -88,6 +89,9 @@
         .professional-list{display:grid;gap:11px}
         .professional-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:center;border:1px solid var(--line);border-radius:16px;padding:15px;background:#fbfefc}
         .professional-row.pending{border-color:#ecd9aa;background:#fffaf0}
+        .professional-row.denied{border-color:#efc8c3;background:#fffaf9}
+        .professional-chip.denied{background:#fae4e1;color:var(--danger)}
+        .professional-denial-reason{margin:8px 0 0;font-size:14px;color:var(--danger)}
         .professional-name{font-weight:800;color:var(--green)}
         .professional-email{color:var(--muted);font-size:14px;overflow-wrap:anywhere}
         .professional-meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:7px}
@@ -141,12 +145,12 @@
     if (el('loginIntro')) el('loginIntro').textContent = copy[1];
   }
 
-  function showPrivate(email) {
+  function showPrivate(email, role) {
     if (loginPanel) loginPanel.style.display = 'none';
     privateArea?.classList.add('active');
     if (el('userLabel')) el('userLabel').textContent = email || 'Profesional autorizado';
     if (el('password')) el('password').value = '';
-    const isAdmin = String(email || '').toLowerCase() === ADMIN_EMAIL;
+    const isAdmin = role === 'admin' && String(email || '').toLowerCase() === ADMIN_EMAIL;
     if (el('professionalAdminButton')) el('professionalAdminButton').hidden = !isAdmin;
     if (!isAdmin && el('professionalAdminPanel')) el('professionalAdminPanel').hidden = true;
   }
@@ -171,7 +175,7 @@
     const requestGeneration = generation;
     profileUserId = user.id;
     const task = (async () => {
-      const { data, error } = await sb.from('professional_profiles').select('active,role,email').eq('user_id', user.id).maybeSingle();
+      const { data, error } = await sb.from('professional_profiles').select('active,role,email,denial_reason').eq('user_id', user.id).maybeSingle();
       if (requestGeneration !== generation || recoveryMode) return false;
       if (error) {
         showLogin();
@@ -181,10 +185,11 @@
       if (!data || data.active !== true) {
         await sb.auth.signOut({ scope: 'local' });
         showLogin();
-        message(data ? 'Tu solicitud está pendiente de aprobación. Cuando ENDONUTRI la autorice podrás acceder.' : 'Tu cuenta no tiene acceso profesional activo. Contacta con la administración de ENDONUTRI.');
+        if (data?.denial_reason) message('Solicitud denegada. Motivo: ' + data.denial_reason + '.');
+        else message(data ? 'Tu solicitud está pendiente de aprobación. Cuando ENDONUTRI la autorice podrás acceder.' : 'Tu cuenta no tiene acceso profesional activo. Contacta con la administración de ENDONUTRI.');
         return false;
       }
-      showPrivate(user.email || data.email);
+      showPrivate(user.email || data.email, data.role);
       return true;
     })();
     profileTask = task;
@@ -353,7 +358,41 @@
     return data;
   }
 
-  async function loadProfessionals() {
+  async function setProfessionalDenial(userId, denied) {
+    // Supabase aplica la política de actualización reservada a la administradora.
+    const update = sb.from('professional_profiles')
+      .update({ denial_reason: denied ? DENIAL_REASON : null, updated_at: new Date().toISOString() })
+      .eq('user_id', userId)
+      .eq('role', 'professional')
+      .eq('active', false);
+    const { data, error } = await (denied ? update.is('denial_reason', null) : update.eq('denial_reason', DENIAL_REASON))
+      .select('user_id').maybeSingle();
+    if (error || !data) throw new Error('No se ha podido actualizar la solicitud.');
+  }
+
+  function denialButton(row, denied, status, actions) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'professional-action ' + (denied ? 'revoke' : 'revalidate');
+    button.textContent = denied ? 'Denegar' : 'Volver a pendientes';
+    button.addEventListener('click', async () => {
+      if (denied && !window.confirm('¿Denegar esta solicitud? Motivo: ' + DENIAL_REASON + '.')) return;
+      const buttons = [...actions.querySelectorAll('button')];
+      buttons.forEach(control => { control.disabled = true; });
+      status.textContent = denied ? 'Denegando solicitud…' : 'Volviendo a pendientes…';
+      try {
+        await setProfessionalDenial(row.user_id, denied);
+        await loadProfessionals(denied ? 'Solicitud denegada. Motivo: ' + DENIAL_REASON + '.' : 'La solicitud vuelve a estar pendiente de revisión.');
+      } catch {
+        status.textContent = 'No se ha podido actualizar la solicitud. Cierra y vuelve a abrir el panel para revisar su estado.';
+      } finally {
+        buttons.forEach(control => { control.disabled = false; });
+      }
+    });
+    return button;
+  }
+
+  async function loadProfessionals(notice = '') {
     const status = el('professionalAdminStatus');
     const list = el('professionalList');
     const summary = el('professionalAdminSummary');
@@ -362,15 +401,16 @@
     list.replaceChildren();
     try {
       const { data, error } = await sb.from('professional_profiles')
-        .select('user_id,email,full_name,active,role,created_at')
+        .select('user_id,email,full_name,active,role,created_at,denial_reason')
         .order('active', { ascending: true })
         .order('created_at', { ascending: false });
       if (error) throw error;
       const rows = data || [];
-      const pending = rows.filter(row => row.active !== true).length;
+      const denied = rows.filter(row => row.denial_reason).length;
+      const pending = rows.filter(row => !row.active && !row.denial_reason).length;
       const active = rows.filter(row => row.active === true).length;
       summary.replaceChildren();
-      [['Pendientes', pending], ['Activos', active], ['Total', rows.length]].forEach(([label, value]) => {
+      [['Pendientes', pending], ['Activos', active], ['Denegadas', denied], ['Total', rows.length]].forEach(([label, value]) => {
         const chip = document.createElement('span');
         chip.textContent = `${label}: ${value}`;
         summary.append(chip);
@@ -384,7 +424,8 @@
 
       rows.forEach(row => {
         const card = document.createElement('article');
-        card.className = 'professional-row' + (row.active ? '' : ' pending');
+        const stateClass = row.active ? 'active' : row.denial_reason ? 'denied' : 'pending';
+        card.className = 'professional-row ' + stateClass;
         const info = document.createElement('div');
         const name = document.createElement('div');
         name.className = 'professional-name';
@@ -395,16 +436,22 @@
         const meta = document.createElement('div');
         meta.className = 'professional-meta';
         const state = document.createElement('span');
-        state.className = 'professional-chip ' + (row.active ? 'active' : 'pending');
-        state.textContent = row.active ? 'Acceso activo' : 'Pendiente de aprobación';
+        state.className = 'professional-chip ' + stateClass;
+        state.textContent = row.active ? 'Acceso activo' : row.denial_reason ? 'Solicitud denegada' : 'Pendiente de aprobación';
         const role = document.createElement('span');
         role.className = 'professional-chip';
         role.textContent = row.role || 'professional';
         meta.append(state, role);
         info.append(name, email, meta);
+        if (row.denial_reason) {
+          const reason = document.createElement('p');
+          reason.className = 'professional-denial-reason';
+          reason.textContent = 'Motivo: ' + row.denial_reason + '.';
+          info.append(reason);
+        }
         card.append(info);
 
-        const isOwner = String(row.email || '').toLowerCase() === ADMIN_EMAIL;
+        const isOwner = row.role === 'admin' || String(row.email || '').toLowerCase() === ADMIN_EMAIL;
         const actions = document.createElement('div');
         actions.className = 'professional-actions';
 
@@ -415,13 +462,17 @@
           owner.textContent = 'Cuenta administradora';
           owner.disabled = true;
           actions.append(owner);
+        } else if (row.denial_reason) {
+          actions.append(denialButton(row, false, status, actions));
         } else if (!row.active) {
+          const deny = denialButton(row, true, status, actions);
           const approve = document.createElement('button');
           approve.type = 'button';
           approve.className = 'professional-action';
           approve.textContent = 'Aprobar acceso';
           approve.addEventListener('click', async () => {
             approve.disabled = true;
+            deny.disabled = true;
             approve.textContent = 'Aprobando…';
             status.textContent = '';
             try {
@@ -430,11 +481,12 @@
               await loadProfessionals();
             } catch {
               approve.disabled = false;
+              deny.disabled = false;
               approve.textContent = 'Aprobar acceso';
               status.textContent = 'No se ha podido aprobar el acceso. Vuelve a intentarlo.';
             }
           });
-          actions.append(approve);
+          actions.append(approve, deny);
         } else {
           const revalidate = document.createElement('button');
           revalidate.type = 'button';
@@ -480,7 +532,7 @@
         card.append(actions);
         list.append(card);
       });
-      status.textContent = pending ? `${pending} solicitud${pending === 1 ? '' : 'es'} pendiente${pending === 1 ? '' : 's'} de revisar.` : 'No hay solicitudes pendientes.';
+      status.textContent = notice || (pending ? `${pending} solicitud${pending === 1 ? '' : 'es'} pendiente${pending === 1 ? '' : 's'} de revisar.` : 'No hay solicitudes pendientes.');
     } catch {
       status.textContent = 'No se ha podido cargar la gestión de profesionales.';
     }
