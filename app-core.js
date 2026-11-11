@@ -251,8 +251,17 @@ document.addEventListener("DOMContentLoaded", () => {
   initObesityWheel();
   initProfessionalAreaLink();
 
-  // Sección inicial
-  showSection("home");
+  // Abrir directamente una sección educativa desde las guías públicas
+  const initialSection = decodeURIComponent(window.location.hash.slice(1));
+  if (initialSection && document.getElementById("section-" + initialSection)) {
+    showSection(initialSection);
+  } else {
+    showSection("home");
+  }
+  window.addEventListener("hashchange", () => {
+    const sectionId = decodeURIComponent(window.location.hash.slice(1));
+    if (sectionId && document.getElementById("section-" + sectionId)) showSection(sectionId);
+  });
 
   // En desktop, abrir el primer grupo del sidebar
   if (window.innerWidth >= 768) {
