@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Cuestionario de diabetes · ENDONUTRI</title>
+  <link rel="stylesheet" href="etd-remoto.css?v=1">
+  <script defer src="etd-paciente-data.js?v=1"></script>
+  <script defer src="etd-paciente.js?v=1"></script>
+</head>
+<body class="etd-patient">
+  <main class="etd-patient-main">
+    <header class="etd-patient-header">
+      <span class="etd-eyebrow">ENDONUTRI · EDUCACIÓN EN DIABETES</span>
+      <h1>Cuestionario ETD Avanzada</h1>
+      <p id="etd-instructions">Marca una respuesta por pregunta. Al terminar, pulsa «Enviar cuestionario».</p>
+      <p id="etd-patient-code" class="etd-code" hidden></p>
+    </header>
+    <div id="etd-patient-state" class="etd-notice" role="status" aria-live="polite">Comprobando el enlace…</div>
+    <noscript><p>Activa JavaScript o abre el enlace en el navegador de tu móvil para responder.</p></noscript>
+    <form id="etd-patient-form" hidden autocomplete="off">
+      <p class="etd-helper">Tu profesional recibirá la puntuación junto a tu código. No tienes que escribir tu nombre ni ningún dato personal.</p>
+      <div id="etd-patient-questions"></div>
+      <div class="etd-send">
+        <p id="etd-progress" aria-live="polite">0 de 11 respondidas</p>
+        <button class="etd-button" type="submit">Enviar cuestionario</button>
+        <p id="etd-submit-state" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+  </main>
+</body>
+</html>

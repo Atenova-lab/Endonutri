@@ -118,6 +118,7 @@
   }
 
   function showLogin() {
+    window.EndonutriRemoteETD?.disconnect();
     privateArea?.classList.remove('active');
     if (loginPanel) loginPanel.style.display = 'block';
     if (el('userLabel')) el('userLabel').textContent = '';
@@ -145,7 +146,8 @@
     if (el('loginIntro')) el('loginIntro').textContent = copy[1];
   }
 
-  function showPrivate(email, role) {
+  function showPrivate(email, role, userId) {
+    window.EndonutriRemoteETD?.connect(sb, userId);
     if (loginPanel) loginPanel.style.display = 'none';
     privateArea?.classList.add('active');
     if (el('userLabel')) el('userLabel').textContent = email || 'Profesional autorizado';
@@ -189,7 +191,7 @@
         else message(data ? 'Tu solicitud está pendiente de aprobación. Cuando ENDONUTRI la autorice podrás acceder.' : 'Tu cuenta no tiene acceso profesional activo. Contacta con la administración de ENDONUTRI.');
         return false;
       }
-      showPrivate(user.email || data.email, data.role);
+      showPrivate(user.email || data.email, data.role, user.id);
       return true;
     })();
     profileTask = task;

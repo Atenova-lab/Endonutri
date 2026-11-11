@@ -1,0 +1,37 @@
+.etd-patient [hidden],.etd-remote [hidden]{display:none!important}
+.etd-patient{margin:0;background:#f1f7f1;color:#183e32;font:17px/1.55 system-ui,-apple-system,sans-serif}
+.etd-patient-main{max-width:760px;margin:auto;padding:clamp(16px,4vw,32px)}
+.etd-patient-header{padding:clamp(20px,5vw,36px);background:#fff;border:1px solid #d6e5d7;border-radius:22px;margin-bottom:18px}
+.etd-patient h1{font-size:clamp(27px,6vw,39px);line-height:1.16;margin:.35em 0;color:#064e3b}
+.etd-patient-header p{margin:.6em 0 0}
+.etd-eyebrow{font-size:12px;letter-spacing:.09em;font-weight:800;color:#21644d}
+.etd-code{display:inline-block;background:#e5f2e8;padding:4px 11px;border-radius:8px;font-weight:800;letter-spacing:.045em;white-space:nowrap}
+.etd-helper{color:#456054}
+.etd-notice,.etd-send{background:#fff;border:1px solid #d6e5d7;border-radius:16px;padding:18px}
+.etd-notice .etd-button{margin-top:12px}
+.etd-question{margin:20px 0;padding:14px 16px 16px;min-width:0;border:1px solid #d6e5d7;background:#fff;border-radius:16px}
+.etd-question legend{font-weight:750;color:#064e3b;padding:0 6px}
+.etd-question label{display:flex;gap:10px;align-items:baseline;padding:9px 10px;margin:6px 0;border:1px solid #e1ebe1;border-radius:10px;cursor:pointer}
+.etd-question input{flex:none;accent-color:#16654c}
+.etd-question label:has(input:checked){background:#eaf6eb;border-color:#78aa8f}
+.etd-button{font:inherit;display:inline-flex;justify-content:center;align-items:center;min-height:44px;padding:8px 14px;border:1px solid #0b5f47;border-radius:11px;background:#0b5f47;color:white;text-decoration:none;font-weight:750;cursor:pointer;text-align:center}
+.etd-button:hover{background:#094d3a}
+.etd-button:focus-visible,.etd-remote summary:focus-visible{outline:3px solid #257c61;outline-offset:3px}
+.etd-button:disabled{opacity:.55;cursor:wait}
+.etd-button.etd-secondary{background:white;color:#155641;border-color:#accbb8}
+.etd-button.etd-secondary:hover{background:#eef6ef}
+.etd-send p{margin:0 0 10px}
+.etd-send [role=status]:not(:empty){margin:10px 0 0}
+.etd-remote{margin-top:22px;border-top:1px solid #c7dccd;padding-top:18px}
+.etd-remote>summary{font-size:18px;font-weight:800;color:#064e3b;cursor:pointer;padding:4px 0}
+.etd-remote h4{font-size:17px;margin:16px 0 8px;color:#064e3b}
+.etd-remote p{margin:8px 0}
+.etd-actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.etd-records{display:grid;gap:10px}
+.etd-record{border:1px solid #d5e6d8;background:#fff;border-radius:14px;padding:14px}
+.etd-record .etd-actions{margin-top:10px}
+.etd-record .etd-code{margin-right:8px}
+.etd-record-state{font-weight:750;color:#28543f}
+.etd-record-date{color:#4b6357;font-size:14px}
+.etd-status:not(:empty){padding:7px 0;color:#305747;font-weight:650}
+.etd-copy-field{width:100%;font:inherit;padding:10px;border:1px solid #accbb8;border-radius:10px;margin:8px 0}
