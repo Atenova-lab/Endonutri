@@ -13,7 +13,7 @@
     return;
   }
 
-  const { title, questions, sources, version } = data;
+  const { title, questions, sources } = data;
   const dialog = document.createElement('dialog');
   dialog.className = 'ck-dialog';
   dialog.setAttribute('aria-labelledby', 'ck-title');
@@ -21,7 +21,7 @@
   const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const format = new Intl.NumberFormat('es-ES', { maximumFractionDigits: 2 });
   const authorized = () => privateArea.classList.contains('active');
-  let answers = questions.map(() => null), result = null, completedAt = null;
+  let answers = questions.map(() => null), result = null;
 
   dialog.innerHTML = `
     <header class="ck-header">
@@ -83,7 +83,6 @@
   function clear() {
     answers = questions.map(() => null);
     result = null;
-    completedAt = null;
     form.reset();
     form.querySelectorAll('fieldset').forEach(field => { field.disabled = false; });
     finishBox.hidden = false;
@@ -101,9 +100,8 @@
   function finish() {
     if (result || !authorized()) return;
     result = core.evaluate(questions, answers);
-    completedAt = new Date();
     const missed = result.details.filter(detail => !detail.correct);
-    const report = core.clinicalReport(title, result, completedAt, version);
+    const report = core.clinicalReport(title, result);
     form.querySelectorAll('fieldset').forEach(field => { field.disabled = true; });
     finishBox.hidden = true;
     outcome.innerHTML = `

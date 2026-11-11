@@ -21,17 +21,14 @@
     const total = questions.length;
     return { total, correct, incorrect: total - correct - unanswered, unanswered, percentage: correct * 100 / total, passed: correct * 100 >= THRESHOLD * total, minimumCorrect: Math.ceil(total * THRESHOLD / 100), details };
   }
-  function clinicalReport(title, result, date = new Date(), version = '') {
-    const timestamp = new Intl.DateTimeFormat('es-ES', { timeZone: 'Europe/Madrid', dateStyle: 'short', timeStyle: 'short' }).format(date);
+  function clinicalReport(title, result) {
     const score = new Intl.NumberFormat('es-ES', { maximumFractionDigits: 2 }).format(result.percentage);
     return 'Evaluación de conocimientos en diabetes.\n' +
       title + '.\n' +
-      'Fecha: ' + timestamp + '.\n' +
       'Resultado: ' + (result.passed ? 'APROBADO' : 'NO APROBADO') + '.\n' +
       'Puntuación: ' + result.correct + '/' + result.total + ' respuestas correctas (' + score + ' %).\n' +
       'Respuestas incorrectas: ' + result.incorrect + '. Sin responder: ' + result.unanswered + '.\n' +
-      'Criterio: aprobado con al menos el 70 % de aciertos sobre el total. Cada acierto suma 1 punto; las respuestas incorrectas y sin responder no suman ni restan.\n' +
-      (version ? 'Versión del cuestionario: ' + version + '.\n' : '');
+      'Criterio: aprobado con al menos el 70 % de aciertos sobre el total. Cada acierto suma 1 punto; las respuestas incorrectas y sin responder no suman ni restan.';
   }
   return { THRESHOLD, evaluate, clinicalReport };
 });
