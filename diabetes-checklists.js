@@ -1,191 +1,204 @@
-/* Cuestionarios de consulta: sesión en memoria, sin datos identificativos. */
+/* Cuestionario ETD Avanzada: respuestas en memoria, sin datos identificativos. */
 (function () {
   'use strict';
   const host = document.getElementById('db-checklists');
-  if (!host) return;
-  const data = window.EndonutriChecklistData, core = window.EndonutriChecklists;
+  const privateArea = document.getElementById('privateArea');
+  if (!host || !privateArea) return;
+  const start = host.querySelector('[data-ck-start]');
+  const status = host.querySelector('[data-ck-status]');
+  const data = window.EndonutriChecklistData;
+  const core = window.EndonutriChecklists;
   if (!data || !core) {
-    host.querySelector('[data-ck-status]').textContent = 'No se han podido cargar los cuestionarios. Recarga la página para intentarlo de nuevo.';
-    host.querySelectorAll('[data-ck-start]').forEach(button => { button.disabled = true; });
+    status.textContent = 'No se ha podido cargar el cuestionario. Recarga la página para volver a intentarlo.';
     return;
   }
-  const session = core.createSession(data.quizzes);
-  const privateArea = document.getElementById('privateArea');
+
+  const { title, questions, sources, version } = data;
   const dialog = document.createElement('dialog');
   dialog.className = 'ck-dialog';
   dialog.setAttribute('aria-labelledby', 'ck-title');
   document.body.append(dialog);
-  let view = 'home', confirmAction = null, opener = null;
-  const escape = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const percentage = value => new Intl.NumberFormat('es-ES', { maximumFractionDigits: 2 }).format(value);
-  const authorized = () => privateArea?.classList.contains('active');
-  const sourceLinks = ids => ids.map(id => data.sources.find(source => source.id === id)).filter(Boolean).map(source => '<a href="' + escape(source.url) + '" target="_blank" rel="noopener">' + escape(source.label) + ' ↗</a>').join('');
+  const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const format = new Intl.NumberFormat('es-ES', { maximumFractionDigits: 2 });
+  const authorized = () => privateArea.classList.contains('active');
+  let answers = questions.map(() => null), result = null, completedAt = null;
 
-  function reportFor(item) {
-    return core.clinicalReport(item.quiz.title, item.result, item.completedAt, data.version);
+  dialog.innerHTML = `
+    <header class="ck-header">
+      <div class="ck-brand">ENDONUTRI <span>· Consulta de diabetes</span></div>
+      <div class="ck-header-actions">
+        <button type="button" class="ck-quiet" data-ck-action="reset">Nuevo paciente</button>
+        <button type="button" class="ck-quiet" data-ck-action="close">Volver a recursos ×</button>
+      </div>
+    </header>
+    <div class="ck-shell">
+      <div class="ck-heading">
+        <span class="ck-kicker">EDUCACIÓN TERAPÉUTICA EN DIABETES</span>
+        <h2 id="ck-title" tabindex="-1">${esc(title)}</h2>
+        <p>Marca una respuesta por pregunta. Puedes revisar tus opciones antes de finalizar.</p>
+      </div>
+      <div class="ck-progress-block">
+        <div><strong>${questions.length} preguntas</strong><span id="ck-progress-text" aria-live="polite"></span></div>
+        <progress id="ck-progress" value="0" max="${questions.length}" aria-label="Preguntas respondidas"></progress>
+      </div>
+      <form id="ck-questions-form" autocomplete="off">
+        ${questions.map((q, index) => `
+          <fieldset class="ck-question">
+            <legend><span class="ck-number">${q.id}</span>${esc(q.question)}</legend>
+            <div class="ck-options">
+              ${q.options.map((option, choice) => `
+                <label class="ck-option">
+                  <input type="radio" name="etd-${index}" value="${choice}" data-ck-question="${index}">
+                  <span class="ck-option-letter" aria-hidden="true">${'ABCD'[choice]}</span>
+                  <span>${esc(option)}</span>
+                </label>`).join('')}
+            </div>
+          </fieldset>`).join('')}
+        <div id="ck-finish">
+          <p class="ck-note">Los ejemplos de insulina sirven para practicar. Sigue tu pauta personal.</p>
+          <div class="ck-final-actions"><button class="ck-primary" type="submit">Finalizar y ver resultado</button></div>
+        </div>
+      </form>
+      <section id="ck-outcome" aria-label="Resultado del cuestionario" hidden></section>
+    </div>`;
+
+  const form = dialog.querySelector('form');
+  const finishBox = dialog.querySelector('#ck-finish');
+  const outcome = dialog.querySelector('#ck-outcome');
+
+  function updateProgress() {
+    const answered = answers.filter(answer => answer !== null).length;
+    dialog.querySelector('#ck-progress').value = answered;
+    dialog.querySelector('#ck-progress-text').textContent = 'Respondidas: ' + answered + ' de ' + questions.length;
+    start.textContent = result ? 'Ver resultado' : answered ? 'Continuar cuestionario' : 'Empezar cuestionario';
+    status.textContent = result ? (result.passed ? 'Aprobado' : 'No aprobado') + ' · ' +
+      result.correct + '/' + result.total + ' · ' + format.format(result.percentage) + ' %' : '';
   }
-  function sessionReport() {
-    return session.results().map(reportFor).join('\n--------------------\n\n');
+
+  function focusHeading(heading) {
+    heading.focus({ preventScroll: true });
+    heading.scrollIntoView({ block: 'start' });
   }
-  function reportBox(text, title = 'Informe para la historia clínica') {
-    return '<section class="ck-report"><h3>' + escape(title) + '</h3><p>Texto listo para copiar en la historia del paciente.</p><label class="ck-sr" for="ck-report-text">Texto del informe</label><textarea id="ck-report-text" readonly rows="9" spellcheck="false">' + escape(text) + '</textarea><button class="ck-primary" type="button" data-ck-action="copy">Copiar informe</button><p class="ck-copy-status" id="ck-copy-status" role="status" aria-live="polite"></p></section>';
+
+  function clear() {
+    answers = questions.map(() => null);
+    result = null;
+    completedAt = null;
+    form.reset();
+    form.querySelectorAll('fieldset').forEach(field => { field.disabled = false; });
+    finishBox.hidden = false;
+    outcome.hidden = true;
+    outcome.replaceChildren();
+    updateProgress();
   }
-  function header(title, sub) {
-    return '<header class="ck-header"><div class="ck-brand">ENDONUTRI <span>· Consulta de diabetes</span></div><div class="ck-header-actions"><button type="button" class="ck-quiet" data-ck-action="patient">Nuevo paciente</button><button type="button" class="ck-quiet" data-ck-action="close">Volver a recursos ×</button></div></header><div class="ck-shell"><div class="ck-heading"><span class="ck-kicker">CHECKLIST DE CONOCIMIENTOS</span><h2 id="ck-title" tabindex="-1">' + escape(title) + '</h2><p>' + escape(sub) + '</p></div>';
-  }
-  function updateResourceCards() {
-    const results = session.results();
-    results.forEach(item => {
-      const card = host.querySelector('[data-ck-card="' + item.quiz.id + '"]');
-      card.querySelector('[data-ck-start]').textContent = 'Ver resultado';
-      card.querySelector('[data-ck-card-status]').textContent = (item.result.passed ? 'Aprueba' : 'No aprueba') + ' · ' + item.result.correct + '/' + item.result.total + ' · ' + percentage(item.result.percentage) + ' %';
-    });
-    host.querySelector('[data-ck-session-report]').hidden = !results.length;
-    host.querySelector('[data-ck-status]').textContent = results.length ? results.length + ' de 3 checklists finalizados en esta sesión. Pulsa «Nuevo paciente» para borrar las respuestas antes de la siguiente persona.' : 'Selecciona un checklist para empezar. Las respuestas se conservan solo mientras esta página está abierta.';
-  }
-  function resetPatient() {
-    session.resetPatient(); confirmAction = null;
-    host.querySelectorAll('[data-ck-start]').forEach(button => { button.textContent = 'Empezar checklist'; });
-    host.querySelectorAll('[data-ck-card-status]').forEach(status => { status.textContent = ''; });
-    updateResourceCards();
-    view = 'home';
-    render();
-  }
-  function choose(id) {
-    const state = session.select(id);
-    view = state.result ? 'result' : 'questions';
-    const button = host.querySelector('[data-ck-start="' + id + '"]');
-    if (!state.result && button) button.textContent = 'Continuar checklist';
-    render();
-  }
-  function open(action, element) {
-    if (!authorized()) return;
-    opener = element;
-    if (action === 'session') { view = 'session'; render(); }
-    else if (action === 'patient') {
-      if (session.hasWork()) requestConfirmation('patient');
-      else resetPatient();
-    } else choose(action);
-    if (!dialog.open) dialog.showModal();
-    document.body.classList.add('ck-modal-open');
-    focusHeading();
-  }
-  function close() {
+
+  function close(restoreFocus = true) {
     if (dialog.open) dialog.close();
     document.body.classList.remove('ck-modal-open');
-    updateResourceCards();
-    if (opener?.isConnected) opener.focus();
+    if (restoreFocus && authorized()) start.focus();
   }
-  function focusHeading() {
-    dialog.scrollTop = 0;
-    dialog.querySelector('#ck-title')?.focus({ preventScroll: true });
-  }
-  function requestConfirmation(action) {
-    confirmAction = { action, previous: view };
-    view = 'confirm'; render();
-  }
+
   function finish() {
-    session.finish(); view = 'result'; updateResourceCards(); render();
+    if (result || !authorized()) return;
+    result = core.evaluate(questions, answers);
+    completedAt = new Date();
+    const missed = result.details.filter(detail => !detail.correct);
+    const report = core.clinicalReport(title, result, completedAt, version);
+    form.querySelectorAll('fieldset').forEach(field => { field.disabled = true; });
+    finishBox.hidden = true;
+    outcome.innerHTML = `
+      <div class="ck-result ${result.passed ? 'ck-result-pass' : 'ck-result-fail'}">
+        <h3 id="ck-result-title" tabindex="-1" class="ck-result-label">${result.passed ? 'APROBADO' : 'NO APROBADO'}</h3>
+        <strong class="ck-result-score">${format.format(result.percentage)} <small>%</small></strong>
+        <p>${result.correct} de ${result.total} respuestas correctas</p>
+        <div class="ck-score-details">
+          <span><b>${result.correct}</b>Aciertos</span>
+          <span><b>${result.incorrect}</b>Incorrectas</span>
+          <span><b>${result.unanswered}</b>Sin responder</span>
+        </div>
+        <p class="ck-result-criterion">Se aprueba con ${result.minimumCorrect} de ${result.total} aciertos (al menos el ${core.THRESHOLD} %).</p>
+      </div>
+      <section class="ck-report" aria-labelledby="ck-report-label">
+        <h3 id="ck-report-label">Informe para la historia clínica</h3>
+        <label class="ck-sr" for="ck-report-text">Texto del informe</label>
+        <textarea id="ck-report-text" readonly rows="6" spellcheck="false">${esc(report)}</textarea>
+        <button class="ck-primary" type="button" data-ck-action="copy">Copiar informe</button>
+        <p class="ck-copy-status" id="ck-copy-status" role="status"></p>
+      </section>
+      <section class="ck-review" aria-labelledby="ck-review-title">
+        <h3 id="ck-review-title">Preguntas para repasar${missed.length ? ' (' + missed.length + ')' : ''}</h3>
+        ${missed.length ? missed.map(detail => {
+          const q = questions.find(question => question.id === detail.id);
+          const [label, url] = sources[q.source];
+          return `<article class="ck-review-item">
+            <h4>${q.id}. ${esc(q.question)}</h4>
+            <p><strong>Tu respuesta:</strong> ${detail.selected === null ? 'Sin responder.' : esc(q.options[detail.selected])}</p>
+            <p class="ck-right-answer"><strong>Respuesta correcta:</strong> ${esc(q.options[q.correct])}</p>
+            <p>${esc(q.explanation)}</p>
+            <div class="ck-source-links"><a href="${esc(url)}" target="_blank" rel="noopener">${esc(label)} ↗</a></div>
+          </article>`;
+        }).join('') : '<p class="ck-perfect">Has contestado correctamente todas las preguntas.</p>'}
+      </section>
+      <div class="ck-final-actions"><button class="ck-secondary" type="button" data-ck-action="reset">Nuevo paciente</button></div>`;
+    outcome.hidden = false;
+    updateProgress();
+    focusHeading(dialog.querySelector('#ck-result-title'));
   }
-  function reviewUnanswered() {
-    const state = session.snapshot();
-    const first = state.answers.findIndex(answer => answer === null);
-    if (first >= 0) session.page(Math.floor(first / state.pageSize));
-    view = 'questions'; render();
-    if (first >= 0) dialog.querySelector('#ck-question-' + first + ' legend')?.focus({ preventScroll: false });
-  }
-  function questionMarkup(question, index, selected) {
-    return '<fieldset class="ck-question" id="ck-question-' + index + '"><legend tabindex="-1"><span class="ck-number">' + question.id + '</span>' + escape(question.question) + '</legend><div class="ck-options">' + question.options.map((option, choice) => '<label class="ck-option"><input type="radio" name="ck-answer-' + index + '" value="' + choice + '" data-ck-question="' + index + '"' + (selected === choice ? ' checked' : '') + '><span class="ck-option-letter" aria-hidden="true">' + 'ABCD'[choice] + '</span><span>' + escape(option) + '</span></label>').join('') + '</div><button type="button" class="ck-clear" data-ck-action="clear" data-index="' + index + '">Dejar sin responder</button></fieldset>';
-  }
-  function resultsList() {
-    return session.results().map(item => '<div class="ck-completed"><strong>' + escape(item.quiz.title) + '</strong><span class="' + (item.result.passed ? 'ck-pass' : 'ck-fail') + '">' + (item.result.passed ? 'Aprueba' : 'No aprueba') + ' · ' + item.result.correct + '/' + item.result.total + ' (' + percentage(item.result.percentage) + ' %)</span></div>').join('');
-  }
-  function render() {
-    let html;
-    if (view === 'home') {
-      html = header('¿Qué checklist vas a realizar?', 'Elige una respuesta por pregunta. Puedes revisar tus respuestas antes de terminar.') + '<div class="ck-home-grid">' + data.quizzes.map(quiz => '<button type="button" class="ck-home-card" data-ck-choose="' + quiz.id + '"><span>' + quiz.questions.length + ' preguntas</span><strong>' + escape(quiz.title) + '</strong><small>' + escape(quiz.description) + '</small><b>Abrir checklist →</b></button>').join('') + '</div>' + (session.results().length ? '<section class="ck-session-summary"><h3>Resultados de esta sesión</h3>' + resultsList() + '<button type="button" class="ck-primary" data-ck-action="session">Ver informe de sesión</button></section>' : '') + '<p class="ck-note">Cada acierto suma 1 punto. Las respuestas incorrectas y sin responder no suman ni restan. Apruebas con al menos el 70 % de aciertos sobre todas las preguntas.</p>';
-    } else if (view === 'questions') {
-      const state = session.snapshot(), start = state.page * state.pageSize, end = Math.min(start + state.pageSize, state.quiz.questions.length);
-      const answered = state.answers.filter(answer => answer !== null).length;
-      html = header(state.quiz.title, 'Marca una opción en cada pregunta. No hay límite de tiempo.') + '<div class="ck-progress-block"><div><strong>Preguntas ' + (start + 1) + '-' + end + ' de ' + state.quiz.questions.length + '</strong><span id="ck-progress-text">Respondidas: ' + answered + ' de ' + state.quiz.questions.length + '</span></div><progress id="ck-progress" value="' + answered + '" max="' + state.quiz.questions.length + '" aria-label="Preguntas respondidas"></progress></div><form id="ck-questions-form">' + state.quiz.questions.slice(start, end).map((question, offset) => questionMarkup(question, start + offset, state.answers[start + offset])).join('') + '<nav class="ck-question-nav" aria-label="Navegación del checklist"><button class="ck-secondary" type="button" data-ck-action="previous"' + (state.page === 0 ? ' disabled' : '') + '>← Anterior</button><span>Página ' + (state.page + 1) + ' de ' + state.pages + '</span>' + (state.page + 1 < state.pages ? '<button class="ck-primary" type="button" data-ck-action="next">Siguiente →</button>' : '<button class="ck-primary" type="button" data-ck-action="finish">Finalizar y ver resultado</button>') + '</nav><div class="ck-bottom-actions"><button type="button" class="ck-quiet" data-ck-action="pending">Revisar preguntas pendientes</button><button type="button" class="ck-quiet" data-ck-action="home">Cambiar de checklist</button></div></form><p class="ck-note">Los ejemplos de insulina son ejercicios de aprendizaje; sigue siempre tu pauta personal.</p>';
-    } else if (view === 'result') {
-      const state = session.snapshot(), result = state.result;
-      const item = { quiz: state.quiz, result, completedAt: state.completedAt };
-      const errors = result.details.filter(detail => !detail.correct);
-      html = header(state.quiz.title, 'Checklist finalizado. Este es tu resultado.') + '<section class="ck-result ' + (result.passed ? 'ck-result-pass' : 'ck-result-fail') + '"><span class="ck-result-label">' + (result.passed ? 'APRUEBA EL CHECKLIST' : 'NO APRUEBA EL CHECKLIST') + '</span><strong class="ck-result-score">' + percentage(result.percentage) + ' <small>%</small></strong><p>' + result.correct + ' de ' + result.total + ' respuestas correctas</p><div class="ck-score-details"><span><b>' + result.correct + '</b>Aciertos</span><span><b>' + result.incorrect + '</b>Incorrectas</span><span><b>' + result.unanswered + '</b>Sin responder</span></div><p class="ck-result-criterion">Aprobado: al menos ' + result.minimumCorrect + ' de ' + result.total + ' aciertos (≥70 %). Los errores no restan puntos.</p></section>' + reportBox(reportFor(item)) + (errors.length ? '<details class="ck-review"><summary>Preguntas para repasar (' + errors.length + ')</summary>' + errors.map(detail => {
-        const question = state.quiz.questions.find(q => q.id === detail.id);
-        return '<article class="ck-review-item"><h4>' + question.id + '. ' + escape(question.question) + '</h4><p><strong>Respuesta marcada:</strong> ' + (detail.selected === null ? 'Sin responder.' : escape(question.options[detail.selected])) + '</p><p class="ck-right-answer"><strong>Respuesta correcta:</strong> ' + escape(question.options[question.correct]) + '</p><p>' + escape(question.explanation) + '</p><div class="ck-source-links">' + sourceLinks(question.sources) + '</div></article>';
-      }).join('') + '</details>' : '<p class="ck-perfect">Has contestado correctamente todas las preguntas.</p>') + '<div class="ck-final-actions"><button type="button" class="ck-primary" data-ck-action="home">Hacer otro checklist</button><button type="button" class="ck-secondary" data-ck-action="session">Informe de sesión</button><button type="button" class="ck-quiet" data-ck-action="repeat">Repetir este checklist</button></div>';
-    } else if (view === 'session') {
-      html = header('Informe de la sesión', 'Resultados de los checklists finalizados para este paciente.') + resultsList() + reportBox(sessionReport(), 'Informe conjunto para la historia clínica') + '<p class="ck-note">Incluye únicamente los checklists finalizados. No se atribuye resultado a los que aún no se han realizado.</p><div class="ck-final-actions"><button type="button" class="ck-primary" data-ck-action="home">Realizar otro checklist</button><button type="button" class="ck-secondary" data-ck-action="patient">Nuevo paciente</button></div>';
-    } else if (view === 'confirm') {
-      const action = confirmAction.action;
-      const unanswered = action === 'finish' ? session.snapshot().answers.filter(answer => answer === null).length : 0;
-      html = header(action === 'finish' ? 'Quedan preguntas sin responder' : action === 'repeat' ? 'Repetir el checklist' : 'Empezar con un nuevo paciente', action === 'finish' ? 'Quedan ' + unanswered + ' preguntas pendientes. Puedes revisarlas antes de terminar.' : action === 'repeat' ? 'Se borrará el resultado anterior de este checklist. Copia el informe primero si lo necesitas.' : 'Se borrarán todas las respuestas y resultados de esta sesión. Copia los informes antes de continuar.') + '<div class="ck-confirm"><p>' + (action === 'finish' ? 'Las preguntas sin responder no suman ni restan, pero forman parte del total utilizado para calcular el porcentaje.' : 'Esta acción deja el formulario limpio para empezar.') + '</p><div class="ck-final-actions"><button type="button" class="ck-primary" data-ck-action="confirm">' + (action === 'finish' ? 'Finalizar con preguntas sin responder' : action === 'repeat' ? 'Borrar y repetir' : 'Borrar e iniciar nuevo paciente') + '</button><button type="button" class="ck-secondary" data-ck-action="cancel">' + (action === 'finish' ? 'Revisar pendientes' : 'Conservar la sesión') + '</button></div></div>';
-    }
-    dialog.innerHTML = html + '</div><p class="ck-sr" role="status" aria-live="polite" id="ck-announcement"></p>';
-    focusHeading();
-  }
+
   async function copyReport() {
-    const text = dialog.querySelector('#ck-report-text'), status = dialog.querySelector('#ck-copy-status');
+    const report = dialog.querySelector('#ck-report-text');
+    const notice = dialog.querySelector('#ck-copy-status');
+    const copied = 'Informe copiado. Ya puedes pegarlo en la historia clínica.';
     try {
-      if (!navigator.clipboard?.writeText) throw new Error('Clipboard no disponible');
-      await navigator.clipboard.writeText(text.value);
-      if (status.isConnected) status.textContent = 'Informe copiado. Ya puedes pegarlo en la historia clínica.';
+      await navigator.clipboard.writeText(report.value);
+      notice.textContent = copied;
     } catch (_) {
-      if (!text.isConnected) return;
-      text.focus(); text.select(); text.setSelectionRange(0, text.value.length);
-      let copied = false;
-      try { copied = document.execCommand('copy'); } catch (_) { /* Selección manual disponible. */ }
-      status.textContent = copied ? 'Informe copiado. Ya puedes pegarlo en la historia clínica.' : 'Texto seleccionado. Pulsa Ctrl+C (o ⌘C en Mac) para copiarlo.';
+      if (!report.isConnected) return;
+      report.focus();
+      report.select();
+      report.setSelectionRange(0, report.value.length);
+      let success = false;
+      try { success = document.execCommand('copy'); } catch (_) { /* Copia manual disponible. */ }
+      notice.textContent = success ? copied : 'Texto seleccionado. Pulsa Ctrl+C (o ⌘C en Mac) para copiarlo.';
     }
   }
-  host.addEventListener('click', event => {
-    const start = event.target.closest('[data-ck-start]');
-    if (start) open(start.dataset.ckStart, start);
-    const action = event.target.closest('[data-ck-launch]');
-    if (action) open(action.dataset.ckLaunch, action);
+
+  start.addEventListener('click', () => {
+    if (!authorized() || dialog.open) return;
+    dialog.showModal();
+    document.body.classList.add('ck-modal-open');
+    focusHeading(dialog.querySelector(result ? '#ck-result-title' : '#ck-title'));
   });
-  dialog.addEventListener('change', event => {
-    if (!event.target.matches('[data-ck-question]') || !event.target.checked) return;
-    session.answer(Number(event.target.dataset.ckQuestion), Number(event.target.value));
-    const state = session.snapshot(), answered = state.answers.filter(answer => answer !== null).length;
-    dialog.querySelector('#ck-progress').value = answered;
-    dialog.querySelector('#ck-progress-text').textContent = 'Respondidas: ' + answered + ' de ' + state.quiz.questions.length;
+  form.addEventListener('change', event => {
+    const input = event.target;
+    if (!result && input.matches('[data-ck-question]:checked')) {
+      answers[Number(input.dataset.ckQuestion)] = Number(input.value);
+      updateProgress();
+    }
   });
-  dialog.addEventListener('submit', event => { event.preventDefault(); });
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    const pending = answers.filter(answer => answer === null).length;
+    if (pending && !window.confirm('Quedan ' + pending + ' preguntas sin responder. Contarán como no acertadas. ¿Quieres finalizar?')) return;
+    finish();
+  });
   dialog.addEventListener('click', event => {
-    const choice = event.target.closest('[data-ck-choose]');
-    if (choice) { choose(choice.dataset.ckChoose); return; }
-    const button = event.target.closest('[data-ck-action]');
-    if (!button) return;
-    const action = button.dataset.ckAction;
+    const action = event.target.closest('[data-ck-action]')?.dataset.ckAction;
     if (action === 'close') close();
-    else if (action === 'previous' || action === 'next') { session.page(session.snapshot().page + (action === 'next' ? 1 : -1)); render(); }
-    else if (action === 'clear') { const index = Number(button.dataset.index); session.answer(index, null); render(); dialog.querySelector('#ck-question-' + index + ' legend')?.focus(); }
-    else if (action === 'pending') { reviewUnanswered(); if (!session.snapshot().answers.includes(null)) dialog.querySelector('#ck-announcement').textContent = 'Has respondido todas las preguntas. Puedes revisar las páginas y finalizar en la última.'; }
-    else if (action === 'finish') { if (session.snapshot().answers.includes(null)) requestConfirmation('finish'); else finish(); }
-    else if (action === 'copy') copyReport();
-    else if (action === 'home' || action === 'session') { view = action; render(); }
-    else if (action === 'patient') { if (session.hasWork()) requestConfirmation('patient'); else resetPatient(); }
-    else if (action === 'repeat') requestConfirmation('repeat');
-    else if (action === 'confirm') {
-      const requested = confirmAction.action; confirmAction = null;
-      if (requested === 'finish') finish();
-      else if (requested === 'patient') resetPatient();
-      else { session.repeat(session.snapshot().quiz.id); view = 'questions'; updateResourceCards(); host.querySelector('[data-ck-start="' + session.snapshot().quiz.id + '"]').textContent = 'Continuar checklist'; host.querySelector('[data-ck-card="' + session.snapshot().quiz.id + '"] [data-ck-card-status]').textContent = ''; render(); }
-    } else if (action === 'cancel') {
-      const requested = confirmAction; confirmAction = null;
-      if (requested.action === 'finish') reviewUnanswered();
-      else { view = requested.previous; render(); }
+    if (action === 'copy') copyReport();
+    if (action === 'reset' && (!(result || answers.some(answer => answer !== null)) ||
+      window.confirm('Se borrarán las respuestas y el resultado de este paciente. ¿Empezar un cuestionario nuevo?'))) {
+      clear();
+      focusHeading(dialog.querySelector('#ck-title'));
     }
   });
   dialog.addEventListener('cancel', event => { event.preventDefault(); close(); });
-  document.getElementById('logoutButton')?.addEventListener('click', () => { resetPatient(); close(); });
-  new MutationObserver(() => {
-    if (!authorized()) { resetPatient(); close(); }
-  }).observe(privateArea, { attributes: true, attributeFilter: ['class'] });
-  window.addEventListener('pagehide', () => { resetPatient(); close(); dialog.innerHTML = ''; });
-  window.addEventListener('pageshow', event => { if (event.persisted) { resetPatient(); close(); } });
-  updateResourceCards();
+  function clearAndClose() { clear(); close(false); }
+  document.getElementById('logoutButton')?.addEventListener('click', clearAndClose);
+  new MutationObserver(() => { if (!authorized()) clearAndClose(); })
+    .observe(privateArea, { attributes: true, attributeFilter: ['class'] });
+  window.addEventListener('pagehide', clearAndClose);
+  window.addEventListener('pageshow', event => { if (event.persisted) clearAndClose(); });
+  updateProgress();
+  start.disabled = false;
 })();

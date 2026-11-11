@@ -25,65 +25,13 @@
     const timestamp = new Intl.DateTimeFormat('es-ES', { timeZone: 'Europe/Madrid', dateStyle: 'short', timeStyle: 'short' }).format(date);
     const score = new Intl.NumberFormat('es-ES', { maximumFractionDigits: 2 }).format(result.percentage);
     return 'Evaluación de conocimientos en diabetes.\n' +
-      'Checklist: ' + title + '.\n' +
+      title + '.\n' +
       'Fecha: ' + timestamp + '.\n' +
-      'Resultado: ' + (result.passed ? 'APRUEBA' : 'NO APRUEBA') + ' el checklist.\n' +
+      'Resultado: ' + (result.passed ? 'APROBADO' : 'NO APROBADO') + '.\n' +
       'Puntuación: ' + result.correct + '/' + result.total + ' respuestas correctas (' + score + ' %).\n' +
       'Respuestas incorrectas: ' + result.incorrect + '. Sin responder: ' + result.unanswered + '.\n' +
-      'Criterio: aprobado con ≥70 % de aciertos sobre el total. Cada acierto suma 1 punto; las respuestas incorrectas y sin responder no suman ni restan.\n' +
+      'Criterio: aprobado con al menos el 70 % de aciertos sobre el total. Cada acierto suma 1 punto; las respuestas incorrectas y sin responder no suman ni restan.\n' +
       (version ? 'Versión del cuestionario: ' + version + '.\n' : '');
   }
-  function createSession(quizzes, pageSize = 5) {
-    const states = new Map();
-    let currentId = null;
-    const quizFor = id => {
-      const quiz = quizzes.find(item => item.id === id);
-      if (!quiz) throw new Error('Checklist desconocido');
-      return quiz;
-    };
-    const stateFor = () => {
-      if (!currentId || !states.has(currentId)) throw new Error('No hay un checklist abierto');
-      return states.get(currentId);
-    };
-    return {
-      select(id) {
-        const quiz = quizFor(id);
-        if (!states.has(id)) states.set(id, { answers: Array(quiz.questions.length).fill(null), page: 0, result: null, completedAt: null });
-        currentId = id;
-        return this.snapshot();
-      },
-      answer(index, selected) {
-        const quiz = quizFor(currentId), state = stateFor();
-        if (state.result) throw new Error('El checklist ya está finalizado');
-        if (!Number.isInteger(index) || index < 0 || index >= quiz.questions.length) throw new Error('Pregunta fuera del checklist');
-        if (selected !== null && (!Number.isInteger(selected) || selected < 0 || selected >= quiz.questions[index].options.length)) throw new Error('Respuesta fuera de las opciones');
-        state.answers[index] = selected;
-      },
-      page(number) {
-        const state = stateFor(), quiz = quizFor(currentId);
-        if (!Number.isInteger(number)) throw new Error('Página no válida');
-        state.page = Math.max(0, Math.min(number, Math.ceil(quiz.questions.length / pageSize) - 1));
-        return this.snapshot();
-      },
-      finish(date = new Date()) {
-        const state = stateFor(), quiz = quizFor(currentId);
-        if (!state.result) { state.result = evaluate(quiz.questions, state.answers); state.completedAt = new Date(date); }
-        return this.snapshot();
-      },
-      repeat(id) { quizFor(id); states.delete(id); return this.select(id); },
-      resetPatient() { states.clear(); currentId = null; },
-      hasWork() { return [...states.values()].some(state => state.result || state.answers.some(value => value !== null)); },
-      results() {
-        return quizzes.filter(quiz => states.get(quiz.id)?.result).map(quiz => {
-          const state = states.get(quiz.id);
-          return { quiz, result: state.result, completedAt: new Date(state.completedAt) };
-        });
-      },
-      snapshot() {
-        const quiz = quizFor(currentId), state = stateFor();
-        return { quiz, answers: [...state.answers], page: state.page, pageSize, pages: Math.ceil(quiz.questions.length / pageSize), result: state.result, completedAt: state.completedAt ? new Date(state.completedAt) : null };
-      }
-    };
-  }
-  return { THRESHOLD, evaluate, clinicalReport, createSession };
+  return { THRESHOLD, evaluate, clinicalReport };
 });
