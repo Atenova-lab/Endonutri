@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://atenova-lab.github.io/Endonutri/</loc>
-    <lastmod>2026-10-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
+  <url><loc>https://atenova-lab.github.io/Endonutri/</loc></url>
+  <url><loc>https://atenova-lab.github.io/Endonutri/guias/obesidad-que-es.html</loc></url>
+  <url><loc>https://atenova-lab.github.io/Endonutri/guias/obesidad-por-que.html</loc></url>
+  <url><loc>https://atenova-lab.github.io/Endonutri/guias/obesidad-hambre.html</loc></url>
+  <url><loc>https://atenova-lab.github.io/Endonutri/guias/obesidad-metabolismo.html</loc></url>
+  <url><loc>https://atenova-lab.github.io/Endonutri/guias/obesidad-composicion.html</loc></url>
+  <url><loc>https://atenova-lab.github.io/Endonutri/guias/obesidad-dietas.html</loc></url>
+  <url><loc>https://atenova-lab.github.io/Endonutri/guias/ejercicio-empezar.html</loc></url>
+  <url><loc>https://atenova-lab.github.io/Endonutri/guias/ejercicio-fuerza.html</loc></url>
+  <url><loc>https://atenova-lab.github.io/Endonutri/guias/ejercicio-cardio.html</loc></url>
+  <url><loc>https://atenova-lab.github.io/Endonutri/guias/ejercicio-pasos.html</loc></url>
+  <url><loc>https://atenova-lab.github.io/Endonutri/guias/herramientas-etiquetas.html</loc></url>
+  <url><loc>https://atenova-lab.github.io/Endonutri/guias/herramientas-compra.html</loc></url>
+  <url><loc>https://atenova-lab.github.io/Endonutri/guias/herramientas-raciones.html</loc></url>
+  <url><loc>https://atenova-lab.github.io/Endonutri/guias/herramientas-fuera.html</loc></url>
 </urlset>
