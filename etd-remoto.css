@@ -35,3 +35,10 @@
 .etd-record-date{color:#4b6357;font-size:14px}
 .etd-status:not(:empty){padding:7px 0;color:#305747;font-weight:650}
 .etd-copy-field{width:100%;font:inherit;padding:10px;border:1px solid #accbb8;border-radius:10px;margin:8px 0}
+.etd-qr-dialog{box-sizing:border-box;width:min(440px,calc(100% - 24px));max-height:calc(100% - 24px);padding:clamp(16px,4vw,24px);border:1px solid #c7dccd;border-radius:20px;background:#fff;color:#183e32;box-shadow:0 20px 60px #112c2440;text-align:center}
+.etd-qr-dialog::backdrop{background:#0c211bbb}
+.etd-qr-dialog h4{margin:0;font-size:21px}
+.etd-qr-image:not(:empty){width:min(100%,300px);margin:12px auto;border:1px solid #d5e6d8;border-radius:12px;overflow:hidden}
+.etd-qr-image svg{display:block;width:100%;height:auto;aspect-ratio:1}
+.etd-qr-state{color:#28543f;font-weight:650}
+.etd-qr-dialog .etd-actions{justify-content:center;margin-top:14px}
