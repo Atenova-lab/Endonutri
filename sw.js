@@ -1,11 +1,11 @@
 /* Caché de recursos educativos públicos. No intercepta Supabase ni datos de pacientes. */
 'use strict';
-const VERSION = '20261027-compartir';
+const VERSION = '20261117-identidad-endonutri';
 const PREFIX = 'endonutri-public-';
 const CACHE = PREFIX + VERSION;
 const ROOT = new URL('./', self.registration.scope);
 const CORE = [
-  './', 'index.html', 'offline.html', 'manifest.webmanifest',
+  './', 'index.html', 'offline.html', 'manifest.webmanifest', 'endonutri.webmanifest',
   'config.js', 'app.js', 'app-core.js', 'contenidos.js', 'cuestionario.js',
   'papef.js', 'macronutrientes.js', 'equivalencias-datos.js', 'equivalencias.js',
   'navegacion-visual.js', 'buscador.js', 'pwa.js', 'qr.js',
